@@ -1,27 +1,30 @@
 #include "../inc/server.h"
 
 // Function to initialize the server socket
-int init_server_socket(struct sockaddr* server_address, socklen_t address_size) {
-    // Initialize server socket descriptor
-    
+int init_server_socket(struct sockaddr *server_address, socklen_t address_size)
+{
+    int server_socket = 0;
+
     // Create a TCP socket
-    //if () { // Check if socket creation was successful
-        // If socket creation fails, log the error and exit the program
-        // Log socket creation error. handle_error function
-        // Exit the program with failure status
-    //}
+    server_socket = socket(AF_INET, SOCK_STREAM, 0); // Create a TCP socket
+    if (server_socket == -1)
+    {
+        handle_error(strerror(errno));
+        exit(EXIT_FAILURE);
+    }
 
-    //if () { // Bind the socket to the server address
-        // If socket binding fails, log the error and exit the program
-        // Log socket binding error. handle_error function
-        // Exit the program with failure status
-    //}
+    // Bind the socket to the server address
+    if (bind(server_socket, serv_address, address_size) == -1)
+    {
+        handle_error(strerror(errno));
+        exit(EXIT_FAILURE);
+    }
 
-    //if () { // Start listening on the socket for incoming connections
-        // If listen fails, log the error
-        // Log listen error. handle_error function
-        // Failure to listen will not cause the program to exit, it will continue running
-    //}
+    // Start listening on the socket for incoming connections
+    if (listen(server_socket, 10) == -1)
+    {
+        handle_error(strerror(errno));
+    }
 
-    // Return the server socket descriptor
+    return server_socket;
 }
