@@ -6,6 +6,8 @@
 #include "../../libraries/openssl/openssl/ssl.h"
 #include "../../libraries/openssl/openssl/err.h"
 
+#include "../../libraries/cjson/inc/cJSON.h"
+
 typedef struct s_user
 {
     // TODO
