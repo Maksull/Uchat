@@ -1,14 +1,10 @@
 #include "../inc/server.h"
 
 // Function to handle and log errors
-void handle_error(const char* error) {
-    // Pointer to store concatenated error string
-    
-    // Concatenate error string with newline character
-    
-    // Print error message to standard error
-    
-    // Log error message
-    
-    // Free allocated memory for error string
+void handle_error(const char *err)
+{
+    char *err_str = mx_strjoin(err, "\n");
+    mx_printerr(err_str);
+    logger(err_str, ERROR_LOG);
+    mx_strdel(&err_str);
 }

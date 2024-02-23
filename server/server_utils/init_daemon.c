@@ -1,32 +1,45 @@
 #include "../inc/server.h"
 
-// Function to make the current process a daemon
-void init_daemon() {
-    // Declare variables to hold process ID and session ID
-    
-    // Fork the process to create a child process
+static void fork_process()
+{
     // Fork the process
-    //if () { // Check if fork failed
-        // If fork fails, log the error and exit the program
-        // Log fork error
-        // Exit the program with failure status
-    //}
+    pid_t pid = fork();
+    if (pid < 0)
+    {
+        perror("fork");
+        exit(EXIT_FAILURE);
+    }
+    // If in the parent process, print the child process ID and exit
+    if (pid > 0)
+    {
+        printf("The process id is: %d\n", pid);
+        exit(EXIT_SUCCESS);
+    }
+}
 
-    // If we're in the parent process, print the child process id and exit
-    //if () { // Check if parent process
-        // Print child process ID
-         // Exit the program with success status
-    //}
-
-    // Set umask to 0 to allow full access to files
-    
+static void create_new_session()
+{
     // Create a new session for the child process to become the session leader
-    // Create a new session
-    //if () { // Check if creating session failed
-        // If creating session fails, log the error and exit the program
-        // Log setsid error
-        // Exit the program with failure status
-    //}
+    pid_t sid = setsid();
+    if (sid < 0)
+    {
+        perror("setsid");
+        exit(EXIT_FAILURE);
+    }
+}
 
-    // Reset the handling of termination signal(SIGTERM) to default
+// Function to make the current process a daemon
+void init_daemon()
+{
+    // Fork the process to create a child process
+    fork_process();
+
+     // Change the file mode mask to allow full access to files
+    umask(0);
+
+    // Create a new session for the child process to become the session leader
+    create_new_session();
+
+    // Reset the handling of termination signal to default
+    signal(SIGTERM, SIG_DFL);
 }
