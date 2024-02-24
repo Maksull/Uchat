@@ -94,7 +94,6 @@ void mx_clear_user(t_user** p);
 // REQUEST HANDLERS
 
 t_request_type handle_request_for(const char* req_args, t_server_utils* utils);
-char* get_json_response_for(t_response_code error_code, t_request_type req_type);
 t_request_type get_request_type(cJSON* json);
 t_request_type handle_usr_logout(const cJSON* logout_info, t_server_utils* utils);
 

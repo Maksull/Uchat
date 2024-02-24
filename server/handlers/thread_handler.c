@@ -1,7 +1,7 @@
 #include "../inc/server.h"
 
 // This function retrieves the client request from the SSL connection
-char* get_client_request(SSL* ssl, int length) {
+static char* get_client_request(SSL* ssl, int length) {
 
     char buffer[SENT_DATA_LEN] = "";
 
@@ -33,7 +33,7 @@ char* get_client_request(SSL* ssl, int length) {
 }
 
 //  Function reads data from the client through the provided SSL connection
-char* read_client_data(SSL *ssl) {
+static char* read_client_data(SSL *ssl) {
 
     char buffer[SENT_DATA_LEN];
 

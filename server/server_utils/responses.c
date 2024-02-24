@@ -1,7 +1,7 @@
 #include "../inc/server.h"
 
 // Get a string-formatted error response from a created json object
-char* get_json_response_for(t_response_code error_code, t_request_type req_type) {
+static char* get_json_response_for(t_response_code error_code, t_request_type req_type) {
     
     cJSON *json = cJSON_CreateObject();
 
