@@ -5,14 +5,31 @@
 
 #include "../../libraries/openssl/openssl/ssl.h"
 #include "../../libraries/openssl/openssl/err.h"
-
 #include "../../libraries/cjson/inc/cJSON.h"
+#include "../../libraries/sqlite/inc/sqlite3.h"
 
 #define SENT_DATA_LEN 4000
+#define QUERY_LEN 500
+
+#define DB_NAME "server_utils/database.db"
+#define LOGFILE_NAME "server_utils/uchat.log"
+
+// Enum for the type of info being logged
+typedef enum e_log_type
+{
+    INFO_LOG,
+    ERROR_LOG
+} t_log_type;
 
 typedef struct s_user
 {
-    // TODO
+    int client_fd;
+    SSL *ssl;
+    int user_id;
+    char *name;
+    char *password;
+    t_avatar_color avatar_color;
+    struct s_user *next;
 } t_user;
 
 typedef struct s_server_utils
@@ -21,6 +38,8 @@ typedef struct s_server_utils
     SSL *ssl;
     t_user *user;
 } t_server_utils;
+
+typedef void (*t_req_handler)(const cJSON *user_info, t_server_utils *utils);
 
 // TODO: make a folder to contains utils
 // Enum for the code of the server response to the client
@@ -76,8 +95,13 @@ typedef enum e_request_type
     REQ_CLIENT_EXIT,
 } t_request_type;
 
-// SERVER UTILS
+// An array of function pointers for request handlers
+static const t_req_handler request_handlers[] = {
+    handle_user_signup,
+    handle_user_login,
+    NULL};
 
+// SERVER UTILS
 void init_daemon();
 void init_ssl(SSL_CTX **ctx);
 void load_ssl_sertificate(SSL_CTX *ctx, const char *cert, const char *key);
@@ -88,18 +112,30 @@ void handle_cli_arg_errors(char **argv);
 int init_server_socket(struct sockaddr *server_address, socklen_t address_size);
 void create_new_client(SSL *ssl, int client_socket);
 void handle_error(const char *err);
+void logger(const char *info, t_log_type info_type);
 
-// USER UTILS
+// HANDLERS
+void *thread_handler(void *arg);
+t_request_type handle_request_for(const char *req_args, t_server_utils *utils);
+void handle_user_signup(const cJSON *user_info, t_server_utils *utils);
+void handle_user_login(const cJSON *user_info, t_server_utils *utils);
+t_request_type handle_user_logout(const cJSON *logout_info, t_server_utils *utils);
 
+// DB
+int init_database();
+sqlite3 *open_database();
+sqlite3_stmt *db_execute_stmt_for(const char *query, sqlite3 *db);
+int db_execute_query(const char *query);
+t_response_code db_add_user(const cJSON *user_info);
+bool db_user_exists(const char *username);
+
+// UTILS
+t_user *mx_create_user(int id, int client_fd, SSL *ssl);
 void mx_clear_user(t_user **p);
 
-// REQUEST HANDLERS
-
-t_request_type handle_request_for(const char *req_args, t_server_utils *utils);
-t_request_type handle_usr_logout(const cJSON *logout_info, t_server_utils *utils);
-
-// THREADS
-
-void *thread_handler(void *arg);
+// VALIDATION
+bool regex_for(const char *pattern, const char *str);
+bool is_strlen_valid(const char *str, int min_len, int max_len);
+bool is_user_name_format_valid(const char *user_name);
 
 #endif
