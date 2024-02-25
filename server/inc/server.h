@@ -11,6 +11,11 @@
 #define SENT_DATA_LEN 4000
 #define QUERY_LEN 500
 
+#define MAX_NAME_INPUT_LEN  16
+#define MIN_NAME_INPUT_LEN  4
+
+#define MAX_CHATS_TOTAL     15
+
 #define DB_NAME "server_utils/database.db"
 #define LOGFILE_NAME "server_utils/uchat.log"
 
@@ -31,6 +36,13 @@ typedef struct s_user
     t_avatar_color avatar_color;
     struct s_user *next;
 } t_user;
+
+// Type for the type of a chat member
+typedef enum e_member_type
+{
+    ADMIN_MEMBER,
+    NORMAL_MEMBER,
+} t_member_type;
 
 typedef struct s_server_utils
 {
@@ -99,6 +111,13 @@ typedef enum e_request_type
 static const t_req_handler request_handlers[] = {
     handle_user_signup,
     handle_user_login,
+    handle_create_chat,
+    handle_delete_chat,
+    handle_edit_chat,
+    handle_get_chats,
+    handle_join_chat,
+    handle_leave_chat,
+    handle_search_chats,
     NULL};
 
 // SERVER UTILS
@@ -121,6 +140,14 @@ void handle_user_signup(const cJSON *user_info, t_server_utils *utils);
 void handle_user_login(const cJSON *user_info, t_server_utils *utils);
 t_request_type handle_user_logout(const cJSON *logout_info, t_server_utils *utils);
 
+void handle_create_chat(const cJSON *chat_info, t_server_utils *utils);
+void handle_delete_chat(const cJSON *chat_info, t_server_utils *utils);
+void handle_edit_chat(const cJSON *chat_info, t_server_utils *utils);
+void handle_get_chats(const cJSON *chat_info, t_server_utils *utils);
+void handle_join_chat(const cJSON *chat_info, t_server_utils *utils);
+void handle_leave_chat(const cJSON *chat_info, t_server_utils *utils);
+void handle_search_chats(const cJSON *chat_info, t_server_utils *utils)
+
 // DB
 int init_database();
 sqlite3 *open_database();
@@ -128,10 +155,27 @@ sqlite3_stmt *db_execute_stmt_for(const char *query, sqlite3 *db);
 int db_execute_query(const char *query);
 t_response_code db_add_user(const cJSON *user_info);
 bool db_user_exists(const char *username);
+int db_get_chat_id_by_name(const char *chat_name);
+int db_get_chats_total(int user_id);
+t_response_code db_insert_chat(const char *chat_name, int date, int avatar_color);
+bool db_has_chat_perms(int user_id, int chat_id, t_member_type perms)
+int db_insert_member(const char *chat_name, t_member_type member_type, t_server_utils *utils);
+int db_delete_messages(int chat_id);
+int db_delete_members(int chat_id);
+t_response_code db_delete_member(int user_id, int chat_id);
+t_response_code db_delete_chat(const char *chat_name, int chat_id);
+bool db_chat_exists(int chat_id);
+bool db_is_chat_member(int user_id, int chat_id);
+t_response_code db_modify_chat_name(int chat_id, const char *new_name);
+cJSON *db_get_chats_by_user_id(int user_id);
+cJSON *db_get_search_chats(const cJSON *chat_info, t_server_utils *utils);
+
 
 // UTILS
 t_user *mx_create_user(int id, int client_fd, SSL *ssl);
 void mx_clear_user(t_user **p);
+
+cJSON* stmt_to_chat_json(sqlite3_stmt* stmt, bool is_for_search);
 
 // VALIDATION
 bool regex_for(const char *pattern, const char *str);
