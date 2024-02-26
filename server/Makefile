@@ -2,8 +2,8 @@ CC = clang
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic -pthread -g
 
 OBJDIR = obj
-SRCDIR = src src/api src/server_utils src/database
-SRVR_UTILS_DIR = ../server_utils
+SRCDIR = src src/db src/handlers src/logger src/validation
+SRVR_UTILS_DIR = ../utils
 UCHAT = ../uchat_server
 
 SRC = $(foreach dir, $(SRCDIR), $(wildcard $(dir)/*.c))

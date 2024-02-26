@@ -1,4 +1,4 @@
-#include "../../inc/server.h"
+#include "../inc/server.h"
 
 // Function to handle the editing of a message
 void handle_edit_message(const cJSON *message_info, t_server_utils *utils)
