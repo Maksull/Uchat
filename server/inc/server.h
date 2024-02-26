@@ -154,6 +154,11 @@ void handle_get_chat_msgs(const cJSON *chat_info, t_server_utils *utils);
 void handle_get_msg(const cJSON *msg_info, t_server_utils *utils);
 void handle_last_msg_id(const cJSON *chat_info, t_server_utils *utils);
 void handle_delete_message(const cJSON *message_info, t_server_utils *utils);
+void handle_delete_account(const cJSON *chat_info, t_server_utils *utils);
+void handle_edit_message(const cJSON *message_info, t_server_utils *utils);
+void handle_edit_password(const cJSON *pass_info, t_server_utils *utils);
+void handle_edit_username(const cJSON *user_info, t_server_utils *utils);
+void handle_set_default_user_image(char *path, int id);
 
 // DB
 int init_database();
@@ -182,6 +187,10 @@ cJSON *db_get_chats_by_user_id(int user_id);
 cJSON *db_get_message_by_id(const cJSON *msg_info);
 cJSON *db_get_search_chats(const cJSON *chat_info, t_server_utils *utils);
 cJSON *db_get_messages_array_json(int chat_id);
+t_response_code db_delete_user(int user_id);
+t_response_code db_delete_member_by_user_id(int user_id);
+t_response_code db_modify_password(int user_id, const char *password);
+t_response_code db_modify_user_name(int user_id, const char *new_name);
 
 // UTILS
 t_user *mx_create_user(int id, int client_fd, SSL *ssl);
