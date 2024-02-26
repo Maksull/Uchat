@@ -14,7 +14,7 @@ int init_server_socket(struct sockaddr *server_address, socklen_t address_size)
     }
 
     // Bind the socket to the server address
-    if (bind(server_socket, serv_address, address_size) == -1)
+    if (bind(server_socket, server_address, address_size) == -1)
     {
         handle_error(strerror(errno));
         exit(EXIT_FAILURE);

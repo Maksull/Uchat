@@ -1,4 +1,4 @@
-#include "../inc/server.h"
+#include "../../inc/server.h"
 
 // Create a new user structure
 t_user *mx_create_user(int id, int client_fd, SSL *ssl)

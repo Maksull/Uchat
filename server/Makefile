@@ -2,7 +2,7 @@ CC = clang
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic -pthread -g
 
 OBJDIR = obj
-SRCDIR = db handlers logger validation
+SRCDIR = db handlers logger utils/json_utils utils/server_utils utils/user_utils validation
 UCHAT = ../uchat_server
 
 SRC = $(foreach dir, $(SRCDIR), $(wildcard $(dir)/*.c))
@@ -10,9 +10,6 @@ OBJS = $(OBJDIR)/*.o
 
 LIBMX_DIR = ../libraries/libmx
 LIBMX_NAME = $(LIBMX_DIR)/libmx.a
-
-UTILSLIB_DIR = ../utils
-UTILSLIB_NAME = $(UTILSLIB_DIR)/utilslib.a
 
 CJSON_DIR = ../libraries/cjson
 CJSON_NAME = $(CJSON_DIR)/libcjson.a
@@ -22,7 +19,6 @@ SSL_FILES:= ../local_lib/lib
 SSL_INC_FILES:= $(SSL_DIR)
 
 LIB_FLAGS = -lmx -lcjson -lsqlite3 -lssl -lcrypto \
-	-L$(UTILSLIB_DIR) $(UTILSLIB_NAME) \
 	-L$(LIBMX_DIR) $(LIBMX_NAME) \
 	-L$(CJSON_DIR) $(CJSON_NAME) \
 	-L$(SSL_FILES) -I$(SSL_INC_FILES)
