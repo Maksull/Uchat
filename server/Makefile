@@ -2,8 +2,7 @@ CC = clang
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic -pthread -g
 
 OBJDIR = obj
-SRCDIR = src src/db src/handlers src/logger src/validation
-SRVR_UTILS_DIR = ../utils
+SRCDIR = db handlers logger validation
 UCHAT = ../uchat_server
 
 SRC = $(foreach dir, $(SRCDIR), $(wildcard $(dir)/*.c))
@@ -23,15 +22,14 @@ SSL_FILES:= ../local_lib/lib
 SSL_INC_FILES:= $(SSL_DIR)
 
 LIB_FLAGS = -lmx -lcjson -lsqlite3 -lssl -lcrypto \
-			-L$(UTILSLIB_DIR) $(UTILSLIB_NAME) \
-			-L$(LIBMX_DIR) $(LIBMX_NAME) \
-			-L$(CJSON_DIR) $(CJSON_NAME) \
-			-L$(SSL_FILES) -I$(SSL_INC_FILES)
+	-L$(UTILSLIB_DIR) $(UTILSLIB_NAME) \
+	-L$(LIBMX_DIR) $(LIBMX_NAME) \
+	-L$(CJSON_DIR) $(CJSON_NAME) \
+	-L$(SSL_FILES) -I$(SSL_INC_FILES)
 
 all: $(UCHAT)
 
 $(UCHAT):
-	mkdir $(SRVR_UTILS_DIR)
 	mkdir $(OBJDIR)
 	$(CC) $(CFLAGS) -c $(SRC)
 	mv *.o $(OBJDIR)
@@ -40,7 +38,6 @@ $(UCHAT):
 clean:
 	rm -f $(OBJS)
 	rm -df $(OBJDIR)
-	rm -rdf $(SRVR_UTILS_DIR)
 
 uninstall:
 	make clean

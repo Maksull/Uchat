@@ -164,7 +164,6 @@ void handle_delete_message(const cJSON *message_info, t_server_utils *utils);
 void handle_delete_account(const cJSON *chat_info, t_server_utils *utils);
 void handle_edit_password(const cJSON *pass_info, t_server_utils *utils);
 void handle_edit_username(const cJSON *user_info, t_server_utils *utils);
-void handle_set_default_user_image(char *path, int id);
 
 // DB
 int init_database();
@@ -215,7 +214,6 @@ bool is_user_name_format_valid(const char *user_name);
 static const t_req_handler request_handlers[] = {
     handle_user_signup,
     handle_user_login,
-    handle_user_logout,
     handle_create_chat,
     handle_delete_chat,
     handle_edit_chat,
@@ -232,7 +230,6 @@ static const t_req_handler request_handlers[] = {
     handle_delete_account,
     handle_edit_password,
     handle_edit_username,
-    handle_set_default_user_image,
     NULL};
 
 #endif
