@@ -111,6 +111,7 @@ typedef enum e_request_type
 static const t_req_handler request_handlers[] = {
     handle_user_signup,
     handle_user_login,
+    handle_user_logout,
     handle_create_chat,
     handle_delete_chat,
     handle_edit_chat,
@@ -118,6 +119,16 @@ static const t_req_handler request_handlers[] = {
     handle_join_chat,
     handle_leave_chat,
     handle_search_chats,
+    handle_send_message,
+    handle_edit_message,
+    handle_get_chat_msgs,
+    handle_get_msg,
+    handle_last_msg_id,
+    handle_delete_message,
+    handle_delete_account,
+    handle_edit_password,
+    handle_edit_username,
+    handle_set_default_user_image,
     NULL};
 
 // SERVER UTILS
@@ -135,6 +146,7 @@ void logger(const char *info, t_log_type info_type);
 
 // HANDLERS
 void *thread_handler(void *arg);
+
 t_request_type handle_request_for(const char *req_args, t_server_utils *utils);
 void handle_user_signup(const cJSON *user_info, t_server_utils *utils);
 void handle_user_login(const cJSON *user_info, t_server_utils *utils);
@@ -155,7 +167,6 @@ void handle_get_msg(const cJSON *msg_info, t_server_utils *utils);
 void handle_last_msg_id(const cJSON *chat_info, t_server_utils *utils);
 void handle_delete_message(const cJSON *message_info, t_server_utils *utils);
 void handle_delete_account(const cJSON *chat_info, t_server_utils *utils);
-void handle_edit_message(const cJSON *message_info, t_server_utils *utils);
 void handle_edit_password(const cJSON *pass_info, t_server_utils *utils);
 void handle_edit_username(const cJSON *user_info, t_server_utils *utils);
 void handle_set_default_user_image(char *path, int id);
