@@ -1,43 +1,5 @@
 #include "../inc/server.h"
 
-// Function to retrieve a message by its ID from the database
-static cJSON *get_msg_by_id(const cJSON *msg_info)
-{
-    // Extract chat_id and message_id from the JSON object
-    const cJSON *chat_id = cJSON_GetObjectItemCaseSensitive(msg_info, "chat_id");
-    const cJSON *message_id = cJSON_GetObjectItemCaseSensitive(msg_info, "message_id");
-
-    // Check if chat_id and message_id are numbers
-    if (!cJSON_IsNumber(chat_id) || !cJSON_IsNumber(message_id))
-    {
-        return NULL;
-    }
-
-    sqlite3 *db = open_database();
-    sqlite3_stmt *stmt;
-
-    // Prepare the SQL statement to retrieve the message from the database
-    sqlite3_prepare_v2(db, "SELECT messages.id, messages.user_id, users.username, users.avatar_color, messages.chat_id, messages.text, messages.date "
-                           "FROM `messages` INNER JOIN `users` ON users.id = messages.user_id "
-                           "WHERE messages.chat_id = ? AND messages.id = ?",
-                       -1, &stmt, NULL);
-
-    // Bind the values for chat_id and message_id to the SQL statement
-    sqlite3_bind_int64(stmt, 1, chat_id->valueint);
-    sqlite3_bind_int64(stmt, 2, message_id->valueint);
-
-    cJSON *message_json = NULL;
-    // If the SQL query returns a row, extract the message JSON
-    if (sqlite3_step(stmt) == SQLITE_ROW)
-    {
-        message_json = get_msg_json(stmt);
-    }
-    sqlite3_finalize(stmt);
-    sqlite3_close(db);
-
-    return message_json;
-}
-
 // Function to handle the retrieval of a message
 void handle_get_msg(const cJSON *msg_info, t_server_utils *utils)
 {
@@ -48,7 +10,7 @@ void handle_get_msg(const cJSON *msg_info, t_server_utils *utils)
         return;
     }
 
-    cJSON *msg_json = get_msg_by_id(msg_info);
+    cJSON *msg_json = db_get_message_by_id(msg_info);
 
     // If the message JSON is NULL, send a server response with JSON failure code
     if (msg_json == NULL)
