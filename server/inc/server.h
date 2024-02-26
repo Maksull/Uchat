@@ -11,10 +11,10 @@
 #define SENT_DATA_LEN 4000
 #define QUERY_LEN 500
 
-#define MAX_NAME_INPUT_LEN  16
-#define MIN_NAME_INPUT_LEN  4
+#define MAX_NAME_INPUT_LEN 16
+#define MIN_NAME_INPUT_LEN 4
 
-#define MAX_CHATS_TOTAL     15
+#define MAX_CHATS_TOTAL 15
 
 #define DB_NAME "server_utils/database.db"
 #define LOGFILE_NAME "server_utils/uchat.log"
@@ -146,7 +146,14 @@ void handle_edit_chat(const cJSON *chat_info, t_server_utils *utils);
 void handle_get_chats(const cJSON *chat_info, t_server_utils *utils);
 void handle_join_chat(const cJSON *chat_info, t_server_utils *utils);
 void handle_leave_chat(const cJSON *chat_info, t_server_utils *utils);
-void handle_search_chats(const cJSON *chat_info, t_server_utils *utils)
+void handle_search_chats(const cJSON *chat_info, t_server_utils *utils);
+
+void handle_send_message(const cJSON *message_info, t_server_utils *utils);
+void handle_edit_message(const cJSON *message_info, t_server_utils *utils);
+void handle_get_chat_msgs(const cJSON *chat_info, t_server_utils *utils);
+void handle_get_msg(const cJSON *msg_info, t_server_utils *utils);
+void handle_last_msg_id(const cJSON *chat_info, t_server_utils *utils);
+void handle_delete_message(const cJSON *message_info, t_server_utils *utils);
 
 // DB
 int init_database();
@@ -157,25 +164,31 @@ t_response_code db_add_user(const cJSON *user_info);
 bool db_user_exists(const char *username);
 int db_get_chat_id_by_name(const char *chat_name);
 int db_get_chats_total(int user_id);
+t_response_code db_edit_message(const cJSON *msg_json, t_server_utils *utils);
 t_response_code db_insert_chat(const char *chat_name, int date, int avatar_color);
-bool db_has_chat_perms(int user_id, int chat_id, t_member_type perms)
+bool db_has_chat_perms(int user_id, int chat_id, t_member_type perms);
+t_response_code db_delete_message(const cJSON *msg_json, t_server_utils *utils);
 int db_insert_member(const char *chat_name, t_member_type member_type, t_server_utils *utils);
 int db_delete_messages(int chat_id);
+t_response_code db_insert_message(const cJSON *msg_json, int *message_id);
 int db_delete_members(int chat_id);
+t_response_code db_get_last_message_id(const cJSON *chat_info, int *last_msg_id);
 t_response_code db_delete_member(int user_id, int chat_id);
 t_response_code db_delete_chat(const char *chat_name, int chat_id);
 bool db_chat_exists(int chat_id);
 bool db_is_chat_member(int user_id, int chat_id);
 t_response_code db_modify_chat_name(int chat_id, const char *new_name);
 cJSON *db_get_chats_by_user_id(int user_id);
+cJSON *db_get_message_by_id(const cJSON *msg_info);
 cJSON *db_get_search_chats(const cJSON *chat_info, t_server_utils *utils);
-
+cJSON *db_get_messages_array_json(int chat_id);
 
 // UTILS
 t_user *mx_create_user(int id, int client_fd, SSL *ssl);
 void mx_clear_user(t_user **p);
 
-cJSON* stmt_to_chat_json(sqlite3_stmt* stmt, bool is_for_search);
+cJSON *stmt_to_chat_json(sqlite3_stmt *stmt, bool is_for_search);
+cJSON *stmt_to_message_json(sqlite3_stmt *stmt);
 
 // VALIDATION
 bool regex_for(const char *pattern, const char *str);
