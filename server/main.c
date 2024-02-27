@@ -8,6 +8,16 @@ static void initialize_server(struct sockaddr_in *server_address, const char *po
     server_address->sin_port = htons(atoi(port)); // Convert port number to network byte order
 }
 
+static void handle_client_connection(int client_socket, SSL_CTX *ctx)
+{
+    // Initialize SSL connection
+    SSL *ssl = SSL_new(ctx);
+    SSL_set_fd(ssl, client_socket); // Associate SSL structure with the client socket
+
+    // Create a new client thread
+    create_new_client(ssl, client_socket);
+}
+
 static void accept_and_handle_clients(int server_socket, SSL_CTX *ctx)
 {
     socklen_t address_size = sizeof(struct sockaddr_in);
@@ -31,15 +41,6 @@ static void accept_and_handle_clients(int server_socket, SSL_CTX *ctx)
     }
 }
 
-static void handle_client_connection(int client_socket, SSL_CTX *ctx)
-{
-    // Initialize SSL connection
-    SSL *ssl = SSL_new(ctx);
-    SSL_set_fd(ssl, client_socket); // Associate SSL structure with the client socket
-
-    // Create a new client thread
-    create_new_client(ssl, client_socket);
-}
 
 static void cleanup(SSL_CTX *ctx, int server_socket)
 {

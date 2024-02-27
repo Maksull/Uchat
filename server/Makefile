@@ -5,7 +5,7 @@ OBJDIR = obj
 SRCDIR = db handlers logger utils/json_utils utils/server_utils utils/user_utils validation
 UCHAT = ../uchat_server
 
-SRC = $(foreach dir, $(SRCDIR), $(wildcard $(dir)/*.c))
+SRC = main.c $(foreach dir, $(SRCDIR), $(wildcard $(dir)/*.c))
 OBJS = $(OBJDIR)/*.o
 
 LIBMX_DIR = ../libraries/libmx
