@@ -143,7 +143,7 @@ void logger(const char *info, t_log_type info_type);
 void *thread_handler(void *arg);
 
 t_request_type handle_request_for(const char *req_args, t_server_utils *utils);
-void handle_user_signup(const cJSON *user_info, t_server_utils *utils);
+void handle_usr_signup(const cJSON *user_info, t_server_utils *utils);
 void handle_user_login(const cJSON *user_info, t_server_utils *utils);
 t_request_type handle_user_logout(const cJSON *logout_info, t_server_utils *utils);
 
@@ -212,7 +212,7 @@ bool is_user_name_format_valid(const char *user_name);
 
 // An array of function pointers for request handlers
 static const t_req_handler request_handlers[] = {
-    handle_user_signup,
+    handle_usr_signup,
     handle_user_login,
     handle_create_chat,
     handle_delete_chat,

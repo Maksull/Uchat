@@ -1,7 +1,7 @@
 #include "../inc/server.h"
 
 // Handle user signup request
-void handle_user_signup(const cJSON *user_info, t_server_utils *utils)
+void handle_usr_signup(const cJSON *user_info, t_server_utils *utils)
 {
     // Initialize the database
     if (init_database() != 0)
