@@ -26,8 +26,8 @@
 #define MAX_MSG_INPUT_LEN   1024
 #define MIN_MSG_INPUT_LEN   1
 
-#define DB_NAME "server_utils/database.db"
-#define LOGFILE_NAME "server_utils/uchat.log"
+#define DB_NAME "server/database.db"
+#define LOGFILE_NAME "server/uchat.log"
 
 // Enum for the type of info being logged
 typedef enum e_log_type
@@ -143,7 +143,7 @@ void logger(const char *info, t_log_type info_type);
 void *thread_handler(void *arg);
 
 t_request_type handle_request_for(const char *req_args, t_server_utils *utils);
-void handle_usr_signup(const cJSON *user_info, t_server_utils *utils);
+void handle_user_signup(const cJSON *user_info, t_server_utils *utils);
 void handle_user_login(const cJSON *user_info, t_server_utils *utils);
 t_request_type handle_user_logout(const cJSON *logout_info, t_server_utils *utils);
 
@@ -212,24 +212,25 @@ bool is_user_name_format_valid(const char *user_name);
 
 // An array of function pointers for request handlers
 static const t_req_handler request_handlers[] = {
-    handle_usr_signup,
+    handle_user_signup,
     handle_user_login,
     handle_create_chat,
-    handle_delete_chat,
-    handle_edit_chat,
-    handle_get_chats,
     handle_join_chat,
-    handle_leave_chat,
-    handle_search_chats,
     handle_send_message,
+    handle_leave_chat,
+    handle_delete_chat,
+    handle_delete_message,
     handle_edit_message,
+    handle_get_chats,
     handle_get_chat_msgs,
     handle_get_msg,
     handle_last_msg_id,
-    handle_delete_message,
-    handle_delete_account,
-    handle_edit_password,
+    handle_search_chats,
+    handle_edit_chat,
     handle_edit_username,
-    NULL};
+    handle_edit_password,
+    handle_delete_account,
+    NULL
+    };
 
 #endif
