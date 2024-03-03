@@ -1,4 +1,4 @@
-#include "../inc/server.h"
+#include "../../inc/server.h"
 
 // Get a single message in JSON format
 cJSON *stmt_to_message_json(sqlite3_stmt *stmt)

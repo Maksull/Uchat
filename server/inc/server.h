@@ -1,6 +1,10 @@
 #ifndef SERVER_HEADER
 #define SERVER_HEADER
 
+#include <arpa/inet.h>
+
+#include <regex.h>
+
 #include "../../libraries/libmx/inc/libmx.h"
 
 #include "../../libraries/openssl/openssl/ssl.h"
@@ -14,10 +18,16 @@
 #define MAX_NAME_INPUT_LEN 16
 #define MIN_NAME_INPUT_LEN 4
 
+#define MAX_PASS_INPUT_LEN  30
+#define MIN_PASS_INPUT_LEN  8
+
 #define MAX_CHATS_TOTAL 15
 
-#define DB_NAME "server_utils/database.db"
-#define LOGFILE_NAME "server_utils/uchat.log"
+#define MAX_MSG_INPUT_LEN   1024
+#define MIN_MSG_INPUT_LEN   1
+
+#define DB_NAME "server/database.db"
+#define LOGFILE_NAME "server/uchat.log"
 
 // Enum for the type of info being logged
 typedef enum e_log_type
@@ -25,6 +35,13 @@ typedef enum e_log_type
     INFO_LOG,
     ERROR_LOG
 } t_log_type;
+
+typedef enum e_avatar_color {
+    A_COLOR_FIRST,
+    A_COLOR_SECOND,
+    A_COLOR_THIRD,
+    A_COLOR_FOURTH,
+}            t_avatar_color;
 
 typedef struct s_user
 {
@@ -36,6 +53,7 @@ typedef struct s_user
     t_avatar_color avatar_color;
     struct s_user *next;
 } t_user;
+
 
 // Type for the type of a chat member
 typedef enum e_member_type
@@ -107,18 +125,6 @@ typedef enum e_request_type
     REQ_CLIENT_EXIT,
 } t_request_type;
 
-// An array of function pointers for request handlers
-static const t_req_handler request_handlers[] = {
-    handle_user_signup,
-    handle_user_login,
-    handle_create_chat,
-    handle_delete_chat,
-    handle_edit_chat,
-    handle_get_chats,
-    handle_join_chat,
-    handle_leave_chat,
-    handle_search_chats,
-    NULL};
 
 // SERVER UTILS
 void init_daemon();
@@ -135,6 +141,7 @@ void logger(const char *info, t_log_type info_type);
 
 // HANDLERS
 void *thread_handler(void *arg);
+
 t_request_type handle_request_for(const char *req_args, t_server_utils *utils);
 void handle_user_signup(const cJSON *user_info, t_server_utils *utils);
 void handle_user_login(const cJSON *user_info, t_server_utils *utils);
@@ -155,10 +162,8 @@ void handle_get_msg(const cJSON *msg_info, t_server_utils *utils);
 void handle_last_msg_id(const cJSON *chat_info, t_server_utils *utils);
 void handle_delete_message(const cJSON *message_info, t_server_utils *utils);
 void handle_delete_account(const cJSON *chat_info, t_server_utils *utils);
-void handle_edit_message(const cJSON *message_info, t_server_utils *utils);
 void handle_edit_password(const cJSON *pass_info, t_server_utils *utils);
 void handle_edit_username(const cJSON *user_info, t_server_utils *utils);
-void handle_set_default_user_image(char *path, int id);
 
 // DB
 int init_database();
@@ -167,6 +172,7 @@ sqlite3_stmt *db_execute_stmt_for(const char *query, sqlite3 *db);
 int db_execute_query(const char *query);
 t_response_code db_add_user(const cJSON *user_info);
 bool db_user_exists(const char *username);
+char *db_get_username_by_id(int user_id);
 int db_get_chat_id_by_name(const char *chat_name);
 int db_get_chats_total(int user_id);
 t_response_code db_edit_message(const cJSON *msg_json, t_server_utils *utils);
@@ -203,5 +209,28 @@ cJSON *stmt_to_message_json(sqlite3_stmt *stmt);
 bool regex_for(const char *pattern, const char *str);
 bool is_strlen_valid(const char *str, int min_len, int max_len);
 bool is_user_name_format_valid(const char *user_name);
+
+// An array of function pointers for request handlers
+static const t_req_handler request_handlers[] = {
+    handle_user_signup,
+    handle_user_login,
+    handle_create_chat,
+    handle_join_chat,
+    handle_send_message,
+    handle_leave_chat,
+    handle_delete_chat,
+    handle_delete_message,
+    handle_edit_message,
+    handle_get_chats,
+    handle_get_chat_msgs,
+    handle_get_msg,
+    handle_last_msg_id,
+    handle_search_chats,
+    handle_edit_chat,
+    handle_edit_username,
+    handle_edit_password,
+    handle_delete_account,
+    NULL
+    };
 
 #endif

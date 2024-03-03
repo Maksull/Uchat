@@ -1,4 +1,4 @@
-#include "../inc/server.h" // Include necessary header file
+#include "../inc/server.h"
 
 // Function to handle setting default user image in the database
 void handle_set_default_user_image(char *path, int id)

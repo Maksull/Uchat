@@ -1,7 +1,7 @@
 #include "../../inc/server.h"
 
 // Get the type of the request from the read json object
-static t_request_type get_request_type(cJSON *json) F
+static t_request_type get_request_type(cJSON *json)
 {
     return cJSON_GetObjectItem(json, "type")->valueint;
 }
