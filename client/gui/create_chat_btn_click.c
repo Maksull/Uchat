@@ -17,6 +17,6 @@ void create_chat_btn_click(GtkWidget *widget, gpointer data)
 
     char *group_name = (char *)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(chat_name_field))); // Retrieve the group name from the chat name field
 
-    int response_code = handle_create_chat_request(group_name); // Send a request to create a chat with the specified name
+    int response_code = handle_create_chat_request(group_name);                               // Send a request to create a chat with the specified name
     handle_create_chat_response_code(response_code, chat_name_field, chat_name_notify_label); // Handle the response code from the server
 }

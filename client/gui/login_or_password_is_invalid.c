@@ -1,7 +1,7 @@
 #include "../inc/client.h"
 
 // Function to handle login or password are invalid
-static void login_or_password_is_invalid(GtkWidget *login_notify_label)
+void login_or_password_is_invalid(GtkWidget *login_notify_label)
 {
     GtkWidget *toplevel = gtk_widget_get_toplevel(login_notify_label); // Get the top-level window widget
 

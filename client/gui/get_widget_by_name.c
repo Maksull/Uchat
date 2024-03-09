@@ -4,14 +4,15 @@
 GtkWidget *get_widget_by_name(GtkWidget *container, char *name)
 {
     GtkWidget *result = NULL; // Pointer to the found widget
-    GList *children = NULL; // Pointer to a list of child widgets
+    GList *children = NULL;   // Pointer to a list of child widgets
 
     // Check if the provided container is a valid GTK container
     if (GTK_IS_CONTAINER(container))
     {
         children = gtk_container_get_children(GTK_CONTAINER(container)); // Retrieve a list of children widgets from the container
     }
-    else {
+    else
+    {
         return NULL; // Return NULL if the provided container is not a valid GTK container
     }
 

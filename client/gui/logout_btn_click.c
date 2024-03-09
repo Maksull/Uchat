@@ -3,7 +3,7 @@
 // Function to handle logout button click
 void logout_btn_click(GtkWidget *widget, gpointer data)
 {
-    if(widget){}
+    if (widget) { }
     (void)data;
 
     pthread_cancel(utils->th_reader); // Cancel the thread responsible for reading server updates

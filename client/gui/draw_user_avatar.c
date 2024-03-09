@@ -3,12 +3,12 @@
 // Function to draw user avatar
 gboolean draw_user_avatar(GtkWidget *widget, cairo_t *cr, gpointer data)
 {
-    if (widget) {}
+    if (widget) { }
     int avatar_color = (int)data; // Extract the avatar color from the data
 
     // Construct the path to the avatar image file based on the color
     char *path = "client/data/img/user_avatars/avatar";
-    char *tmp = mx_strjoin(path, mx_itoa(avatar_color+1));
+    char *tmp = mx_strjoin(path, mx_itoa(avatar_color + 1));
     path = mx_strjoin(tmp, ".png");
     mx_strdel(&tmp);
 
@@ -28,12 +28,12 @@ gboolean draw_user_avatar(GtkWidget *widget, cairo_t *cr, gpointer data)
     double radius = corner_radius / aspect;
     double degrees = 3.14159265358979 / 180.0;
 
-    cairo_new_sub_path (cr);
-    cairo_arc (cr, x + width - radius, y + radius, radius, -90 * degrees, 0 * degrees);
-    cairo_arc (cr, x + width - radius, y + height - radius, radius, 0 * degrees, 90 * degrees);
-    cairo_arc (cr, x + radius, y + height - radius, radius, 90 * degrees, 180 * degrees);
-    cairo_arc (cr, x + radius, y + radius, radius, 180 * degrees, 270 * degrees);
-    cairo_close_path (cr);
+    cairo_new_sub_path(cr);
+    cairo_arc(cr, x + width - radius, y + radius, radius, -90 * degrees, 0 * degrees);
+    cairo_arc(cr, x + width - radius, y + height - radius, radius, 0 * degrees, 90 * degrees);
+    cairo_arc(cr, x + radius, y + height - radius, radius, 90 * degrees, 180 * degrees);
+    cairo_arc(cr, x + radius, y + radius, radius, 180 * degrees, 270 * degrees);
+    cairo_close_path(cr);
 
     // Fill the clipped area with the avatar image
     cairo_fill(cr);

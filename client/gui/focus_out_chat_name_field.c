@@ -1,7 +1,8 @@
 #include "../inc/client.h"
 
 // Function to handle focus out chat name field
-void focus_out_chat_name_field(GtkWidget *widget, gpointer data) {
+void focus_out_chat_name_field(GtkWidget *widget, gpointer data)
+{
     // Get the top-level window containing the widget
     GtkWidget *toplevel = gtk_widget_get_toplevel(widget);
     (void)data;

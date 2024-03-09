@@ -1,8 +1,9 @@
 #include "../inc/client.h"
 
 // Function to handle edit button click
-void edit_button_click(GtkWidget *widget, t_msg *message) {
-    if(widget){};
+void edit_button_click(GtkWidget *widget, t_msg *message)
+{
+    if (widget) { }
 
     // Retrieve necessary widgets
     GtkWidget *new_message_field = get_widget_by_name_r(main_window, "new_message_field");
@@ -14,7 +15,8 @@ void edit_button_click(GtkWidget *widget, t_msg *message) {
     sprintf(new_message, "%s", gtk_entry_get_text(GTK_ENTRY(new_message_field)));
 
     // Check if the new message is empty
-    if (!new_message[0]) {
+    if (!new_message[0])
+    {
         // If empty, delete the message and return
         delete_message(NULL, NULL, message);
         return;

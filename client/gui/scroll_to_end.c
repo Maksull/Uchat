@@ -1,8 +1,9 @@
 #include "../inc/client.h"
 
 // Function to handle scroll to the end
-void scroll_to_end(GtkWidget *widget, gpointer data) {
-    if(widget){}
+void scroll_to_end(GtkWidget *widget, gpointer data)
+{
+    if (widget) { }
     (void)data;
 
     // Get the scrollable wrap widget and the chat field widget

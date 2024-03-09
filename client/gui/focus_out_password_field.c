@@ -3,7 +3,7 @@
 // Function to focus out password field
 void focus_out_password_field(GtkWidget *widget, gpointer data)
 {
-    if(widget){}
+    if (widget) { }
     (void)data;
 
     // Find the password field and the corresponding notification label within the main window

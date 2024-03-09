@@ -1,7 +1,8 @@
 #include "../inc/client.h"
 
 // Function to add a CSS class to a GTK widget
-void focus_out_re_new_password_field(GtkWidget *widget, gpointer data) {
+void focus_out_re_new_password_field(GtkWidget *widget, gpointer data)
+{
     GtkWidget *toplevel = gtk_widget_get_toplevel(widget); // Get the top-level window containing the widget
     (void)data;
 

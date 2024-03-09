@@ -10,9 +10,9 @@ void set_chatlist_item_active(GtkWidget *widget)
     while (children)
     {
         remove_class(GTK_WIDGET(children->data), "active"); // Remove the "active" class from the current child widget
-        children = children->next; // Move to the next child widget
+        children = children->next;                          // Move to the next child widget
     }
-    }
+
     g_list_free(g_steal_pointer(&children)); // Free the memory allocated for the list of children widgets
 
     // gtk_container_foreach(GTK_CONTAINER(chatlist_container), (GtkCallback)remove_class, "active");

@@ -3,7 +3,7 @@
 // Function to destroy popup window
 void destroy_popup_window(GtkWidget *widget, gpointer chat_screen)
 {
-    if(widget){}
+    if (widget) { }
     (void)chat_screen;
 
     // Get the top-level container of the widget (the popup window) and destroy it

@@ -3,7 +3,7 @@
 // Function to handle login button click
 void login_button_click(GtkWidget *widget, gpointer data)
 {
-    if(widget){}
+    if (widget) { }
     (void)data;
 
     // Find necessary widgets within the main window
