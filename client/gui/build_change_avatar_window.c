@@ -1,15 +1,16 @@
 #include "../inc/client.h"
 
 // Function to build the window for avatar change
-void build_change_avatar_window(GtkWidget *widget, gpointer data) {
-    if (widget){};
+void build_change_avatar_window(GtkWidget *widget, gpointer data)
+{
+    if (widget) { };
     (void)data;
 
-    GtkWidget *popup_window = create_popup_window(450, 0); // Create a popup window for changing the avatar
+    GtkWidget *popup_window = create_popup_window(450, 0);                  // Create a popup window for changing the avatar
     GtkWidget *change_login_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0); // Create a vertical box container for the elements
 
     gtk_container_add(GTK_CONTAINER(popup_window), change_login_box); // Add the container to the popup window
-    add_class(change_login_box, "popup_menu"); // Add CSS class to the container
+    add_class(change_login_box, "popup_menu");                        // Add CSS class to the container
 
     // Create and configure the title label
     GtkWidget *change_avatar_title = gtk_label_new("Change avatar");

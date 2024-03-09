@@ -3,11 +3,11 @@
 // Function to create and build chat menu
 void build_create_chat_menu()
 {
-    GtkWidget*  popup_window = create_popup_window(450, 0); // Create a popup window with specified width
+    GtkWidget *popup_window = create_popup_window(450, 0); // Create a popup window with specified width
 
     // Create a vertical box to contain the chat creation menu elements
     GtkWidget *create_chat_menu = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_container_add(GTK_CONTAINER(popup_window), create_chat_menu );
+    gtk_container_add(GTK_CONTAINER(popup_window), create_chat_menu);
     add_class(create_chat_menu, "popup_menu");
 
     // Create a label for the menu title
@@ -68,5 +68,5 @@ void build_create_chat_menu()
 
     // Show the popup window and grab focus to it
     gtk_widget_show_all(popup_window);
-    gtk_widget_grab_focus (popup_window);
+    gtk_widget_grab_focus(popup_window);
 }

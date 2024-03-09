@@ -3,10 +3,10 @@
 // Function to build signup menu
 void build_signup_menu()
 {
-    GtkWidget* main_area = get_widget_by_name_r(main_window, "main_area"); // Get the main area of the window to which the signup menu will be added
+    GtkWidget *main_area = get_widget_by_name_r(main_window, "main_area"); // Get the main area of the window to which the signup menu will be added
 
     // Create a vertical box for the signup menu
-    GtkWidget *signup_menu = gtk_box_new(GTK_ORIENTATION_VERTICAL,0);
+    GtkWidget *signup_menu = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start(GTK_BOX(main_area), signup_menu, false, false, 0);
     gtk_widget_set_name(signup_menu, "signup_menu");
     add_class(signup_menu, "signup_menu");
@@ -19,7 +19,7 @@ void build_signup_menu()
     gtk_widget_set_valign(signup_menu_title, GTK_ALIGN_CENTER);
     add_class(signup_menu_title, "auth-menu_title");
 
-    gtk_box_pack_start(GTK_BOX(title_box), signup_menu_title,FALSE,FALSE,0);
+    gtk_box_pack_start(GTK_BOX(title_box), signup_menu_title, FALSE, FALSE, 0);
 
     // Username box
     GtkWidget *username_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
@@ -36,8 +36,8 @@ void build_signup_menu()
     gtk_widget_set_name(username_notify_label, "username_notify_label");
     add_class(username_notify_label, "notify-label");
 
-    gtk_box_pack_start(GTK_BOX(username_box), username_field,FALSE,FALSE,0);
-    gtk_box_pack_start(GTK_BOX(username_box), username_notify_label,FALSE,FALSE,0);
+    gtk_box_pack_start(GTK_BOX(username_box), username_field, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(username_box), username_notify_label, FALSE, FALSE, 0);
 
     // Password box
     GtkWidget *password_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
@@ -55,8 +55,8 @@ void build_signup_menu()
     gtk_widget_set_name(password_notify_label, "password_notify_label");
     add_class(password_notify_label, "notify-label");
 
-    gtk_box_pack_start(GTK_BOX(password_box), password_field,FALSE,FALSE,0);
-    gtk_box_pack_start(GTK_BOX(password_box), password_notify_label,FALSE,FALSE,0);
+    gtk_box_pack_start(GTK_BOX(password_box), password_field, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(password_box), password_notify_label, FALSE, FALSE, 0);
 
     // Repassword box
     GtkWidget *repassword_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
@@ -74,8 +74,8 @@ void build_signup_menu()
     gtk_widget_set_name(repassword_notify_label, "repassword_notify_label");
     add_class(repassword_notify_label, "notify-label");
 
-    gtk_box_pack_start(GTK_BOX(repassword_box), repassword_field,FALSE,FALSE,0);
-    gtk_box_pack_start(GTK_BOX(repassword_box), repassword_notify_label,FALSE,FALSE,0);
+    gtk_box_pack_start(GTK_BOX(repassword_box), repassword_field, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(repassword_box), repassword_notify_label, FALSE, FALSE, 0);
 
     // Signup button box
     GtkWidget *signup_btn_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
@@ -92,8 +92,8 @@ void build_signup_menu()
     gtk_widget_set_name(signup_notify_label, "signup_notify_label");
     add_class(signup_notify_label, "notify-label");
 
-    gtk_box_pack_start(GTK_BOX(signup_btn_box), signup_btn,FALSE,FALSE,0);
-    gtk_box_pack_start(GTK_BOX(signup_btn_box), signup_notify_label,FALSE,FALSE,0);
+    gtk_box_pack_start(GTK_BOX(signup_btn_box), signup_btn, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(signup_btn_box), signup_notify_label, FALSE, FALSE, 0);
 
     // Event box for switching to login menu
     GtkWidget *event_switch_to_login = gtk_event_box_new();
@@ -108,12 +108,12 @@ void build_signup_menu()
     gtk_container_add(GTK_CONTAINER(event_switch_to_login), signup_label);
 
     // Pack all components into the signup menu
-    gtk_box_pack_start(GTK_BOX(signup_menu), title_box,FALSE,FALSE,0);
-    gtk_box_pack_start(GTK_BOX(signup_menu), username_box,FALSE,FALSE,0);
-    gtk_box_pack_start(GTK_BOX(signup_menu), password_box,FALSE,FALSE,0);
-    gtk_box_pack_start(GTK_BOX(signup_menu), repassword_box,FALSE,FALSE,0);
-    gtk_box_pack_start(GTK_BOX(signup_menu), signup_btn_box,FALSE,FALSE,0);
-    gtk_box_pack_start(GTK_BOX(signup_menu), event_switch_to_login,FALSE,FALSE,0);
+    gtk_box_pack_start(GTK_BOX(signup_menu), title_box, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(signup_menu), username_box, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(signup_menu), password_box, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(signup_menu), repassword_box, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(signup_menu), signup_btn_box, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(signup_menu), event_switch_to_login, FALSE, FALSE, 0);
 
     gtk_widget_show_all(signup_menu); // Show all components of the signup menu
 }

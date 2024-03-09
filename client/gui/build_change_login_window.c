@@ -1,11 +1,12 @@
 #include "../inc/client.h"
 
 // Function to handle build change login window
-void build_change_login_window(GtkWidget *widget, gpointer data) {
-    if (widget){};
+void build_change_login_window(GtkWidget *widget, gpointer data)
+{
+    if (widget) {};
     (void)data;
 
-    GtkWidget *popup_window = create_popup_window(450, 0); // Create a popup window for changing the login
+    GtkWidget *popup_window = create_popup_window(450, 0);                  // Create a popup window for changing the login
     GtkWidget *change_login_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0); // Create a vertical box container for the elements
 
     gtk_container_add(GTK_CONTAINER(popup_window), change_login_box); // Add the container to the popup window

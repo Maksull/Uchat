@@ -4,7 +4,7 @@
 void build_chatlist_message(char *message)
 {
     GtkWidget *chatlist = get_widget_by_name_r(main_window, "chatlist"); // Retrieve the chatlist widget from the main window
-    clear_container(chatlist); // Clear the contents of the chatlist
+    clear_container(chatlist);                                           // Clear the contents of the chatlist
 
     // Create a label widget to display the provided message
     GtkWidget *chatlist_notify_label = gtk_label_new(message);

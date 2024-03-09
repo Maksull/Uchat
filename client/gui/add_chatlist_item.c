@@ -22,7 +22,7 @@ void add_chatlist_item(int id, char *chat_name, t_avatar_color avatar_color)
     gtk_container_add(GTK_CONTAINER(event_box), chatlist_item);
 
     // Create a label to display the chat ID (hidden)
-    GtkWidget *chatlist_item_id = gtk_label_new(mx_itoa(id)); ///CHAT ID
+    GtkWidget *chatlist_item_id = gtk_label_new(mx_itoa(id)); /// CHAT ID
     gtk_widget_set_name(chatlist_item_id, "chat_id");
     add_class(chatlist_item_id, "hidden");
     gtk_box_pack_start(GTK_BOX(chatlist_item), chatlist_item_id, FALSE, FALSE, 0);
@@ -54,9 +54,8 @@ void add_chatlist_item(int id, char *chat_name, t_avatar_color avatar_color)
     GtkWidget *chatlist_item_time = NULL;
     GtkWidget *chatlist_item_notify = NULL;
 
-
     // Retrieve the chat information and update the message, time, and notification labels
-    t_chat* curr_chat = mx_get_chat_by_name(utils->chatlist, chat_name);
+    t_chat *curr_chat = mx_get_chat_by_name(utils->chatlist, chat_name);
     if (curr_chat && curr_chat->last_new_msg)
     {
         char *msg_str = ellipsis_str(curr_chat->last_new_msg->text, 16);
@@ -65,8 +64,7 @@ void add_chatlist_item(int id, char *chat_name, t_avatar_color avatar_color)
         chatlist_item_time = gtk_label_new(curr_chat->last_new_msg->date_str);
         chatlist_item_notify = gtk_label_new(mx_itoa(curr_chat->new_msg_count));
         // Show or hide notification count based on new message count
-        curr_chat->new_msg_count > 0 ? add_class(chatlist_item_notify, "chatlist_item_notify--visible") :
-        remove_class(chatlist_item_notify, "chatlist_item_notify--visible");
+        curr_chat->new_msg_count > 0 ? add_class(chatlist_item_notify, "chatlist_item_notify--visible") : remove_class(chatlist_item_notify, "chatlist_item_notify--visible");
     }
     else if (!curr_chat->last_new_msg)
     {

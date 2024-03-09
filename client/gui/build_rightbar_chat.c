@@ -1,7 +1,8 @@
 #include "../inc/client.h"
 
 // Function to build rightbar chat
-void build_rightbar_chat() {
+void build_rightbar_chat()
+{
     GtkWidget *chat_container = get_widget_by_name_r(main_window, "chat"); // Get the chat container
 
     gtk_container_foreach(GTK_CONTAINER(chat_container), (GtkCallback)gtk_widget_destroy, NULL); // Remove existing widgets in the chat container
@@ -54,7 +55,8 @@ void build_rightbar_chat() {
         gtk_container_add(GTK_CONTAINER(change_chat_name_btn), change_chat_name_label);
         gtk_box_pack_end(GTK_BOX(chat_header), change_chat_name_btn, FALSE, FALSE, 0);
     }
-    else {
+    else
+    {
         // Leave chat button
         GtkWidget *leave_chat_btn = gtk_event_box_new();
         add_class(leave_chat_btn, "event_switch_auth_menu");

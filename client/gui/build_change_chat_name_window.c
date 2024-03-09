@@ -1,11 +1,12 @@
 #include "../inc/client.h"
 
 // Function to handle build change chat name window
-void build_change_chat_name_window(GtkWidget *widget, gpointer data) {
-    if (widget){};
+void build_change_chat_name_window(GtkWidget *widget, gpointer data)
+{
+    if (widget) {};
     (void)data;
 
-    GtkWidget *popup_window = create_popup_window(450, 0); // Create a popup window for changing the chat name
+    GtkWidget *popup_window = create_popup_window(450, 0);                      // Create a popup window for changing the chat name
     GtkWidget *change_chat_name_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0); // Create a vertical box container for the elements
 
     gtk_container_add(GTK_CONTAINER(popup_window), change_chat_name_box); // Add the container to the popup window

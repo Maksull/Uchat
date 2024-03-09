@@ -1,11 +1,12 @@
 #include "../inc/client.h"
 
 // Function to build confirm leave chat window
-void build_confirm_leave_chat_window(GtkWidget *widget, gpointer data) {
-    if(widget){}
+void build_confirm_leave_chat_window(GtkWidget *widget, gpointer data)
+{
+    if (widget) { }
     (void)data;
 
-    GtkWidget *popup_window = create_popup_window(400, 0); // Create a popup window
+    GtkWidget *popup_window = create_popup_window(400, 0);                        // Create a popup window
     GtkWidget *confirm_leave_chat_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0); // Create a vertical box to hold the confirmation elements
 
     gtk_container_add(GTK_CONTAINER(popup_window), confirm_leave_chat_box); // Add the confirmation box to the popup window
@@ -55,6 +56,6 @@ void build_confirm_leave_chat_window(GtkWidget *widget, gpointer data) {
     gtk_box_pack_start(GTK_BOX(confirm_leave_chat_box), confirm_leave_chat_label, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(confirm_leave_chat_box), btn_box, FALSE, FALSE, 0);
 
-    gtk_widget_show_all(popup_window); // Show all widgets in the popup window
+    gtk_widget_show_all(popup_window);   // Show all widgets in the popup window
     gtk_widget_grab_focus(popup_window); // Set focus to the popup window
 }

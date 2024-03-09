@@ -1,8 +1,9 @@
 #include "../inc/client.h"
 
 // Function to build confirm delete chat window
-void build_confirm_delete_chat_window(GtkWidget *widget, gpointer data) {
-    if(widget){}
+void build_confirm_delete_chat_window(GtkWidget *widget, gpointer data)
+{
+    if (widget) { }
     (void)data;
 
     // Create the popup window

@@ -1,7 +1,7 @@
 #include "../inc/client.h"
 
 // Function to build found chats
-static void build_found_chats(t_chat *chat_list)
+void build_found_chats(t_chat *chat_list)
 {
     GtkWidget *chatlist_container = get_widget_by_name_r(main_window, "chatlist"); // Retrieve the chatlist container widget
 

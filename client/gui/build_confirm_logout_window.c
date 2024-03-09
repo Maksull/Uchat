@@ -1,13 +1,13 @@
 #include "../inc/client.h"
 
 // Function to build confirm logout window
-void build_confirm_logout_window(GtkWidget *widget, gpointer data) {
-    if(widget){}
+void build_confirm_logout_window(GtkWidget *widget, gpointer data)
+{
+    if (widget) { }
     (void)data;
 
-    GtkWidget *popup_window = create_popup_window(400, 0); // Create a popup window
+    GtkWidget *popup_window = create_popup_window(400, 0);                    // Create a popup window
     GtkWidget *confirm_logout_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0); // Create a vertical box for the confirmation window
-
 
     gtk_container_add(GTK_CONTAINER(popup_window), confirm_logout_box); // Add the confirmation box to the popup window
     // Add CSS classes to style the confirmation box

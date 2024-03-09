@@ -11,7 +11,6 @@ void delete_chat_btn_click(GtkWidget *widget, gpointer data)
         // Set the current chat pointer to NULL and update the chat list
         utils->current_chat = NULL;
         update_chatlist();
-        // build_start_messaging_label();
 
         // Destroy the top-level window containing the chat
         GtkWidget *toplevel = gtk_widget_get_toplevel(widget);
