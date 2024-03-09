@@ -3,7 +3,7 @@
 // Function to validate name field
 bool validate_name_field(GtkWidget *username_field, GtkWidget *username_notify_label)
 {
-    char *user_name = (char*)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(username_field))); // Get the text from the name field
+    char *user_name = (char *)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(username_field))); // Get the text from the name field
 
     // Check for empty input
     if (!mx_strcmp(user_name, ""))

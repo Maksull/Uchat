@@ -164,6 +164,10 @@ void connect_to_server(const char *ip_address, int port, int *server_fd, SSL_CTX
 void client_init(int server_fd, SSL *ssl, SSL_CTX *ctx);
 void load_css();
 void on_crossing (GtkWidget *widget, GdkEventCrossing *event);
+void set_field_error_style(GtkWidget *field);
+void set_field_success_style(GtkWidget *field);
+void set_notify_error_style(GtkWidget *notify_label, char *message);
+void set_notify_success_style(GtkWidget *notify_label, char *message);
 void add_class(GtkWidget *widget, char *class_name);
 void remove_class(GtkWidget *widget, char *class_name);
 char *get_server_response(SSL *ssl, int length);
@@ -175,10 +179,6 @@ char* send_and_recv_from_server(SSL *ssl, const char* json_str);
 int send_to_server(SSL *ssl, const char *request_str);
 char *recv_from_server(SSL *ssl);
 void set_messages_as_read_for(t_chat *chat);
-
-void build_authorization_window();
-GtkWidget *create_new_window(char *title, int width, int height, bool resizable);
-void add_class(GtkWidget *widget, char *class_name);
 
 void *handle_server_updates(void *arg);
 int handle_last_msg_id_request(int chat_id);
@@ -228,7 +228,6 @@ void build_chatlist_message(char *message);
 //CHATLIST EVENTS
 void clear_container(GtkWidget *container);
 void update_chatlist();
-void update_chatlist_item_info(t_chat* chat);
 void set_chatlist_item_active(GtkWidget *widget);
 void set_current_chat(GtkWidget *chatlist_item);
 void chatlist_item_on_click(GtkWidget *widget, gpointer data);
@@ -253,7 +252,6 @@ void focus_out_password_field(GtkWidget *widget, gpointer data);
 void focus_out_repassword_field(GtkWidget *widget, gpointer data);
 bool is_empty_field(GtkWidget *field, GtkWidget *notify_label);
 
-//CREATE CHAT MENU
 void build_create_chat_menu();
 
 //CREATE CHAT MENU EVENTS
@@ -279,23 +277,22 @@ void build_confirm_leave_chat_window(GtkWidget *widget, gpointer data);
 
 void delete_account_btn_click(GtkWidget *widget, gpointer data);
 void build_confirm_delete_account_window(GtkWidget *widget, gpointer data);
-void login_or_password_is_invalid(GtkWidget *login_notify_label)ж
+void login_or_password_is_invalid(GtkWidget *login_notify_label);
+
+bool validate_name_field(GtkWidget *username_field, GtkWidget *username_notify_label);
+bool validate_password_field(GtkWidget *password_field, GtkWidget *password_notify_label)
+bool validate_repassword_field(GtkWidget *password_field, GtkWidget *repassword_field, GtkWidget *repassword_notify_label)
 
 void focus_out_chat_name_field(GtkWidget *widget, gpointer data);
 void focus_out_current_password_field(GtkWidget *widget, gpointer data);
 void focus_out_login_field(GtkWidget *widget, gpointer data);
 void focus_out_new_password_field(GtkWidget *widget, gpointer data);
-void focus_out_password_field(GtkWidget *widget, gpointer data);
 void focus_out_re_new_password_field(GtkWidget *widget, gpointer data);
-void focus_out_repassword_field(GtkWidget *widget, gpointer data);
-void focus_out_username_field(GtkWidget *widget, gpointer data);
 
 void build_rightbar_chat();
 void delete_message(GtkWidget *widget, GdkEventButton *event, t_msg *message);
 void edit_button_click(GtkWidget *widget, t_msg *message);
 void edit_message(GtkWidget *widget, GdkEventButton *event, t_msg *message);
-void add_message(t_msg *message);
-void update_chat_field();
 void scroll_to_end(GtkWidget *widget, gpointer data);
 void send_button_click(GtkWidget *widget, gpointer new_message_field);
 

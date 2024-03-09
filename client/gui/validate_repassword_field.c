@@ -4,8 +4,8 @@
 bool validate_repassword_field(GtkWidget *password_field, GtkWidget *repassword_field, GtkWidget *repassword_notify_label)
 {
     // Get the text from the password and re-entered password fields
-    char *user_password = (char*)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(password_field)));
-    char *user_repassword = (char*)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(repassword_field)));
+    char *user_password = (char *)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(password_field)));
+    char *user_repassword = (char *)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(repassword_field)));
 
     if (!mx_strcmp(user_repassword, "")) // Check for empty input
     {

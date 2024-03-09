@@ -4,5 +4,5 @@
 void set_field_error_style(GtkWidget *field)
 {
     remove_class(field, "input-field--success"); // removing success styles
-    add_class(field, "input-field--danger"); // adding error styles
+    add_class(field, "input-field--danger");     // adding error styles
 }

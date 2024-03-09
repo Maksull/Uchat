@@ -14,11 +14,10 @@ void update_chatlist()
     else
     {
         GtkWidget *chatlist_container = get_widget_by_name_r(main_window, "chatlist"); // If the chat list is not empty, update the chat list with the latest chat information
-        clear_container(chatlist_container); // Clear the existing chat list container
+        clear_container(chatlist_container);                                           // Clear the existing chat list container
 
         while (chatlist) // Iterate through each chat in the chat list and add it to the chat list container
         {
-
             add_chatlist_item(chatlist->id, chatlist->name, chatlist->avatar_color);
             chatlist = chatlist->next;
         }
