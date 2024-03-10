@@ -4,7 +4,7 @@
 GtkWidget *get_widget_by_name_r(GtkWidget *container, char *name)
 {
     GtkWidget *result = NULL; // Result widget
-    GList *children = NULL; // List of children widgets
+    GList *children = NULL;   // List of children widgets
 
     if (GTK_IS_CONTAINER(container)) // Check if container is a GTK container
     {
@@ -22,7 +22,7 @@ GtkWidget *get_widget_by_name_r(GtkWidget *container, char *name)
         if (!strcmp(gtk_widget_get_name(GTK_WIDGET(children->data)), name))
         {
             result = GTK_WIDGET(children->data); // Set result to the current widget
-            break; // Exit the loop
+            break;                               // Exit the loop
         }
         // Check if the current widget is a container and search recursively within it
         else if (GTK_IS_CONTAINER(children->data))

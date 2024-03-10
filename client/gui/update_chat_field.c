@@ -8,7 +8,7 @@ void update_chat_field()
     clear_container(chat_field); // Clear the chat field
 
     t_msg *messages = utils->current_chat->messages; // Get messages for the current chat
-    if (mx_msg_list_size(messages) == 0) // Check if there are no messages
+    if (mx_msg_list_size(messages) == 0)             // Check if there are no messages
     {
         // Display a label indicating no messages
         GtkWidget *messaging_label = gtk_label_new("No messages here yet...");
