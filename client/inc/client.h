@@ -220,6 +220,11 @@ void modify_global_user(const char *new_name, const char *new_pass);
 void recv_image_from_server(int *socket, unsigned char **buffer, size_t length);
 void send_image_to_server(int *socket, void *buffer, size_t length);
 void set_current_user(t_user **user, const cJSON *user_json);
+void client_cleanup(bool is_client_exit);
+t_avatar_color get_avatar_color();
+unsigned long get_current_time();
+char *get_string_time(unsigned long seconds);
+void user_cleanup(t_user **user);
 
 t_msg *mx_get_last_msg_node(t_msg *list);
 int mx_msg_list_size(t_msg *list);
