@@ -133,6 +133,13 @@ typedef struct s_response
     char *message;
 } t_response;
 
+// Enum for the type of info being logged
+typedef enum e_log_type
+{
+    INFO_LOG,
+    ERROR_LOG
+} t_log_type;
+
 static const t_response response_objs[] = {
     {R_SUCCESS, "Request handled successfully"},
     {R_DB_FAILURE, "A database error occurred when handling the request"},
