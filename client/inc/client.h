@@ -25,6 +25,9 @@
 
 #include "../../libraries/cjson/inc/cJSON.h"
 
+extern t_client_utils *utils;
+extern GtkWidget *main_window;
+
 typedef enum e_avatar_color
 {
     A_COLOR_FIRST,
