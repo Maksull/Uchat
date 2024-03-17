@@ -127,6 +127,11 @@ typedef struct s_response
     char *message;
 } t_response;
 
+typedef enum e_member_type {
+    ADMIN_MEMBER,
+    NORMAL_MEMBER,
+}            t_member_type;
+
 // Enum for the type of info being logged
 typedef enum e_log_type
 {
@@ -183,6 +188,7 @@ int send_to_server(SSL *ssl, const char *request_str);
 char *recv_from_server(SSL *ssl);
 void set_messages_as_read_for(t_chat *chat);
 
+t_response_code handle_server_response(const char *response_str);
 void *handle_server_updates(void *arg);
 int handle_last_msg_id_request(int chat_id);
 int handle_new_message(t_chat *curr_chat, int message_id, bool is_current);
@@ -209,6 +215,8 @@ t_chat *handle_search_chats_request(const char *search_str);
 t_response_code handle_send_msg_response(const char *response_str, t_msg *sent_msg);
 t_response_code handle_signup_request(const char *user_name, const char *user_password);
 t_response_code handle_signup_response(const char *response_str);
+t_response_code handle_send_msg_request(const char *message_str);
+
 
 void add_message(t_msg *message);
 GtkWidget *get_widget_by_name_r(GtkWidget *container, char *name);
@@ -232,6 +240,11 @@ void user_cleanup(t_user **user);
 t_msg *mx_get_last_msg_node(t_msg *list);
 int mx_msg_list_size(t_msg *list);
 void mx_msg_push_back(t_msg **list, t_msg *new_node);
+t_chat *mx_get_chat_by_name(t_chat *list, const char *name);
+void mx_clear_msg(t_msg **p);
+void mx_clear_chat_list(t_chat **list);
+t_chat *mx_get_chat_by_id(t_chat *list, int chat_id);
+void mx_msg_pop_id(t_msg **list, int msg_id);
 
 //HANDLE RESPONSE CODE
 void handle_login_response_code(int error_code, GtkWidget *login_notify_label);
@@ -247,6 +260,7 @@ void build_login_menu();
 void build_signup_menu();
 
 void build_chat_screen();
+void build_rightbar(GtkWidget *chat_screen);
 void build_leftbar(GtkWidget *chat_screen);
 
 //LOG OUT
