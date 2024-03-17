@@ -1,4 +1,4 @@
-#include "../inc/client.h"
+#include "./inc/client.h"
 
 t_client_utils *utils;
 GtkWidget *main_window;

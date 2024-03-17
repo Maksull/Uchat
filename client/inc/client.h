@@ -14,12 +14,6 @@
 
 #include "../../libraries/cjson/inc/cJSON.h"
 
-typedef enum e_info_type
-{
-    INFO_LOG,
-    ERROR_LOG
-} t_info_type;
-
 typedef enum e_avatar_color
 {
     A_COLOR_FIRST,
