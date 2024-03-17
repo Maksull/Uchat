@@ -10,6 +10,11 @@
 #define MAX_NAME_INPUT_LEN  16
 #define MIN_NAME_INPUT_LEN  4
 
+#define WINDOW_WIDTH 880
+#define WINDOW_HEIGHT 760
+
+#define LEFT_BAR_W 440
+
 #include <arpa/inet.h>
 #include <gtk/gtk.h>
 
@@ -231,7 +236,6 @@ void update_chatlist_item_info(t_chat *chat);
 t_response_code add_chat_to_chatlist(cJSON *json, t_chat **chat_list, bool is_search);
 t_response_code add_msg_to_msglist(cJSON *json);
 t_response_code add_to_global_msglist(t_msg *new_msg);
-void edit_global_messages(int message_id, const char *new_msg_text);
 t_msg *get_msg_from_json(cJSON *json);
 void modify_global_user(const char *new_name, const char *new_pass);
 void recv_image_from_server(int *socket, unsigned char **buffer, size_t length);
@@ -251,6 +255,7 @@ void mx_clear_msg(t_msg **p);
 void mx_clear_chat_list(t_chat **list);
 t_chat *mx_get_chat_by_id(t_chat *list, int chat_id);
 void mx_msg_pop_id(t_msg **list, int msg_id);
+t_msg *mx_create_msg(int msg_id, int user_id, const char *user_name, int chat_id, const char *text, const char *date_str, t_avatar_color color);
 
 bool regex_for(const char *str, const char *pattern);
 bool is_user_name_format_valid(const char *user_name);
