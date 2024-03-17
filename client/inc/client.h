@@ -5,6 +5,7 @@
 #define EXIT_FAILURE 1
 
 #include <arpa/inet.h>
+#include <gtk/gtk.h>
 
 #include "../../libraries/libmx/inc/libmx.h"
 
@@ -174,6 +175,7 @@ char *get_server_response(SSL *ssl, int length);
 char *get_response_str(t_response_code error_code);
 t_response_code get_response_code(cJSON *json);
 char *ellipsis_str(const char *str, int overflow_len);
+void logger(const char *info, t_log_type info_type);
 
 char* send_and_recv_from_server(SSL *ssl, const char* json_str);
 int send_to_server(SSL *ssl, const char *request_str);
@@ -316,8 +318,8 @@ void build_confirm_delete_account_window(GtkWidget *widget, gpointer data);
 void login_or_password_is_invalid(GtkWidget *login_notify_label);
 
 bool validate_name_field(GtkWidget *username_field, GtkWidget *username_notify_label);
-bool validate_password_field(GtkWidget *password_field, GtkWidget *password_notify_label)
-bool validate_repassword_field(GtkWidget *password_field, GtkWidget *repassword_field, GtkWidget *repassword_notify_label)
+bool validate_password_field(GtkWidget *password_field, GtkWidget *password_notify_label);
+bool validate_repassword_field(GtkWidget *password_field, GtkWidget *repassword_field, GtkWidget *repassword_notify_label);
 
 void focus_out_chat_name_field(GtkWidget *widget, gpointer data);
 void focus_out_current_password_field(GtkWidget *widget, gpointer data);
