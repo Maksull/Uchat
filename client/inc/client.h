@@ -4,6 +4,12 @@
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
 
+#define MAX_PASS_INPUT_LEN  30
+#define MIN_PASS_INPUT_LEN  8
+
+#define MAX_NAME_INPUT_LEN  16
+#define MIN_NAME_INPUT_LEN  4
+
 #include <arpa/inet.h>
 #include <gtk/gtk.h>
 
@@ -245,6 +251,9 @@ void mx_clear_msg(t_msg **p);
 void mx_clear_chat_list(t_chat **list);
 t_chat *mx_get_chat_by_id(t_chat *list, int chat_id);
 void mx_msg_pop_id(t_msg **list, int msg_id);
+
+bool regex_for(const char *str, const char *pattern);
+bool is_user_name_format_valid(const char *user_name);
 
 //HANDLE RESPONSE CODE
 void handle_login_response_code(int error_code, GtkWidget *login_notify_label);
