@@ -10,6 +10,7 @@ t_response_code handle_get_chat_msgs_request(int chat_id)
     char *json_str = cJSON_PrintUnformatted(json);
     cJSON_Delete(json);
 
+    int error_code = 0;
     // Send request to server and receive response
     char *response = send_and_recv_from_server(utils->ssl, json_str);
     free(json_str);

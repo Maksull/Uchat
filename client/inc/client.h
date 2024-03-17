@@ -255,7 +255,10 @@ void mx_clear_msg(t_msg **p);
 void mx_clear_chat_list(t_chat **list);
 t_chat *mx_get_chat_by_id(t_chat *list, int chat_id);
 void mx_msg_pop_id(t_msg **list, int msg_id);
+int mx_chat_list_size(t_chat *list);
+t_msg *mx_get_msg_by_id(t_msg *list, int id);
 t_msg *mx_create_msg(int msg_id, int user_id, const char *user_name, int chat_id, const char *text, const char *date_str, t_avatar_color color);
+
 
 bool regex_for(const char *str, const char *pattern);
 bool is_user_name_format_valid(const char *user_name);
