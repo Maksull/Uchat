@@ -2,7 +2,7 @@
 
 void send_image_to_server(int *socket, void *buffer, size_t length)
 {
-    unsigned char *ptr = *buffer; // Pointer to the start of the buffer
+    unsigned char *ptr = (unsigned char *)buffer;// Pointer to the start of the buffer
 
     // Continue receiving data until the entire image is received
     while (length > 0)

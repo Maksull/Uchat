@@ -1,4 +1,4 @@
-#include "../../inc/server.h"
+#include "../../inc/client.h"
 
 // Log information to the log file
 void logger(const char *info, t_log_type type)
