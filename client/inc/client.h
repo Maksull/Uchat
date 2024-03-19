@@ -15,6 +15,9 @@
 
 #define LEFT_BAR_W 440
 
+#define QUERY_LEN       500
+#define SENT_DATA_LEN   4000
+
 #include <arpa/inet.h>
 #include <gtk/gtk.h>
 
@@ -25,7 +28,6 @@
 
 #include "../../libraries/cjson/inc/cJSON.h"
 
-extern t_client_utils *utils;
 extern GtkWidget *main_window;
 
 typedef enum e_avatar_color
@@ -83,6 +85,8 @@ typedef struct s_client_utils
     t_chat *chatlist;
     bool is_suspended;
 } t_client_utils;
+
+extern t_client_utils *utils;
 
 typedef enum e_response_code
 {
@@ -175,6 +179,7 @@ static const t_response response_objs[] = {
     {R_MSG_USR_NOENT, "Couldn't find this message's sender"},
 };
 
+
 void handle_arg_errors(char **argv);
 void handle_error(const char *error);
 
@@ -260,7 +265,11 @@ t_chat *mx_get_chat_by_id(t_chat *list, int chat_id);
 void mx_msg_pop_id(t_msg **list, int msg_id);
 int mx_chat_list_size(t_chat *list);
 t_msg *mx_get_msg_by_id(t_msg *list, int id);
+void mx_clear_msg_list(t_msg **list);
+void mx_msg_pop_index(t_msg **list, int index);
+void mx_chat_push_back(t_chat **list, int chat_id, const char *name, int permissions, int chat_color);
 t_msg *mx_create_msg(int msg_id, int user_id, const char *user_name, int chat_id, const char *text, const char *date_str, t_avatar_color color);
+void mx_msg_dfl_push_back(t_msg **list, int msg_id, int user_id, const char *user_name, int chat_id, const char *text, const char *date_str, t_avatar_color color);
 
 
 bool regex_for(const char *str, const char *pattern);
