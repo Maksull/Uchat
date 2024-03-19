@@ -18,6 +18,7 @@
 #define QUERY_LEN       500
 #define SENT_DATA_LEN   4000
 
+#include <regex.h>
 #include <arpa/inet.h>
 #include <gtk/gtk.h>
 
@@ -267,6 +268,10 @@ int mx_chat_list_size(t_chat *list);
 t_msg *mx_get_msg_by_id(t_msg *list, int id);
 void mx_clear_msg_list(t_msg **list);
 void mx_msg_pop_index(t_msg **list, int index);
+void mx_msg_pop_back(t_msg **head);
+void mx_msg_pop_front(t_msg **head);
+void mx_clear_chat(t_chat **p);
+t_chat *mx_create_chat(int id, const char *name, int permissions, int chat_color);
 void mx_chat_push_back(t_chat **list, int chat_id, const char *name, int permissions, int chat_color);
 t_msg *mx_create_msg(int msg_id, int user_id, const char *user_name, int chat_id, const char *text, const char *date_str, t_avatar_color color);
 void mx_msg_dfl_push_back(t_msg **list, int msg_id, int user_id, const char *user_name, int chat_id, const char *text, const char *date_str, t_avatar_color color);
