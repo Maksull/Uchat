@@ -3,7 +3,7 @@ CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic -pthread
 
 UTIL_DIRS = data/avatars
 OBJDIR = obj
-SRCDIR = handlers gui utils utils/client_utils utils/lists utils/ssl utils/validation
+SRCDIR = handlers gui utils utils/client_utils utils/lists utils/lists/chats utils/lists/messages utils/ssl utils/validation
 UCHAT = ../uchat
 
 SRC = main.c $(foreach dir, $(SRCDIR), $(wildcard $(dir)/*.c))

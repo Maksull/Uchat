@@ -4,7 +4,7 @@
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
 
-#define LOGFILE_NAME    "server_utils/uchat.log"
+#define LOGFILE_NAME    "client/uchat.log"
 
 #define MAX_PASS_INPUT_LEN  30
 #define MIN_PASS_INPUT_LEN  8
