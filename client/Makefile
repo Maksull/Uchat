@@ -3,7 +3,7 @@ CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic -pthread
 
 UTIL_DIRS = data/avatars
 OBJDIR = obj
-SRCDIR = handlers gui utils
+SRCDIR = handlers gui utils utils/client_utils utils/lists utils/lists/chats utils/lists/messages utils/ssl utils/validation
 UCHAT = ../uchat
 
 SRC = main.c $(foreach dir, $(SRCDIR), $(wildcard $(dir)/*.c))
@@ -23,7 +23,6 @@ SSL_FILES:= ../local_lib/lib
 SSL_INC_FILES:= $(SSL_DIR)
 
 LIB_FLAGS = -lmx -lcjson -lsqlite3 -lssl -lcrypto\
-			-L$(UTILSLIB_DIR) $(UTILSLIB_NAME)\
 			-L$(LIBMX_DIR) $(LIBMX_NAME)\
 			-L$(CJSON_DIR) $(CJSON_NAME)\
 			-L$(SSL_FILES) -I$(SSL_INC_FILES)

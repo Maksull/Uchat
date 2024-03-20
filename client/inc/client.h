@@ -4,7 +4,25 @@
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
 
+#define LOGFILE_NAME    "client/uchat.log"
+
+#define MAX_PASS_INPUT_LEN  30
+#define MIN_PASS_INPUT_LEN  8
+
+#define MAX_NAME_INPUT_LEN  16
+#define MIN_NAME_INPUT_LEN  4
+
+#define WINDOW_WIDTH 880
+#define WINDOW_HEIGHT 760
+
+#define LEFT_BAR_W 440
+
+#define QUERY_LEN       500
+#define SENT_DATA_LEN   4000
+
+#include <regex.h>
 #include <arpa/inet.h>
+#include <gtk/gtk.h>
 
 #include "../../libraries/libmx/inc/libmx.h"
 
@@ -13,11 +31,7 @@
 
 #include "../../libraries/cjson/inc/cJSON.h"
 
-typedef enum e_info_type
-{
-    INFO_LOG,
-    ERROR_LOG
-} t_info_type;
+extern GtkWidget *main_window;
 
 typedef enum e_avatar_color
 {
@@ -74,6 +88,8 @@ typedef struct s_client_utils
     t_chat *chatlist;
     bool is_suspended;
 } t_client_utils;
+
+extern t_client_utils *utils;
 
 typedef enum e_response_code
 {
@@ -132,6 +148,18 @@ typedef struct s_response
     char *message;
 } t_response;
 
+typedef enum e_member_type {
+    ADMIN_MEMBER,
+    NORMAL_MEMBER,
+}            t_member_type;
+
+// Enum for the type of info being logged
+typedef enum e_log_type
+{
+    INFO_LOG,
+    ERROR_LOG
+} t_log_type;
+
 static const t_response response_objs[] = {
     {R_SUCCESS, "Request handled successfully"},
     {R_DB_FAILURE, "A database error occurred when handling the request"},
@@ -154,6 +182,7 @@ static const t_response response_objs[] = {
     {R_MSG_USR_NOENT, "Couldn't find this message's sender"},
 };
 
+
 void handle_arg_errors(char **argv);
 void handle_error(const char *error);
 
@@ -174,12 +203,14 @@ char *get_server_response(SSL *ssl, int length);
 char *get_response_str(t_response_code error_code);
 t_response_code get_response_code(cJSON *json);
 char *ellipsis_str(const char *str, int overflow_len);
+void logger(const char *info, t_log_type info_type);
 
 char* send_and_recv_from_server(SSL *ssl, const char* json_str);
 int send_to_server(SSL *ssl, const char *request_str);
 char *recv_from_server(SSL *ssl);
 void set_messages_as_read_for(t_chat *chat);
 
+t_response_code handle_server_response(const char *response_str);
 void *handle_server_updates(void *arg);
 int handle_last_msg_id_request(int chat_id);
 int handle_new_message(t_chat *curr_chat, int message_id, bool is_current);
@@ -206,6 +237,8 @@ t_chat *handle_search_chats_request(const char *search_str);
 t_response_code handle_send_msg_response(const char *response_str, t_msg *sent_msg);
 t_response_code handle_signup_request(const char *user_name, const char *user_password);
 t_response_code handle_signup_response(const char *response_str);
+t_response_code handle_send_msg_request(const char *message_str);
+
 
 void add_message(t_msg *message);
 GtkWidget *get_widget_by_name_r(GtkWidget *container, char *name);
@@ -214,7 +247,6 @@ void update_chatlist_item_info(t_chat *chat);
 t_response_code add_chat_to_chatlist(cJSON *json, t_chat **chat_list, bool is_search);
 t_response_code add_msg_to_msglist(cJSON *json);
 t_response_code add_to_global_msglist(t_msg *new_msg);
-void edit_global_messages(int message_id, const char *new_msg_text);
 t_msg *get_msg_from_json(cJSON *json);
 void modify_global_user(const char *new_name, const char *new_pass);
 void recv_image_from_server(int *socket, unsigned char **buffer, size_t length);
@@ -229,6 +261,26 @@ void user_cleanup(t_user **user);
 t_msg *mx_get_last_msg_node(t_msg *list);
 int mx_msg_list_size(t_msg *list);
 void mx_msg_push_back(t_msg **list, t_msg *new_node);
+t_chat *mx_get_chat_by_name(t_chat *list, const char *name);
+void mx_clear_msg(t_msg **p);
+void mx_clear_chat_list(t_chat **list);
+t_chat *mx_get_chat_by_id(t_chat *list, int chat_id);
+void mx_msg_pop_id(t_msg **list, int msg_id);
+int mx_chat_list_size(t_chat *list);
+t_msg *mx_get_msg_by_id(t_msg *list, int id);
+void mx_clear_msg_list(t_msg **list);
+void mx_msg_pop_index(t_msg **list, int index);
+void mx_msg_pop_back(t_msg **head);
+void mx_msg_pop_front(t_msg **head);
+void mx_clear_chat(t_chat **p);
+t_chat *mx_create_chat(int id, const char *name, int permissions, int chat_color);
+void mx_chat_push_back(t_chat **list, int chat_id, const char *name, int permissions, int chat_color);
+t_msg *mx_create_msg(int msg_id, int user_id, const char *user_name, int chat_id, const char *text, const char *date_str, t_avatar_color color);
+void mx_msg_dfl_push_back(t_msg **list, int msg_id, int user_id, const char *user_name, int chat_id, const char *text, const char *date_str, t_avatar_color color);
+
+
+bool regex_for(const char *str, const char *pattern);
+bool is_user_name_format_valid(const char *user_name);
 
 //HANDLE RESPONSE CODE
 void handle_login_response_code(int error_code, GtkWidget *login_notify_label);
@@ -244,6 +296,7 @@ void build_login_menu();
 void build_signup_menu();
 
 void build_chat_screen();
+void build_rightbar(GtkWidget *chat_screen);
 void build_leftbar(GtkWidget *chat_screen);
 
 //LOG OUT
@@ -316,8 +369,8 @@ void build_confirm_delete_account_window(GtkWidget *widget, gpointer data);
 void login_or_password_is_invalid(GtkWidget *login_notify_label);
 
 bool validate_name_field(GtkWidget *username_field, GtkWidget *username_notify_label);
-bool validate_password_field(GtkWidget *password_field, GtkWidget *password_notify_label)
-bool validate_repassword_field(GtkWidget *password_field, GtkWidget *repassword_field, GtkWidget *repassword_notify_label)
+bool validate_password_field(GtkWidget *password_field, GtkWidget *password_notify_label);
+bool validate_repassword_field(GtkWidget *password_field, GtkWidget *repassword_field, GtkWidget *repassword_notify_label);
 
 void focus_out_chat_name_field(GtkWidget *widget, gpointer data);
 void focus_out_current_password_field(GtkWidget *widget, gpointer data);

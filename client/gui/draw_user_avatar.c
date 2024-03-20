@@ -4,7 +4,7 @@
 gboolean draw_user_avatar(GtkWidget *widget, cairo_t *cr, gpointer data)
 {
     if (widget) { }
-    int avatar_color = (int)data; // Extract the avatar color from the data
+    int avatar_color = GPOINTER_TO_INT(data); // Extract the avatar color from the data
 
     // Construct the path to the avatar image file based on the color
     char *path = "client/data/img/user_avatars/avatar";
