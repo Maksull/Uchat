@@ -1,31 +1,55 @@
+# Output library name
+LIBRARY_NAME = libmx.a
+
+# Source and object directories
+SOURCE_DIR = src
+OBJECT_DIR = obj
+INCLUDE_DIR = inc
+
+# Source files and object files
+SOURCE_FILES = $(wildcard $(SOURCE_DIR)/*.c)
+OBJECT_FILES = $(patsubst $(SOURCE_DIR)/%.c,$(OBJECT_DIR)/%.o,$(SOURCE_FILES))
+
+# Header files
+INCLUDE_FILES = $(wildcard $(INCLUDE_DIR)/*.h)
+
+# Compiler and flags
 CC = clang
-# CFLAGS = -std=gnu11 -Wall -Wextra -Werror -Wpedantic
-CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
+CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic -g
 
-OBJDIR = obj
-SRCDIR = src
-LIBNAME = libmx.a
-LIB = LIBMX
+# Archive tool and flags
+AR = ar
+AFLAGS = rcs
 
-SRC = $(SRCDIR)/*.c
-OBJS = $(OBJDIR)/*.o
+# Commands
+MKDIR = mkdir -p
+RM = rm -rf
 
-all: $(LIB)
+# Phony targets
+.PHONY: all uninstall clean reinstall
 
-$(LIB):
-	mkdir $(OBJDIR)
-	$(CC) $(CFLAGS) -c $(SRC)
-	mv *.o $(OBJDIR)
-	ar rcs $(LIBNAME) $(OBJS)
+# Default target
+all: $(LIBRARY_NAME)
 
+# Rule to build the library
+$(LIBRARY_NAME): $(OBJECT_FILES)
+	$(AR) $(AFLAGS) $@ $^
+
+# Rule to build object files
+$(OBJECT_DIR)/%.o: $(SOURCE_DIR)/%.c $(INCLUDE_FILES) | $(OBJECT_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCLUDE_DIR)
+
+# Ensure object directory exists
+$(OBJECT_DIR):
+	$(MKDIR) $@
+
+# Clean up object files
 clean:
-	rm -f $(OBJS)
-	rm -df $(OBJDIR)
+	$(RM) $(OBJECT_DIR)
 
-uninstall:
-	make clean
-	rm -f $(LIBNAME)
+# Remove the library and object files
+uninstall: clean
+	$(RM) $(LIBRARY_NAME)
 
-reinstall:
-	make uninstall
-	make all
+# Uninstall and then build the library
+reinstall: uninstall all
