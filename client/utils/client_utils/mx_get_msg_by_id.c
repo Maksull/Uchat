@@ -11,7 +11,6 @@ t_msg *mx_get_msg_by_id(t_msg *list, int id)
         {
             return list; // Return a pointer to the message object if found
         }
-        }
 
         list = list->next; // Move to the next message object in the list
     }
