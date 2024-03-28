@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d872ce3c-0f22-421e-a552-0aea863f4681" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/client/gui/Additions/add_chatlist_item.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/additions/add_chatlist_item.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Additions/add_class.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/additions/add_class.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Additions/add_join_chat_item.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/additions/add_join_chat_item.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Additions/add_message.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/additions/add_message.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_authorization_window.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_authorization_window.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_change_avatar_window.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_change_avatar_window.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_change_chat_name_window.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_change_chat_name_window.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_change_login_window.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_change_login_window.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_change_password_window.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_change_password_window.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_chat_screen.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_chat_screen.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_chat_window.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_chat_window.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_chatlist_message.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_chatlist_message.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_confirm_delete_account_window.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_confirm_delete_account_window.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_confirm_delete_chat_window.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_confirm_delete_chat_window.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_confirm_leave_chat_window.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_confirm_leave_chat_window.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_confirm_logout_window.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_confirm_logout_window.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_create_chat_menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_create_chat_menu.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_found_chats.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_found_chats.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_leftbar.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_leftbar.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_login_menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_login_menu.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_rightbar.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_rightbar.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_rightbar_chat.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_rightbar_chat.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_signup_menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_signup_menu.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Builders/build_start_messaging_label.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/builders/build_start_messaging_label.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/ChangeInfos/change_avatar_btn_click.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/change_infos/change_avatar_btn_click.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/ChangeInfos/change_chat_name_btn_click.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/change_infos/change_chat_name_btn_click.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/ChangeInfos/change_login_btn_click.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/change_infos/change_login_btn_click.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/ChangeInfos/change_password_btn_click.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/change_infos/change_password_btn_click.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Creators/create_chat_btn_click.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/creators/create_chat_btn_click.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Creators/create_new_window.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/creators/create_new_window.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Creators/create_popup_window.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/creators/create_popup_window.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/DeleteEvents/delete_account_btn_click.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/delete_events/delete_account_btn_click.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/DeleteEvents/delete_chat_btn_click.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/delete_events/delete_chat_btn_click.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/DeleteEvents/delete_message.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/delete_events/delete_message.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/FocusEvents/focus_out_chat_name_field.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/focus_events/focus_out_chat_name_field.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/FocusEvents/focus_out_current_password_field.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/focus_events/focus_out_current_password_field.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/FocusEvents/focus_out_login_field.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/focus_events/focus_out_login_field.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/FocusEvents/focus_out_new_password_field.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/focus_events/focus_out_new_password_field.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/FocusEvents/focus_out_password_field.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/focus_events/focus_out_password_field.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/FocusEvents/focus_out_re_new_password_field.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/focus_events/focus_out_re_new_password_field.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/FocusEvents/focus_out_repassword_field.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/focus_events/focus_out_repassword_field.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/FocusEvents/focus_out_username_field.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/focus_events/focus_out_username_field.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Handlers/chatlist_item_on_click.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/handlers/chatlist_item_on_click.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Handlers/edit_button_click.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/handlers/edit_button_click.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Handlers/handle_create_chat_response_code.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/handlers/handle_create_chat_response_code.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Handlers/handle_edit_chat_response_code.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/handlers/handle_edit_chat_response_code.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Handlers/handle_edit_password_response_code.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/handlers/handle_edit_password_response_code.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Handlers/handle_edit_username_response_code.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/handlers/handle_edit_username_response_code.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Handlers/handle_join_chat_response_code.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/handlers/handle_join_chat_response_code.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Handlers/handle_login_response_code.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/handlers/handle_login_response_code.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Handlers/handle_signup_response_code.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/handlers/handle_signup_response_code.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Handlers/leave_chat_btn_click.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/handlers/leave_chat_btn_click.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Handlers/login_button_click.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/handlers/login_button_click.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Handlers/logout_btn_click.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/handlers/logout_btn_click.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Handlers/send_button_click.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/handlers/send_button_click.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Handlers/signup_button_click.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/handlers/signup_button_click.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Setters/set_chatlist_item_active.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/setters/set_chatlist_item_active.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Setters/set_current_chat.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/setters/set_current_chat.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Setters/set_field_error_style.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/setters/set_field_error_style.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Setters/set_field_success_style.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/setters/set_field_success_style.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Setters/set_notify_error_style.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/setters/set_notify_error_style.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Setters/set_notify_success_style.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/setters/set_notify_success_style.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/UpdateEvents/update_chat_field.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/update_events/update_chat_field.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/UpdateEvents/update_chatlist.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/update_events/update_chatlist.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/UpdateEvents/update_chatlist_item_info.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/update_events/update_chatlist_item_info.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Validators/validate_name_field.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/validators/validate_name_field.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Validators/validate_password_field.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/validators/validate_password_field.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/Validators/validate_repassword_field.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/validators/validate_repassword_field.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/draw_chat_avatar.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/draw_avatars/draw_chat_avatar.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/gui/draw_user_avatar.c" beforeDir="false" afterPath="$PROJECT_DIR$/client/gui/draw_avatars/draw_user_avatar.c" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2dDqu1F5syFX2hxKCrc4TUxK72k" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "fixes",
+    "last_opened_file_path": "/home/xopsreyli/Projects/campus/Uchat",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/gui/Handlers" />
+      <recent name="$PROJECT_DIR$/client/gui/UpdateEvents" />
+      <recent name="$PROJECT_DIR$/client/gui/DeleteEvents" />
+      <recent name="$PROJECT_DIR$/client/gui/ChangeInfos" />
+      <recent name="$PROJECT_DIR$/client/gui/Creators" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d872ce3c-0f22-421e-a552-0aea863f4681" name="Changes" comment="" />
+      <created>1709553216394</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709553216394</updated>
+      <workItem from="1709553218271" duration="1549000" />
+      <workItem from="1709725984932" duration="2036000" />
+      <workItem from="1709833693092" duration="1286000" />
+      <workItem from="1709888741620" duration="16615000" />
+      <workItem from="1709982347798" duration="5186000" />
+      <workItem from="1710771934173" duration="81000" />
+      <workItem from="1710942141132" duration="4138000" />
+      <workItem from="1710949100214" duration="130000" />
+      <workItem from="1711572500014" duration="1008000" />
+      <workItem from="1711637216958" duration="1759000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
