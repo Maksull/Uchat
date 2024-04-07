@@ -3,7 +3,7 @@
 // Function to execute a database query
 int db_execute_query(const char *query)
 {
-    sqlite3 *db = open_database(); // Open the database connection
+    sqlite3 *db = open_db(); // Open the database connection
 
     char *error_message;
 

@@ -279,7 +279,7 @@ t_msg *mx_create_msg(int msg_id, int user_id, const char *user_name, int chat_id
 void mx_msg_dfl_push_back(t_msg **list, int msg_id, int user_id, const char *user_name, int chat_id, const char *text, const char *date_str, t_avatar_color color);
 
 
-bool regex_for(const char *str, const char *pattern);
+bool contains_regex(const char *str, const char *pattern);
 bool is_user_name_format_valid(const char *user_name);
 
 //HANDLE RESPONSE CODE

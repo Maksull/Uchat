@@ -1,7 +1,7 @@
 #include "../../inc/server.h"
 
 // Get a single message in JSON format
-cJSON *stmt_to_message_json(sqlite3_stmt *stmt)
+cJSON *sql_to_json_message(sqlite3_stmt *stmt)
 {
 
     cJSON *json = cJSON_CreateObject();

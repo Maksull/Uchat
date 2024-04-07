@@ -1,7 +1,7 @@
 #include "../inc/server.h"
 
 // Check if a string matches a regular expression pattern
-bool regex_for(const char *str, const char *pattern)
+bool contains_regex(const char *str, const char *pattern)
 {
     regex_t regex;  // Regular expression structure
     int result = 0; // Result of regex operations

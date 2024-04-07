@@ -10,7 +10,7 @@ int db_get_chats_total(int user_id)
                    "WHERE members.user_id IN (%d)",
             user_id); // Format SQL query
 
-    sqlite3 *db = open_database(); // Open the database connection
+    sqlite3 *db = open_db(); // Open the database connection
 
     // Execute the SQL query and retrieve the result
     sqlite3_stmt *stmt = db_execute_stmt_for(query, db);

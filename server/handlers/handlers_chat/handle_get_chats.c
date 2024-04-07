@@ -7,7 +7,7 @@ void handle_get_chats(const cJSON *chat_info, t_server_utils *utils)
     (void)chat_info;
 
     // Initialize the database if not already initialized
-    if (init_database() != 0)
+    if (init_db() != 0)
     {
         send_server_response(utils->ssl, R_DB_FAILURE, REQ_GET_CHATS); // Send response indicating database failure
         return;

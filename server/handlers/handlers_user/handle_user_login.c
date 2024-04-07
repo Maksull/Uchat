@@ -35,7 +35,7 @@ static void set_user_account_data(sqlite3_stmt *stmt, t_server_utils *utils)
 // Set user account data by username and password
 static t_response_code set_user_by_username(const char *username, const char *password, t_server_utils *utils)
 {
-    sqlite3 *db = open_database(); // Open the database connection
+    sqlite3 *db = open_db(); // Open the database connection
     sqlite3_stmt *stmt;            // SQLite statement
 
     // Prepare SQL statement to select user by username
@@ -82,7 +82,7 @@ static t_response_code set_user_by_username(const char *username, const char *pa
 void handle_user_login(const cJSON *user_info, t_server_utils *utils)
 {
     // Initialize the database
-    if (init_database() != 0)
+    if (init_db() != 0)
     {
         // If database initialization fails, send database failure response and return
         send_server_response(utils->ssl, R_DB_FAILURE, REQ_USR_LOGIN); // Send database failure response

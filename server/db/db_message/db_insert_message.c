@@ -35,7 +35,7 @@ t_response_code db_insert_message(const cJSON *msg_json, int *message_id)
             user_id->valueint, chat_id->valueint, date->valueint);
 
     // Open the database connection
-    sqlite3 *db = open_database();
+    sqlite3 *db = open_db();
 
     // Prepare the SQL statement
     sqlite3_stmt *stmt;

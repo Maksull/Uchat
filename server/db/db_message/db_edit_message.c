@@ -26,7 +26,7 @@ t_response_code db_edit_message(const cJSON *msg_json, t_server_utils *utils)
             message_id->valueint, utils->user->user_id, chat_id->valueint);
 
     // Open the database connection
-    sqlite3 *db = open_database();
+    sqlite3 *db = open_db();
 
     // Prepare the SQL statement
     sqlite3_stmt *stmt;

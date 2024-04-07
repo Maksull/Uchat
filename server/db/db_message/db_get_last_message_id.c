@@ -23,7 +23,7 @@ t_response_code db_get_last_message_id(const cJSON *chat_info, int *last_msg_id)
     sprintf(query, "SELECT id FROM `messages` WHERE chat_id = %d ORDER BY id DESC LIMIT 1",
             chat_id->valueint);
 
-    sqlite3 *db = open_database();
+    sqlite3 *db = open_db();
     // Execute the SQL query and get the result
     sqlite3_stmt *stmt = db_execute_stmt_for(query, db);
     *last_msg_id = sqlite3_column_int64(stmt, 0);

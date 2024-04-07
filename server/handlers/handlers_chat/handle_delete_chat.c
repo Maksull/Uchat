@@ -4,7 +4,7 @@
 void handle_delete_chat(const cJSON *chat_info, t_server_utils *utils)
 {
     // Initialize the database if not already initialized
-    if (init_database() != 0)
+    if (init_db() != 0)
     {
         send_server_response(utils->ssl, R_DB_FAILURE, REQ_DELETE_CHAT); // Send response indicating database failure
         return;

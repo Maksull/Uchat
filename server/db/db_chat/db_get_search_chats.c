@@ -13,7 +13,7 @@ cJSON *db_get_search_chats(const cJSON *chat_info, t_server_utils *utils)
 
     cJSON *chats_json = cJSON_CreateArray(); // Create a JSON array for search results
 
-    sqlite3 *db = open_database(); // Open the database connection
+    sqlite3 *db = open_db(); // Open the database connection
 
     // Prepare SQL statement to search for chats based on the provided search pattern
     sqlite3_stmt *stmt;                                                       // SQLite statement object
@@ -32,7 +32,7 @@ cJSON *db_get_search_chats(const cJSON *chat_info, t_server_utils *utils)
     // Iterate over the search results and add each chat to the JSON array
     while (sqlite3_step(stmt) == SQLITE_ROW)
     {
-        cJSON_AddItemToArray(chats_json, stmt_to_chat_json(stmt, true)); // Convert current row to JSON and add to array
+        cJSON_AddItemToArray(chats_json, sql_to_json_chat(stmt, true)); // Convert current row to JSON and add to array
     }
 
     sqlite3_finalize(stmt);

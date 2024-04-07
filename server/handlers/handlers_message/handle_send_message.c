@@ -4,7 +4,7 @@
 void handle_send_message(const cJSON *message_info, t_server_utils *utils)
 {
     // Initialize the database and check for initialization errors
-    if (init_database() != 0)
+    if (init_db() != 0)
     {
         // If initialization fails, send a server response with the database failure code
         send_server_response(utils->ssl, R_DB_FAILURE, REQ_SEND_MESSAGE);

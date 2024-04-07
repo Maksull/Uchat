@@ -1,7 +1,7 @@
 #include "../../inc/server.h"
 
 // Convert SQLite statement to JSON
-cJSON *stmt_to_chat_json(sqlite3_stmt *stmt, bool is_for_search)
+cJSON *sql_to_json_chat(sqlite3_stmt *stmt, bool is_for_search)
 {
     // Create a JSON object
     cJSON *json = cJSON_CreateObject();

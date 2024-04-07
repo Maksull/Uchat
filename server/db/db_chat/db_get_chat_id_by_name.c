@@ -3,7 +3,7 @@
 // Get the chat ID by its name from the database
 int db_get_chat_id_by_name(const char *chat_name)
 {
-    sqlite3 *db = open_database(); // Open the database connection
+    sqlite3 *db = open_db(); // Open the database connection
 
     // Prepare SQL statement to select the chat ID by name
     sqlite3_stmt *stmt;

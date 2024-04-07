@@ -1,7 +1,7 @@
 #include "../../inc/server.h"
 
 // Initialize the database if it does not exist
-int init_database()
+int init_db()
 {
     struct stat info;
     // Check if the database file exists
@@ -11,7 +11,7 @@ int init_database()
         return 0;
     }
 
-    sqlite3 *db = open_database(); // Open database connection
+    sqlite3 *db = open_db(); // Open database connection
 
     // SQL query to create tables
     char *query =

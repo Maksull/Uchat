@@ -7,7 +7,7 @@ bool db_has_chat_perms(int user_id, int chat_id, t_member_type perms)
     char query[QUERY_LEN];                                                                                               // Buffer to hold SQL query
     sprintf(query, "SELECT `permissions` FROM `members` WHERE `user_id` = '%d' AND `chat_id` = '%d'", user_id, chat_id); // Format SQL query
 
-    sqlite3 *db = open_database();
+    sqlite3 *db = open_db();
 
     // Execute the SQL query and retrieve the result
     sqlite3_stmt *stmt = db_execute_stmt_for(query, db);

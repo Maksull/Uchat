@@ -13,7 +13,7 @@ cJSON *db_get_message_by_id(const cJSON *msg_info)
         return NULL;
     }
 
-    sqlite3 *db = open_database();
+    sqlite3 *db = open_db();
     sqlite3_stmt *stmt;
 
     // Prepare the SQL statement to retrieve the message from the database
@@ -30,7 +30,7 @@ cJSON *db_get_message_by_id(const cJSON *msg_info)
     // If the SQL query returns a row, extract the message JSON
     if (sqlite3_step(stmt) == SQLITE_ROW)
     {
-        message_json = stmt_to_message_json(stmt);
+        message_json = sql_to_json_message(stmt);
     }
     sqlite3_finalize(stmt);
     sqlite3_close(db);

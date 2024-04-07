@@ -7,7 +7,7 @@ void handle_delete_account(const cJSON *chat_info, t_server_utils *utils)
     (void)chat_info;
 
     // Initialize the database
-    if (init_database() != 0)
+    if (init_db() != 0)
     {
         send_server_response(utils->ssl, R_DB_FAILURE, REQ_DELETE_ACCOUNT);
         return;

@@ -4,7 +4,7 @@
 void handle_edit_username(const cJSON *user_info, t_server_utils *utils)
 {
     // Initialize the database
-    if (init_database() != 0)
+    if (init_db() != 0)
     {
         send_server_response(utils->ssl, R_DB_FAILURE, REQ_EDIT_USERNAME);
         return;

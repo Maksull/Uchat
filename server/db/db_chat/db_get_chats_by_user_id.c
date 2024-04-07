@@ -5,7 +5,7 @@ cJSON *db_get_chats_by_user_id(int user_id)
 {
     cJSON *chats_json = cJSON_CreateArray();
 
-    sqlite3 *db = open_database(); // Open the database connection
+    sqlite3 *db = open_db(); // Open the database connection
 
     // Prepare SQL statement to select chats by user ID
     sqlite3_stmt *stmt;
@@ -21,7 +21,7 @@ cJSON *db_get_chats_by_user_id(int user_id)
     while (sqlite3_step(stmt) == SQLITE_ROW)
     {
         // Convert the current row to a JSON object and add it to the JSON array
-        cJSON_AddItemToArray(chats_json, stmt_to_chat_json(stmt, false));
+        cJSON_AddItemToArray(chats_json, sql_to_json_chat(stmt, false));
     }
 
     sqlite3_finalize(stmt);

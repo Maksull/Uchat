@@ -3,7 +3,7 @@
 // Function to retrieve username from database by user ID
 char *db_get_username_by_id(int user_id)
 {
-    sqlite3 *db = open_database(); // Open database connection
+    sqlite3 *db = open_db(); // Open database connection
     sqlite3_stmt *stmt; // SQLite prepared statement object
     sqlite3_prepare_v2(db, "SELECT `username` FROM `users` WHERE `id` = ?", -1, &stmt, NULL); // Prepare SQL statement
     sqlite3_bind_int64(stmt, 1, user_id); // Bind user_id parameter to SQL statement

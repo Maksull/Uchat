@@ -4,7 +4,7 @@
 void handle_get_msg(const cJSON *msg_info, t_server_utils *utils)
 {
     // Initialize the database and check for initialization errors
-    if (init_database() != 0)
+    if (init_db() != 0)
     {
         send_server_response(utils->ssl, R_DB_FAILURE, REQ_GET_CHATS);
         return;

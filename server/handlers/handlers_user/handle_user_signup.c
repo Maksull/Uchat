@@ -4,7 +4,7 @@
 void handle_user_signup(const cJSON *user_info, t_server_utils *utils)
 {
     // Initialize the database
-    if (init_database() != 0)
+    if (init_db() != 0)
     {
         // If database initialization fails, send database failure response and return
         send_server_response(utils->ssl, R_DB_FAILURE, REQ_USR_SIGNUP);

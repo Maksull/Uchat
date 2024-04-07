@@ -7,7 +7,7 @@ int db_insert_member(const char *chat_name, t_member_type member_type, t_server_
     char query[QUERY_LEN];
     sprintf(query, "SELECT `id` FROM `chats` WHERE `name` = '%s'", chat_name);
 
-    sqlite3 *db = open_database();
+    sqlite3 *db = open_db();
 
     // Execute the SQL query and retrieve the result
     sqlite3_stmt *stmt = db_execute_stmt_for(query, db); // Execute SQL query

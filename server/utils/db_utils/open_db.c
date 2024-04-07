@@ -1,7 +1,7 @@
 #include "../../inc/server.h"
 
 // Open the SQLite database
-sqlite3 *open_database()
+sqlite3 *open_db()
 {
     sqlite3 *db; // SQLite database connection
 
