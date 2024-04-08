@@ -10,10 +10,10 @@ int db_insert_member(const char *chat_name, t_member_type member_type, t_server_
     sqlite3 *db = open_db();
 
     // Execute the SQL query and retrieve the result
-    sqlite3_stmt *stmt = db_execute_stmt_for(query, db); // Execute SQL query
+    sqlite3_stmt *sql_stmt = db_execute_sql_stmt(query, db); // Execute SQL query
     int user_id = utils->user->user_id;                  // Get the user ID
-    int chat_id = sqlite3_column_int64(stmt, 0);         // Get the chat ID
-    sqlite3_finalize(stmt);                              // Finalize the statement
+    int chat_id = sqlite3_column_int64(sql_stmt, 0);         // Get the chat ID
+    sqlite3_finalize(sql_stmt);                              // Finalize the statement
 
     sqlite3_close(db);
 

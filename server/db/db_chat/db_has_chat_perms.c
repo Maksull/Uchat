@@ -10,9 +10,9 @@ bool db_has_chat_perms(int user_id, int chat_id, t_member_type perms)
     sqlite3 *db = open_db();
 
     // Execute the SQL query and retrieve the result
-    sqlite3_stmt *stmt = db_execute_stmt_for(query, db);
-    int chat_perms = sqlite3_column_int64(stmt, 0); // Get the permissions for the user in the chat
-    sqlite3_finalize(stmt);
+    sqlite3_stmt *sql_stmt = db_execute_sql_stmt(query, db);
+    int chat_perms = sqlite3_column_int64(sql_stmt, 0); // Get the permissions for the user in the chat
+    sqlite3_finalize(sql_stmt);
 
     sqlite3_close(db);
 

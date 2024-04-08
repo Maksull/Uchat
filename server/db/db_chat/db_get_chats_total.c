@@ -13,9 +13,9 @@ int db_get_chats_total(int user_id)
     sqlite3 *db = open_db(); // Open the database connection
 
     // Execute the SQL query and retrieve the result
-    sqlite3_stmt *stmt = db_execute_stmt_for(query, db);
-    int chat_total = sqlite3_column_int64(stmt, 0);
-    sqlite3_finalize(stmt);
+    sqlite3_stmt *sql_stmt = db_execute_sql_stmt(query, db);
+    int chat_total = sqlite3_column_int64(sql_stmt, 0);
+    sqlite3_finalize(sql_stmt);
 
     sqlite3_close(db);
 

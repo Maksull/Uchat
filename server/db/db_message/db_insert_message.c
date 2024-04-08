@@ -38,13 +38,13 @@ t_response_code db_insert_message(const cJSON *msg_json, int *message_id)
     sqlite3 *db = open_db();
 
     // Prepare the SQL statement
-    sqlite3_stmt *stmt;
-    sqlite3_prepare_v2(db, query, -1, &stmt, NULL);
+    sqlite3_stmt *sql_stmt;
+    sqlite3_prepare_v2(db, query, -1, &sql_stmt, NULL);
 
     // Bind the message text to the SQL statement
-    sqlite3_bind_text(stmt, 1, message->valuestring, -1, NULL);
-    sqlite3_step(stmt);
-    sqlite3_reset(stmt);
+    sqlite3_bind_text(sql_stmt, 1, message->valuestring, -1, NULL);
+    sqlite3_step(sql_stmt);
+    sqlite3_reset(sql_stmt);
     bzero(query, sizeof(query));
 
     // Construct a query to retrieve the ID of the last inserted message
@@ -53,14 +53,14 @@ t_response_code db_insert_message(const cJSON *msg_json, int *message_id)
             user_id->valueint, chat_id->valueint);
 
     // Prepare and execute the query to retrieve the message ID
-    sqlite3_prepare_v2(db, query, -1, &stmt, NULL);
-    sqlite3_step(stmt);
+    sqlite3_prepare_v2(db, query, -1, &sql_stmt, NULL);
+    sqlite3_step(sql_stmt);
 
     // Store the retrieved message ID
-    *message_id = sqlite3_column_int64(stmt, 0);
+    *message_id = sqlite3_column_int64(sql_stmt, 0);
 
     // Finalize the SQL statement and close the database connection
-    sqlite3_finalize(stmt);
+    sqlite3_finalize(sql_stmt);
     sqlite3_close(db);
 
     return R_SUCCESS; // Return success code if the message is successfully inserted

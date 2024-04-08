@@ -29,17 +29,17 @@ t_response_code db_edit_message(const cJSON *msg_json, t_server_utils *utils)
     sqlite3 *db = open_db();
 
     // Prepare the SQL statement
-    sqlite3_stmt *stmt;
-    sqlite3_prepare_v2(db, query, -1, &stmt, NULL);
+    sqlite3_stmt *sql_stmt;
+    sqlite3_prepare_v2(db, query, -1, &sql_stmt, NULL);
 
     // Bind the new message text to the SQL statement
-    sqlite3_bind_text(stmt, 1, new_text->valuestring, -1, NULL);
+    sqlite3_bind_text(sql_stmt, 1, new_text->valuestring, -1, NULL);
 
     // Execute the SQL statement to update the message text
-    sqlite3_step(stmt);
+    sqlite3_step(sql_stmt);
 
     // Finalize the SQL statement and close the database connection
-    sqlite3_finalize(stmt);
+    sqlite3_finalize(sql_stmt);
     sqlite3_close(db);
 
     return R_SUCCESS; // Return success code if the message is successfully updated

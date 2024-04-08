@@ -168,7 +168,7 @@ void handle_edit_username(const cJSON *user_info, t_server_utils *utils);
 // DB
 int init_db();
 sqlite3 *open_db();
-sqlite3_stmt *db_execute_stmt_for(const char *query, sqlite3 *db);
+sqlite3_stmt *db_execute_sql_stmt(const char *query, sqlite3 *db);
 int db_execute_query(const char *query);
 t_response_code db_add_user(const cJSON *user_info);
 bool db_user_exists(const char *username);
