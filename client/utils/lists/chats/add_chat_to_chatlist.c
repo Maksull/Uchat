@@ -35,7 +35,7 @@ t_response_code add_chat_to_chatlist(cJSON *json, t_chat **chat_list, bool is_se
     // If it's not a search operation, request chat messages for the added chat
     if (!is_search)
     {
-        handle_get_chat_msgs_request(chat_id->valueint);
+        handle_get_chat_msgs_req(chat_id->valueint);
     }
 
     return R_SUCCESS;

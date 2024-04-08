@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to handle signup response code
-void handle_signup_response_code(int response_code, GtkWidget *signup_notify_label)
+void handle_signup_res_code(int response_code, GtkWidget *signup_notify_label)
 {
     switch (response_code)
     {
@@ -15,15 +15,15 @@ void handle_signup_response_code(int response_code, GtkWidget *signup_notify_lab
             break;
 
         case R_INVALID_INPUT:
-            set_notify_error_style(signup_notify_label, get_response_str(R_INVALID_INPUT));
+            set_notify_error_style(signup_notify_label, get_res_str(R_INVALID_INPUT));
             break;
 
         case R_USR_EXISTS:
-            set_notify_error_style(signup_notify_label, get_response_str(R_USR_EXISTS));
+            set_notify_error_style(signup_notify_label, get_res_str(R_USR_EXISTS));
             break;
 
         case R_PASS_LEN_INVALID:
-            set_notify_error_style(signup_notify_label, get_response_str(R_PASS_LEN_INVALID));
+            set_notify_error_style(signup_notify_label, get_res_str(R_PASS_LEN_INVALID));
             break;
 
         default:

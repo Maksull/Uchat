@@ -13,12 +13,12 @@ void handle_edit_password_response_code(int response_code, GtkWidget* entry_fiel
 
         case R_INVALID_PASS:
             set_field_error_style(entry_field);
-            set_notify_error_style(change_password_notify_label, get_response_str(R_INVALID_PASS));
+            set_notify_error_style(change_password_notify_label, get_res_str(R_INVALID_PASS));
             break;
 
         case R_PASS_LEN_INVALID:
             set_field_error_style(entry_field);
-            set_notify_error_style(change_password_notify_label, get_response_str(R_PASS_LEN_INVALID));
+            set_notify_error_style(change_password_notify_label, get_res_str(R_PASS_LEN_INVALID));
             break;
 
         default:

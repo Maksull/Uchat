@@ -19,22 +19,22 @@ void handle_edit_chat_response_code(int response_code, GtkWidget* entry_field, G
 
         case R_CHAT_NOENT:
             set_field_error_style(entry_field);
-            set_notify_error_style(change_chat_name_notify_label, get_response_str(R_CHAT_NOENT));
+            set_notify_error_style(change_chat_name_notify_label, get_res_str(R_CHAT_NOENT));
             break;
 
         case R_NAME_LEN_INVALID:
             set_field_error_style(entry_field);
-            set_notify_error_style(change_chat_name_notify_label, get_response_str(R_NAME_LEN_INVALID));
+            set_notify_error_style(change_chat_name_notify_label, get_res_str(R_NAME_LEN_INVALID));
             break;
 
         case R_NAME_FORMAT_INVALID:
             set_field_error_style(entry_field);
-            set_notify_error_style(change_chat_name_notify_label, get_response_str(R_NAME_FORMAT_INVALID));
+            set_notify_error_style(change_chat_name_notify_label, get_res_str(R_NAME_FORMAT_INVALID));
             break;
 
         case R_CHAT_EXISTS:
             set_field_error_style(entry_field);
-            set_notify_error_style(change_chat_name_notify_label, get_response_str(R_CHAT_EXISTS));
+            set_notify_error_style(change_chat_name_notify_label, get_res_str(R_CHAT_EXISTS));
             break;
 
         default:

@@ -31,7 +31,7 @@ void edit_button_click(GtkWidget *widget, t_msg *message)
     g_signal_handler_unblock(new_message_field, g_signal_handler_find(new_message_field, G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (gpointer)send_button_click, NULL));
     // gtk_button_set_label(GTK_BUTTON(send_btn), "S");
 
-    handle_edit_msg_request(message->message_id, new_message); // Handle the request to edit the message
+    handle_edit_msg_req(message->message_id, new_message); // Handle the request to edit the message
 
     update_chat_field(); // Update the chat field to reflect the changes
 

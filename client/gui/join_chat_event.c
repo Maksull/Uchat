@@ -13,7 +13,7 @@ void join_chat_event(GtkWidget *widget, GdkEventButton *event, gpointer data)
     else if (event->type == GDK_DOUBLE_BUTTON_PRESS && event->button == 1) // Handle double-click event (attempt to join chat)
     {
         // Request to join the chat and handle the response
-        int response_code = handle_join_chat_request(chat_name);
+        int response_code = handle_join_chat_req(chat_name);
         handle_join_chat_response_code(response_code, chat_name);
     }
     (void)data;

@@ -7,7 +7,7 @@ void destroy(GtkWidget *widget, gpointer data)
     (void)data;
 
     pthread_cancel(utils->th_reader); // Cancel the thread responsible for reading server updates
-    handle_logout_request(true);      // Handle the logout request with a flag indicating forced logout
+    handle_logout_req(true);      // Handle the logout request with a flag indicating forced logout
     client_cleanup(true);             // Clean up client resources with a flag indicating forced cleanup
     gtk_main_quit();                  // Quit the GTK main loop
 }

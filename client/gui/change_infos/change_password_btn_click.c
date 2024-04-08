@@ -49,6 +49,6 @@ void change_password_btn_click(GtkWidget *widget, gpointer data)
     char *new_password = (char *)gtk_entry_get_text(GTK_ENTRY(new_password_field)); // Get the new password entered by the user
 
     // Send request to update user's password and handle the response
-    int response_code = handle_edit_password_request(new_password, current_password);
+    int response_code = handle_edit_password_req(new_password, current_password);
     handle_edit_password_response_code(response_code, new_password_field, new_password_notify_label);
 }

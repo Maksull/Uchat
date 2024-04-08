@@ -14,15 +14,15 @@ void handle_join_chat_response_code(int response_code, char *chat_name)
         }
 
         case R_CHAT_NOENT:
-            build_chatlist_message(get_response_str(R_CHAT_NOENT));
+            build_chatlist_message(get_res_str(R_CHAT_NOENT));
             break;
 
         case R_IS_CHAT_MEMBER:
-            build_chatlist_message(get_response_str(R_IS_CHAT_MEMBER));
+            build_chatlist_message(get_res_str(R_IS_CHAT_MEMBER));
             break;
 
         case R_CHATS_TOTAL_REACHED:
-            build_chatlist_message(get_response_str(R_CHATS_TOTAL_REACHED));
+            build_chatlist_message(get_res_str(R_CHATS_TOTAL_REACHED));
             break;
 
         default:

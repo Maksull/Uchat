@@ -16,7 +16,7 @@ void *handle_server_updates(void *arg)
         while (curr_chat) // Iterate over each chat in the list
         {
             bool is_current = utils->current_chat && curr_chat->id == utils->current_chat->id; // Check if the current chat is the active chat
-            int last_msg_id = handle_last_msg_id_request(curr_chat->id); // Get the ID of the last message in the current chat
+            int last_msg_id = handle_last_msg_id_req(curr_chat->id); // Get the ID of the last message in the current chat
             if (last_msg_id <= 0) // Check if the last message ID is invalid
             {
                 curr_chat = curr_chat ? curr_chat->next : NULL; // Move to the next chat
@@ -30,7 +30,7 @@ void *handle_server_updates(void *arg)
                 continue; // Continue to the next iteration
             }
 
-            handle_new_message(curr_chat, last_msg_id, is_current); // Handle new messages in the current chat
+            handle_new_msg(curr_chat, last_msg_id, is_current); // Handle new messages in the current chat
 
             curr_chat = curr_chat ? curr_chat->next : NULL; // Move to the next chat
             g_usleep(500000); // Sleep for 0.5 seconds

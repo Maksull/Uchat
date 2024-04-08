@@ -17,12 +17,12 @@ void handle_create_chat_response_code(int response_code, GtkWidget* entry_field,
 
         case R_CHAT_EXISTS:
             set_field_error_style(entry_field);
-            set_notify_error_style(create_chat_notify_label, get_response_str(R_CHAT_EXISTS));
+            set_notify_error_style(create_chat_notify_label, get_res_str(R_CHAT_EXISTS));
             break;
 
         case R_CHATS_TOTAL_REACHED:
             set_field_error_style(entry_field);
-            set_notify_error_style(create_chat_notify_label, get_response_str(R_CHATS_TOTAL_REACHED));
+            set_notify_error_style(create_chat_notify_label, get_res_str(R_CHATS_TOTAL_REACHED));
             break;
 
         default:

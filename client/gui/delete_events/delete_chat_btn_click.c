@@ -3,7 +3,7 @@
 // Function to handle delete chat button click
 void delete_chat_btn_click(GtkWidget *widget, gpointer data)
 {
-    int response_code = handle_delete_chat_request(utils->current_chat->name); // Send a request to delete the current chat and get the response code
+    int response_code = handle_delete_chat_req(utils->current_chat->name); // Send a request to delete the current chat and get the response code
 
     // If the deletion is successful, update the chat list and destroy the window
     if (response_code == R_SUCCESS)

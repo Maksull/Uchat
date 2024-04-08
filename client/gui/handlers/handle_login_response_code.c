@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to handle login response code
-void handle_login_response_code(int response_code, GtkWidget *login_notify_label)
+void handle_login_res_code(int response_code, GtkWidget *login_notify_label)
 {
     switch (response_code)
     {
@@ -11,7 +11,7 @@ void handle_login_response_code(int response_code, GtkWidget *login_notify_label
             break;
 
         case R_INVALID_INPUT:
-            set_notify_error_style(login_notify_label, get_response_str(R_INVALID_INPUT));
+            set_notify_error_style(login_notify_label, get_res_str(R_INVALID_INPUT));
             break;
 
         case R_USR_NOENT:

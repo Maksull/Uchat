@@ -27,7 +27,7 @@ bool validate_name_field(GtkWidget *username_field, GtkWidget *username_notify_l
     else if (!is_user_name_format_valid(user_name)) // Check for valid name format
     {
         set_field_error_style(username_field);
-        set_notify_error_style(username_notify_label, get_response_str(R_NAME_FORMAT_INVALID));
+        set_notify_error_style(username_notify_label, get_res_str(R_NAME_FORMAT_INVALID));
         return false; // Invalid input
     }
     else
