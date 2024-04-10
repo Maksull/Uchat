@@ -1,19 +1,15 @@
 #include "../../inc/server.h"
 
-// Initialize the database if it does not exist
-int init_db()
+// Check if the database file exists
+int does_db_exist()
 {
     struct stat info;
-    // Check if the database file exists
-    if (stat(DB_NAME, &info) == 0)
-    {
-        // If the database file exists, return 0 (success)
-        return 0;
-    }
+    return stat(DB_NAME, &info) == 0;
+}
 
-    sqlite3 *db = open_db(); // Open database connection
-
-    // SQL query to create tables
+// Create database tables
+int create_db_tables(sqlite3 *db)
+{
     char *query =
         "CREATE TABLE `users` ("
         "`id` INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -45,12 +41,34 @@ int init_db()
     // Execute SQL query to create tables
     if (sqlite3_exec(db, query, NULL, NULL, &errmsg))
     {
-        // If query execution fails, log the error message and return 1 (failure)
         logger(errmsg, ERROR_LOG);
-        sqlite3_close(db);
+
         return 1;
     }
-    sqlite3_close(db);
 
     return 0;
+}
+
+// Initialize the database if it does not exist
+int init_db()
+{
+    // Check if the database file exists
+    if (does_db_exist())
+    {
+        return 0; // Database already exists
+    }
+
+    sqlite3 *db = open_db(); // Open database connection
+
+    // Create tables in the database
+    if (create_db_tables(db))
+    {
+        sqlite3_close(db);
+
+        return 1; // Failed to create tables
+    }
+
+    sqlite3_close(db);
+
+    return 0; // Database initialization successful
 }
