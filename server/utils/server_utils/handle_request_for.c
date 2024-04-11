@@ -6,12 +6,6 @@ static t_request_type get_request_type(cJSON *json)
     return cJSON_GetObjectItem(json, "type")->valueint;
 }
 
-static cJSON *parse_request(const char *request)
-{
-    cJSON *json = cJSON_Parse(request);
-    return json;
-}
-
 // Log cJSON parsing error
 static void log_json_error()
 {

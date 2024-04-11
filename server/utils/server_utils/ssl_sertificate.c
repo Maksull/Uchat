@@ -31,7 +31,7 @@ static void verify_ssl_private_key_match(SSL_CTX *ctx)
 }
 
 // Function to load SSL certificate and private key
-void load_ssl_certificate_and_key(SSL_CTX *ctx, const char *cert, const char *key)
+void load_ssl_certificate(SSL_CTX *ctx, const char *cert, const char *key)
 {
     load_ssl_certificate_file(ctx, cert);
     load_ssl_private_key_file(ctx, key);

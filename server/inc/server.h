@@ -129,7 +129,7 @@ typedef enum e_request_type
 // SERVER UTILS
 void init_daemon();
 void init_ssl(SSL_CTX **ctx);
-void load_ssl_sertificate(SSL_CTX *ctx, const char *cert, const char *key);
+void load_ssl_certificate(SSL_CTX *ctx, const char *cert, const char *key);
 void send_response_to(SSL *ssl, const char *response);
 void send_server_response(SSL *ssl, t_response_code code, t_request_type req_type);
 void client_cleanup(t_server_utils *utils, bool is_client_exit);
