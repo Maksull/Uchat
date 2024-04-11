@@ -27,8 +27,6 @@ void handle_user_signup(const cJSON *user_info, t_server_utils *utils)
         return;
     }
 
-    int error_code = 0;
-
     // Add user to the database
     int error_code = add_user_to_database(user_info);
     if (error_code != R_SUCCESS)

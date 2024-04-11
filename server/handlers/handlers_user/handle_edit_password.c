@@ -20,9 +20,6 @@ static int modify_password(const cJSON *pass_info, t_server_utils *utils)
 // Function to check the validity of old and new passwords
 static int check_password_validity(const cJSON *pass_info, t_server_utils *utils)
 {
-    // Error code for handling errors
-    int error_code = 0;
-
     // Get the new and old passwords from the JSON object
     const cJSON *new_pass = cJSON_GetObjectItemCaseSensitive(pass_info, "new_password");
     const cJSON *old_pass = cJSON_GetObjectItemCaseSensitive(pass_info, "old_password");

@@ -51,22 +51,6 @@ static sqlite3_stmt *prepare_select_user_statement(sqlite3 *db, const char *user
     return stmt;
 }
 
-// Function to set user account data from the SQL statement
-static void set_user_account_data(sqlite3_stmt *stmt, t_server_utils *utils)
-{
-    if (sqlite3_step(stmt) == SQLITE_ROW)
-    {
-        // Extract user data from the SQL result
-        int user_id = sqlite3_column_int(stmt, 0);
-        const unsigned char *name = sqlite3_column_text(stmt, 1);
-        const unsigned char *password = sqlite3_column_text(stmt, 2);
-        int avatar_color = sqlite3_column_int(stmt, 3);
-
-        // Set user data in the utils
-        utils->user = create_user(user_id, (const char *)name, (const char *)password, avatar_color);
-    }
-}
-
 // Function to validate user password
 static t_response_code validate_user_password(t_server_utils *utils, const char *password)
 {
