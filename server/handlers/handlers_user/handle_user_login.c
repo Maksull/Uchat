@@ -13,8 +13,8 @@ static char *get_json_formatted_user(const t_user *user)
     cJSON_AddNumberToObject(json, "error_code", R_SUCCESS);            // Add success error code
     char *user_info = cJSON_PrintUnformatted(json);                    // Convert cJSON object to string
     cJSON_Delete(json);                                                // Delete cJSON object
-
-    return user_info; // Return JSON formatted user information
+    
+    return user_info;                                                  // Return JSON formatted user information
 }
 
 // Set user account data from SQLite statement
@@ -32,111 +32,61 @@ static void set_user_account_data(sqlite3_stmt *stmt, t_server_utils *utils)
     sqlite3_finalize(stmt); // Finalize the statement
 }
 
-// Function to prepare SQL statement to select user by username
-static sqlite3_stmt *prepare_select_user_statement(sqlite3 *db, const char *username)
-{
-    sqlite3_stmt *stmt;
-    int rc = sqlite3_prepare_v2(db, "SELECT users.id, users.username, users.password, users.avatar_color "
-                                    "FROM `users` WHERE `username` = ?",
-                                -1, &stmt, NULL);
-    if (rc != SQLITE_OK)
-    {
-        char error[100];
-        sprintf(error, "Cannot prepare statement: %s\n", sqlite3_errmsg(db));
-        logger(error, ERROR_LOG);
-        return NULL;
-    }
-
-    sqlite3_bind_text(stmt, 1, username, -1, NULL);
-    return stmt;
-}
-
-// Function to validate user password
-static t_response_code validate_user_password(t_server_utils *utils, const char *password)
-{
-    if (strcmp(utils->user->password, password) != 0)
-    {
-        mx_clear_user(&utils->user);
-        return R_INVALID_PASS;
-    }
-    return R_SUCCESS;
-}
-
-// Function to send user information response to the client
-static void send_user_info_response(t_server_utils *utils)
-{
-    char *response = get_json_formatted_user(utils->user);
-    send_response_to(utils->ssl, response);
-    free(response);
-}
-
-// Function to log user information
-static void log_user_information(t_server_utils *utils)
-{
-    char result_to_log[QUERY_LEN];
-    sprintf(result_to_log, "Logged in user info: id: %d, name: %s, color: %d",
-            utils->user->user_id,
-            utils->user->name,
-            utils->user->avatar_color);
-    logger(result_to_log, INFO_LOG);
-}
-
 // Set user account data by username and password
 static t_response_code set_user_by_username(const char *username, const char *password, t_server_utils *utils)
 {
     sqlite3 *db = open_db(); // Open the database connection
-    if (!db)
-    {
-        return R_DB_FAILURE;
-    }
+    sqlite3_stmt *stmt;            // SQLite statement
 
-    sqlite3_stmt *stmt = prepare_select_user_statement(db, username);
-    if (!stmt)
-    {
-        sqlite3_close(db);
-        return R_DB_FAILURE;
-    }
+    // Prepare SQL statement to select user by username
+    sqlite3_prepare_v2(db, "SELECT users.id, users.username, users.password, users.avatar_color "
+                           "FROM `users` WHERE `username` = ?",
+                       -1, &stmt, NULL);
+    sqlite3_bind_text(stmt, 1, username, -1, NULL); // Bind username parameter
 
+    // Set user account data from the SQL statement
     set_user_account_data(stmt, utils);
-    sqlite3_finalize(stmt);
-    sqlite3_close(db);
 
-    if (!utils->user)
+    sqlite3_close(db); // Close the database connection
+
+    // Check if user was found
+    if (utils->user == NULL)
     {
+        // If user was not found, return user not found error code
         return R_USR_NOENT;
     }
 
-    t_response_code password_validation_result = validate_user_password(utils, password);
-    if (password_validation_result != R_SUCCESS)
+    // Check if password matches
+    if (strcmp(utils->user->password, password) != 0)
     {
+        // If password does not match, clear user object and return invalid password error code
         mx_clear_user(&utils->user);
-        return password_validation_result;
+        return R_INVALID_PASS;
     }
 
-    send_user_info_response(utils);
-    log_user_information(utils);
+    char *response = get_json_formatted_user(utils->user); // Format JSON response
+    send_response_to(utils->ssl, response);                // Send response to client
+    free(response);                                        // Free allocated memory for response
+
+    // Log user information
+    char result_to_log[QUERY_LEN]; // Buffer to hold log message
+    sprintf(result_to_log, "Logged in user info: id: %d, name: %s, color: %d",
+            utils->user->user_id,
+            utils->user->name,
+            utils->user->avatar_color); // Format log message
+    logger(result_to_log, INFO_LOG);    // Log user information
 
     return R_SUCCESS;
 }
-
-// Function to initialize the database
-static int initialize_database(t_server_utils *utils)
-{
-    if (init_db() != 0)
-    {
-        send_server_response(utils->ssl, R_DB_FAILURE, REQ_USR_LOGIN);
-        return R_DB_FAILURE;
-    }
-    return R_SUCCESS;
-}
-
 
 void handle_user_login(const cJSON *user_info, t_server_utils *utils)
 {
     // Initialize the database
-    if (initialize_database(utils) != R_SUCCESS)
+    if (init_db() != 0)
     {
-        return;
+        // If database initialization fails, send database failure response and return
+        send_server_response(utils->ssl, R_DB_FAILURE, REQ_USR_LOGIN); // Send database failure response
+        return;                                                        // Return from function
     }
 
     int error_code = 0;
