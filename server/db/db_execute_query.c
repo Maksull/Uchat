@@ -3,18 +3,28 @@
 // Function to execute a database query
 int db_execute_query(const char *query)
 {
-    sqlite3 *db = open_db(); // Open the database connection
+    // Open the database connection
+    sqlite3 *db = open_db();
 
-    char *error_message;
+    char *error_message = NULL;
 
     // Execute the SQL query
-    if (sqlite3_exec(db, query, NULL, NULL, &error_message))
+    int result = sqlite3_exec(db, query, NULL, NULL, &error_message);
+
+    // Check for errors
+    if (result != SQLITE_OK)
     {
+        // Log error message
         logger(error_message, ERROR_LOG);
-        return 1;
+        // Free error message memory
+        sqlite3_free(error_message);
+        // Close the database connection
+        sqlite3_close(db);
+        return 1; // Error
     }
 
+    // Close the database connection
     sqlite3_close(db);
 
-    return 0;
+    return 0; // Success
 }
