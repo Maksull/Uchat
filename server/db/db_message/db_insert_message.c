@@ -1,67 +1,100 @@
 #include "../../inc/server.h"
 
-// Function to insert a message into the database
-t_response_code db_insert_message(const cJSON *msg_json, int *message_id)
+// Function to validate message JSON object
+static int validate_message_json(const cJSON *msg_json)
 {
-    // Extract necessary fields from the JSON object
     const cJSON *user_id = cJSON_GetObjectItem(msg_json, "user_id");
     const cJSON *chat_id = cJSON_GetObjectItem(msg_json, "chat_id");
     const cJSON *user_name = cJSON_GetObjectItemCaseSensitive(msg_json, "user_name");
     const cJSON *message = cJSON_GetObjectItemCaseSensitive(msg_json, "text");
     const cJSON *date = cJSON_GetObjectItemCaseSensitive(msg_json, "date");
 
-    // Check if all required fields are present and of the correct type
     if (!cJSON_IsNumber(user_id) || !cJSON_IsNumber(chat_id) ||
         !cJSON_IsString(user_name) || !cJSON_IsString(message) || !cJSON_IsNumber(date))
     {
-        return R_JSON_FAILURE;
+        return 0; // Invalid message JSON
     }
 
-    // Check if the chat exists in the database
-    if (!db_chat_exists(chat_id->valueint))
-    {
-        return R_CHAT_NOENT;
-    }
+    return 1; // JSON validation succeeded
+}
 
-    // Check if the message text length is within the valid range
-    if (!is_strlen_valid(message->valuestring, MIN_MSG_INPUT_LEN, MAX_MSG_INPUT_LEN))
-    {
-        return R_MSG_LEN_INVALID;
-    }
+// Function to insert message into the database
+static t_response_code insert_message_into_db(const cJSON *msg_json, int *message_id)
+{
+    const cJSON *user_id = cJSON_GetObjectItem(msg_json, "user_id");
+    const cJSON *chat_id = cJSON_GetObjectItem(msg_json, "chat_id");
+    const cJSON *message = cJSON_GetObjectItemCaseSensitive(msg_json, "text");
+    const cJSON *date = cJSON_GetObjectItemCaseSensitive(msg_json, "date");
 
-    // Construct the SQL query to insert the message into the messages table
     char query[QUERY_LEN];
     sprintf(query, "INSERT INTO `messages` (`user_id`, `chat_id`, `text`, `date`) VALUES('%d', '%d', ?, '%d')",
             user_id->valueint, chat_id->valueint, date->valueint);
 
-    // Open the database connection
     sqlite3 *db = open_db();
+    if (db == NULL)
+    {
+        return R_DB_FAILURE; // Failed to open database
+    }
 
-    // Prepare the SQL statement
     sqlite3_stmt *sql_stmt;
-    sqlite3_prepare_v2(db, query, -1, &sql_stmt, NULL);
+    if (sqlite3_prepare_v2(db, query, -1, &sql_stmt, NULL) != SQLITE_OK)
+    {
+        sqlite3_close(db);
 
-    // Bind the message text to the SQL statement
-    sqlite3_bind_text(sql_stmt, 1, message->valuestring, -1, NULL);
-    sqlite3_step(sql_stmt);
-    sqlite3_reset(sql_stmt);
-    bzero(query, sizeof(query));
+        return R_DB_FAILURE; // Failed to prepare SQL statement
+    }
 
-    // Construct a query to retrieve the ID of the last inserted message
+    if (sqlite3_bind_text(sql_stmt, 1, message->valuestring, -1, NULL) != SQLITE_OK)
+    {
+        sqlite3_finalize(sql_stmt);
+        sqlite3_close(db);
+
+        return R_DB_FAILURE; // Failed to bind parameter
+    }
+
+    if (sqlite3_step(sql_stmt) != SQLITE_DONE)
+    {
+        sqlite3_finalize(sql_stmt);
+        sqlite3_close(db);
+
+        return R_DB_FAILURE; // Failed to execute SQL statement
+    }
+
     sprintf(query, "SELECT id FROM `messages` WHERE `user_id` = '%d' AND `chat_id` = '%d' "
                    "ORDER BY `id` DESC LIMIT 1",
             user_id->valueint, chat_id->valueint);
 
-    // Prepare and execute the query to retrieve the message ID
-    sqlite3_prepare_v2(db, query, -1, &sql_stmt, NULL);
-    sqlite3_step(sql_stmt);
+    if (sqlite3_prepare_v2(db, query, -1, &sql_stmt, NULL) != SQLITE_OK)
+    {
+        sqlite3_finalize(sql_stmt);
+        sqlite3_close(db);
 
-    // Store the retrieved message ID
+        return R_DB_FAILURE; // Failed to prepare SQL statement for message ID retrieval
+    }
+
+    if (sqlite3_step(sql_stmt) != SQLITE_ROW)
+    {
+        sqlite3_finalize(sql_stmt);
+        sqlite3_close(db);
+
+        return R_DB_FAILURE; // Failed to retrieve message ID
+    }
+
     *message_id = sqlite3_column_int64(sql_stmt, 0);
 
-    // Finalize the SQL statement and close the database connection
     sqlite3_finalize(sql_stmt);
     sqlite3_close(db);
 
-    return R_SUCCESS; // Return success code if the message is successfully inserted
+    return R_SUCCESS; // Message successfully inserted
+}
+
+// Function to insert a message into the database
+t_response_code db_insert_message(const cJSON *msg_json, int *message_id)
+{
+    if (!validate_message_json(msg_json))
+    {
+        return R_JSON_FAILURE; // Invalid message JSON
+    }
+
+    return insert_message_into_db(msg_json, message_id);
 }
