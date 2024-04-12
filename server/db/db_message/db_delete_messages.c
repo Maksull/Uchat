@@ -7,7 +7,7 @@ static void create_delete_messages_query(int chat_id, char *query)
 }
 
 // Function to delete messages of a chat from the database
-t_response_code db_delete_messages(int chat_id)
+int db_delete_messages(int chat_id)
 {
     char query[QUERY_LEN];
     create_delete_messages_query(chat_id, query);

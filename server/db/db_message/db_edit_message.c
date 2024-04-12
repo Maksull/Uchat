@@ -29,7 +29,7 @@ static void create_edit_message_query(int message_id, int user_id, int chat_id, 
 }
 
 // Function to edit a message in the database
-static t_response_code db_edit_message(const cJSON *msg_json, t_server_utils *utils)
+t_response_code db_edit_message(const cJSON *msg_json, t_server_utils *utils)
 {
     const cJSON *message_id = cJSON_GetObjectItem(msg_json, "id");
     const cJSON *chat_id = cJSON_GetObjectItem(msg_json, "chat_id");

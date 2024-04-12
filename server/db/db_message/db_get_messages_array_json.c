@@ -14,7 +14,7 @@ static sqlite3_stmt *prepare_messages_query(int chat_id, sqlite3 *db)
 }
 
 // Function to retrieve messages array in JSON format
-static cJSON *get_messages_array_json(int chat_id, sqlite3_stmt *sql_stmt)
+static cJSON *get_messages_array_json(sqlite3_stmt *sql_stmt)
 {
     cJSON *messages_json = cJSON_CreateArray();
 
@@ -42,7 +42,7 @@ cJSON *db_get_messages_array_json(int chat_id)
         return NULL; // Failed to prepare SQL statement
     }
 
-    cJSON *messages_json = get_messages_array_json(chat_id, sql_stmt);
+    cJSON *messages_json = get_messages_array_json(sql_stmt);
 
     sqlite3_finalize(sql_stmt);
     sqlite3_close(db);
