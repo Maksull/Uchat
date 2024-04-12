@@ -1,7 +1,7 @@
 #include "../../inc/server.h"
 
 // Function to initialize the database and handle initialization errors
-int initialize_database(t_server_utils *utils, t_request_type request_type)
+static int initialize_database(t_server_utils *utils, t_request_type request_type)
 {
     if (init_db() != 0)
     {
@@ -14,7 +14,7 @@ int initialize_database(t_server_utils *utils, t_request_type request_type)
 }
 
 // Function to extract chat ID and new name from the JSON object and validate them
-int extract_and_validate_chat_info(const cJSON *chat_info, const cJSON **chat_id, const cJSON **new_name, t_server_utils *utils)
+static int extract_and_validate_chat_info(const cJSON *chat_info, const cJSON **chat_id, const cJSON **new_name, t_server_utils *utils)
 {
     *chat_id = cJSON_GetObjectItemCaseSensitive(chat_info, "chat_id");
     *new_name = cJSON_GetObjectItemCaseSensitive(chat_info, "chat_name");
@@ -31,7 +31,7 @@ int extract_and_validate_chat_info(const cJSON *chat_info, const cJSON **chat_id
 }
 
 // Function to check if the chat exists
-int check_chat_existence(const cJSON *chat_id, t_server_utils *utils)
+static int check_chat_existence(const cJSON *chat_id, t_server_utils *utils)
 {
     // Check if the chat exists
     if (!db_chat_exists(chat_id->valueint))
@@ -45,7 +45,7 @@ int check_chat_existence(const cJSON *chat_id, t_server_utils *utils)
 }
 
 // Function to validate the new name length and format
-int validate_new_name(const cJSON *new_name, t_server_utils *utils)
+static int validate_new_name(const cJSON *new_name, t_server_utils *utils)
 {
     // Validate the new name length
     if (!is_strlen_valid(new_name->valuestring, MIN_NAME_INPUT_LEN, MAX_NAME_INPUT_LEN))
@@ -67,7 +67,7 @@ int validate_new_name(const cJSON *new_name, t_server_utils *utils)
 }
 
 // Function to modify the chat name
-int modify_chat_name(const cJSON *chat_id, const cJSON *new_name, t_server_utils *utils)
+static int modify_chat_name(const cJSON *chat_id, const cJSON *new_name, t_server_utils *utils)
 {
     // Modify the chat name
     t_response_code resp_code = db_modify_chat_name(chat_id->valueint, new_name->valuestring);

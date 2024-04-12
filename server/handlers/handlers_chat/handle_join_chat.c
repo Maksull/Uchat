@@ -1,7 +1,7 @@
 #include "../../inc/server.h"
 
 // Function to initialize the database and handle initialization errors
-int initialize_database(t_server_utils *utils, t_request_type request_type)
+static int initialize_database(t_server_utils *utils, t_request_type request_type)
 {
     if (init_db() != 0)
     {
@@ -9,18 +9,18 @@ int initialize_database(t_server_utils *utils, t_request_type request_type)
 
         return 1; // Error
     }
-    
+
     return 0; // Success
 }
 
 // Function to retrieve the chat ID corresponding to the chat name
-int get_chat_id_by_name(const cJSON *chat_name, t_server_utils *utils)
+static int get_chat_id_by_name(const cJSON *chat_name)
 {
     return db_get_chat_id_by_name(chat_name->valuestring);
 }
 
 // Function to check if the user is already a member of the chat
-int check_user_membership(int user_id, int chat_id, t_server_utils *utils)
+static int check_user_membership(int user_id, int chat_id, t_server_utils *utils)
 {
     if (db_is_chat_member(user_id, chat_id))
     {
@@ -33,7 +33,7 @@ int check_user_membership(int user_id, int chat_id, t_server_utils *utils)
 }
 
 // Function to check if the user has reached the maximum limit of chats
-int check_max_chat_limit(int user_id, t_server_utils *utils)
+static int check_max_chat_limit(int user_id, t_server_utils *utils)
 {
     if (db_get_chats_total(user_id) >= MAX_CHATS_TOTAL)
     {
@@ -46,7 +46,7 @@ int check_max_chat_limit(int user_id, t_server_utils *utils)
 }
 
 // Function to attempt to insert the user as a member of the chat
-int insert_user_as_member(const cJSON *chat_name, t_server_utils *utils)
+static int insert_user_as_member(const cJSON *chat_name, t_server_utils *utils)
 {
     t_response_code resp_code = db_insert_member(chat_name->valuestring, NORMAL_MEMBER, utils);
     if (resp_code != R_SUCCESS)
@@ -79,7 +79,7 @@ void handle_join_chat(const cJSON *chat_info, t_server_utils *utils)
     }
 
     // Get the chat_id corresponding to the chat_name
-    int chat_id = get_chat_id_by_name(chat_name, utils);
+    int chat_id = get_chat_id_by_name(chat_name);
     if (chat_id == -1)
     {
         send_server_response(utils->ssl, R_CHAT_NOENT, REQ_JOIN_CHAT); // Send response indicating chat does not exist

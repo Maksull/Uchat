@@ -1,7 +1,7 @@
 #include "../../inc/server.h"
 
 // Function to initialize the database and handle initialization errors
-int initialize_database(t_server_utils *utils, t_request_type request_type)
+static int initialize_database(t_server_utils *utils, t_request_type request_type)
 {
     if (init_db() != 0)
     {
@@ -14,7 +14,7 @@ int initialize_database(t_server_utils *utils, t_request_type request_type)
 }
 
 // Function to extract chat name from the JSON object and validate it
-int extract_and_validate_chat_name(const cJSON *chat_info, const cJSON **chat_name, t_server_utils *utils)
+static int extract_and_validate_chat_name(const cJSON *chat_info, const cJSON **chat_name, t_server_utils *utils)
 {
     *chat_name = cJSON_GetObjectItemCaseSensitive(chat_info, "name");
 
@@ -30,7 +30,7 @@ int extract_and_validate_chat_name(const cJSON *chat_info, const cJSON **chat_na
 }
 
 // Function to check if the user is a member of the chat and has admin permissions
-int check_user_permissions(const cJSON *chat_name, int *chat_id, t_server_utils *utils)
+static int check_user_permissions(const cJSON *chat_name, int *chat_id, t_server_utils *utils)
 {
     // Get chat ID from database
     *chat_id = db_get_chat_id_by_name(chat_name->valuestring);
@@ -55,7 +55,7 @@ int check_user_permissions(const cJSON *chat_name, int *chat_id, t_server_utils 
 }
 
 // Function to delete the chat, its members, and messages
-int delete_chat(int chat_id, const cJSON *chat_name, t_server_utils *utils)
+static int delete_chat(int chat_id, const cJSON *chat_name, t_server_utils *utils)
 {
     // Delete the chat
     t_response_code resp_code = db_delete_chat(chat_name->valuestring, chat_id);

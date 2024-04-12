@@ -1,7 +1,7 @@
 #include "../../inc/server.h"
 
 // Function to initialize the database and handle initialization errors
-int initialize_database(t_server_utils *utils, t_request_type request_type)
+static int initialize_database(t_server_utils *utils, t_request_type request_type)
 {
     if (init_db() != 0)
     {
@@ -14,13 +14,13 @@ int initialize_database(t_server_utils *utils, t_request_type request_type)
 }
 
 // Function to retrieve search results for chats based on the provided information
-cJSON *retrieve_chat_search_results(const cJSON *chat_info, t_server_utils *utils)
+static cJSON *retrieve_chat_search_results(const cJSON *chat_info, t_server_utils *utils)
 {
     return db_get_search_chats(chat_info, utils);
 }
 
 // Function to create and send the response JSON object
-void send_response_json(cJSON *chats, t_server_utils *utils, t_request_type request_type)
+static void send_response_json(cJSON *chats, t_server_utils *utils, t_request_type request_type)
 {
     cJSON *json = cJSON_CreateObject();
     cJSON_AddItemReferenceToObject(json, "chats", chats);

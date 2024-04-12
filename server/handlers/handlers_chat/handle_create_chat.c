@@ -1,7 +1,7 @@
 #include "../../inc/server.h"
 
 // Function to initialize the database and handle initialization errors
-int initialize_database(t_server_utils *utils, t_request_type request_type)
+static int initialize_database(t_server_utils *utils, t_request_type request_type)
 {
     if (init_db() != 0)
     {
@@ -14,7 +14,7 @@ int initialize_database(t_server_utils *utils, t_request_type request_type)
 }
 
 // Function to extract chat information from the JSON object and validate it
-int extract_and_validate_chat_info(const cJSON *chat_info, const cJSON **chat_name, const cJSON **date, const cJSON **av_color, t_server_utils *utils)
+static int extract_and_validate_chat_info(const cJSON *chat_info, const cJSON **chat_name, const cJSON **date, const cJSON **av_color, t_server_utils *utils)
 {
     *chat_name = cJSON_GetObjectItemCaseSensitive(chat_info, "name");
     *date = cJSON_GetObjectItem(chat_info, "date");
@@ -47,7 +47,7 @@ int extract_and_validate_chat_info(const cJSON *chat_info, const cJSON **chat_na
 }
 
 // Function to handle the insertion of a new chat into the database
-int insert_new_chat(const cJSON *chat_name, const cJSON *date, const cJSON *av_color, t_server_utils *utils)
+static int insert_new_chat(const cJSON *chat_name, const cJSON *date, const cJSON *av_color, t_server_utils *utils)
 {
     t_response_code resp_code = db_insert_chat(chat_name->valuestring, date->valueint, av_color->valueint);
     if (resp_code != R_SUCCESS)
@@ -61,7 +61,7 @@ int insert_new_chat(const cJSON *chat_name, const cJSON *date, const cJSON *av_c
 }
 
 // Function to handle the insertion of the current user as an admin member of the chat
-int insert_current_user_as_admin(const cJSON *chat_name, t_server_utils *utils)
+static int insert_current_user_as_admin(const cJSON *chat_name, t_server_utils *utils)
 {
     if (db_insert_member(chat_name->valuestring, ADMIN_MEMBER, utils) != 0)
     {
