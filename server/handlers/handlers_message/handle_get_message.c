@@ -28,7 +28,7 @@ cJSON *retrieve_message_by_id(const cJSON *msg_info, t_server_utils *utils)
 }
 
 // Function to create and send the response JSON object
-void send_response_json(const cJSON *msg_json, t_server_utils *utils, t_request_type request_type)
+void send_response_json(cJSON *msg_json, t_server_utils *utils, t_request_type request_type)
 {
     cJSON *json = cJSON_CreateObject();
     cJSON_AddItemReferenceToObject(json, "message", msg_json);
