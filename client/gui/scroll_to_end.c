@@ -15,13 +15,13 @@ static void scroll_to_end_of_window(GtkAdjustment *adjustment)
 }
 
 // Function to get a widget by name within the main window
-static GtkWidget *get_widget_by_name_in_main_window(const gchar *name)
+static GtkWidget *get_widget_by_name_in_main_window(char *name)
 {
     return get_widget_by_name_r(main_window, name);
 }
 
 // Function to handle scroll to the end
-static void scroll_to_end(GtkWidget *widget, gpointer data)
+void scroll_to_end(GtkWidget *widget, gpointer data)
 {
     if (widget)
     { }
