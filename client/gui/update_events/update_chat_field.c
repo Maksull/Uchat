@@ -13,7 +13,7 @@ static void display_no_messages_label(GtkWidget *chat_field)
 }
 
 // Function to add each message to the chat field
-static void add_messages_to_chat_field(GtkWidget *chat_field, t_msg *messages)
+static void add_messages_to_chat_field(t_msg *messages)
 {
     while (messages)
     {

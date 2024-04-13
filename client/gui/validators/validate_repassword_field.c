@@ -13,7 +13,7 @@ static bool does_repassword_match(char *password, char *repassword)
 }
 
 // Function to set error style and notification for an invalid re-entered password
-static void handle_invalid_repassword(GtkWidget *repassword_field, GtkWidget *repassword_notify_label, const gchar *error_message)
+static void handle_invalid_repassword(GtkWidget *repassword_field, GtkWidget *repassword_notify_label, char *error_message)
 {
     set_field_error_style(repassword_field);
     set_notify_error_style(repassword_notify_label, error_message);
