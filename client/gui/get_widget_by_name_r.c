@@ -41,7 +41,7 @@ static GtkWidget *recursive_search_widget(GtkWidget *widget, const gchar *name)
 }
 
 // Function to get a widget by name within a container
-GtkWidget *get_widget_by_name_r(GtkWidget *container, const gchar *name)
+GtkWidget *get_widget_by_name_r(GtkWidget *container, gchar *name)
 {
     return recursive_search_widget(container, name);
 }

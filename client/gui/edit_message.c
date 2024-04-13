@@ -34,10 +34,10 @@ void edit_message(GtkWidget *widget, GdkEventButton *event, t_msg *message)
     set_message_text(new_message_field, message->text);
 
     // Block the edit message signal to prevent recursive calls
-    block_signal_handler(widget, "button-press-event", (gpointer)edit_message);
+    block_signal_handler(widget, (gpointer)edit_message);
 
     // Block the send button signal and connect the message input field and send button to the edit button click handler
-    block_signal_handler(send_btn, "clicked", (gpointer)send_button_click);
-    block_signal_handler(new_message_field, "activate", (gpointer)send_button_click);
+    block_signal_handler(send_btn, (gpointer)send_button_click);
+    block_signal_handler(new_message_field, (gpointer)send_button_click);
     connect_to_edit_button(new_message_field, send_btn, message);
 }
