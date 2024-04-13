@@ -1,13 +1,10 @@
 #include "../../inc/server.h"
 
-// Get chats associated with a user ID from the database
-cJSON *db_get_chats_by_user_id(int user_id)
+// Function to get chats associated with a user ID from the database
+static cJSON *get_chats_by_user_id_from_db(int user_id, sqlite3 *db)
 {
     cJSON *chats_json = cJSON_CreateArray();
 
-    sqlite3 *db = open_db(); // Open the database connection
-
-    // Prepare SQL statement to select chats by user ID
     sqlite3_stmt *sql_stmt;
     sqlite3_prepare_v2(db, "SELECT chats.id, chats.name, chats.avatar_color, members.permissions FROM chats "
                            "INNER JOIN `members` ON members.chat_id = chats.id "
@@ -17,16 +14,22 @@ cJSON *db_get_chats_by_user_id(int user_id)
     sqlite3_bind_int64(sql_stmt, 1, user_id);
     sqlite3_bind_int64(sql_stmt, 2, user_id);
 
-    // Iterate over the result set and add each chat to the JSON array
     while (sqlite3_step(sql_stmt) == SQLITE_ROW)
     {
-        // Convert the current row to a JSON object and add it to the JSON array
         cJSON_AddItemToArray(chats_json, sql_to_json_chat(sql_stmt, false));
     }
 
     sqlite3_finalize(sql_stmt);
+
+    return chats_json;
+}
+
+// Original function refactored
+cJSON *db_get_chats_by_user_id(int user_id)
+{
+    sqlite3 *db = open_db();
+    cJSON *chats_json = get_chats_by_user_id_from_db(user_id, db);
     sqlite3_close(db);
 
-    // Return the JSON array containing the chats
     return chats_json;
 }
