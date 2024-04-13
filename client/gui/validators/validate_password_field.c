@@ -30,7 +30,7 @@ static void handle_valid_password(GtkWidget *password_field, GtkWidget *password
 // Function to validate password field
 bool validate_password_field(GtkWidget *password_field, GtkWidget *password_notify_label)
 {
-    char *user_password = gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(password_field)));
+    char *user_password = (char *)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(password_field)));
 
     if (!is_password_not_empty(user_password))
     {

@@ -36,7 +36,7 @@ static void handle_valid_name(GtkWidget *username_field, GtkWidget *username_not
 // Function to validate name field
 bool validate_name_field(GtkWidget *username_field, GtkWidget *username_notify_label)
 {
-    char *user_name = gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(username_field)));
+    char *user_name = (char *)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(username_field)));
 
     if (!is_name_not_empty(user_name))
     {

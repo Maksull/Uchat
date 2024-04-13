@@ -29,8 +29,8 @@ static void handle_valid_repassword(GtkWidget *repassword_field, GtkWidget *repa
 // Function to validate the re-entered password field
 bool validate_repassword_field(GtkWidget *password_field, GtkWidget *repassword_field, GtkWidget *repassword_notify_label)
 {
-    char *user_password = gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(password_field)));
-    char *user_repassword = gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(repassword_field)));
+    char *user_password = (char *)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(password_field)));
+    char *user_repassword = (char *)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(repassword_field)));
 
     if (!is_repassword_not_empty(user_repassword))
     {

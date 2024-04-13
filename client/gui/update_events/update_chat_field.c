@@ -37,7 +37,7 @@ void update_chat_field()
     }
     else
     {
-        add_messages_to_chat_field(chat_field, messages);
+        add_messages_to_chat_field(messages);
     }
 
     gtk_widget_show_all(chat_field); // Show all widgets in the chat field
