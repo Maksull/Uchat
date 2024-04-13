@@ -11,7 +11,7 @@ static gboolean is_double_button_press_event(GdkEventButton *event) {
 }
 
 // Function to handle the double-click event (attempting to join chat)
-static void handle_double_click_event(const char *chat_name) {
+static void handle_double_click_event(char *chat_name) {
     // Request to join the chat and handle the response
     int response_code = handle_join_chat_req(chat_name);
     handle_join_chat_response_code(response_code, chat_name);

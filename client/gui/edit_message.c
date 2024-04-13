@@ -7,7 +7,7 @@ static void set_message_text(GtkWidget *new_message_field, const char *text)
 }
 
 // Function to block a signal handler for a widget
-static void block_signal_handler(GtkWidget *widget, const gchar *signal_name, gpointer func)
+static void block_signal_handler(GtkWidget *widget, gpointer func)
 {
     g_signal_handler_block(widget, g_signal_handler_find(widget, G_SIGNAL_MATCH_FUNC, 0, 0, NULL, func, NULL));
 }

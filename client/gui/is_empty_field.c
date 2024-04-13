@@ -7,7 +7,7 @@ static char *get_entry_text(GtkWidget *entry)
 }
 
 // Function to set an error style for a notification label
-static void set_notify_error_style(GtkWidget *notify_label, const gchar *message)
+static void set_label_text(GtkWidget *notify_label, const gchar *message)
 {
     gtk_label_set_text(GTK_LABEL(notify_label), message);
 }
@@ -21,14 +21,14 @@ bool is_empty_field(GtkWidget *field, GtkWidget *notify_label)
     if (strlen(text) == 0)
     {
         add_class(field, "input-field--danger");                         // Set error style for the field
-        set_notify_error_style(notify_label, "This field is required!"); // Set notification label with a required message
+        set_label_text(notify_label, "This field is required!"); // Set notification label with a required message
 
         return true; // Field is empty
     }
     else
     {
         remove_class(field, "input-field--danger"); // Remove any error styles applied to the field
-        set_notify_error_style(notify_label, "");   // Clear the notification label
+        set_label_text(notify_label, "");   // Clear the notification label
 
         return false; // Field is not empty
     }
