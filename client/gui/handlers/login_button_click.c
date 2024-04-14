@@ -17,8 +17,8 @@ void handle_login_process(GtkWidget *username_field, GtkWidget *username_notify_
     char *user_name = (char *)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(username_field)));
     char *user_password = (char *)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(password_field)));
 
-    int response_code = handle_login_request(user_name, user_password); // Handle the login request and get the response code
-    handle_login_response_code(response_code, login_notify_label);      // Handle the login response code and update the login notification label accordingly
+    int response_code = handle_login_req(user_name, user_password); // Handle the login request and get the response code
+    handle_login_res_code(response_code, login_notify_label);      // Handle the login response code and update the login notification label accordingly
 }
 
 // Function to find necessary login widgets within the main window

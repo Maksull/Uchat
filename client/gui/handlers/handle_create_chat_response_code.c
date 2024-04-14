@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to handle successful chat creation
-static void handle_successful_chat_creation(GtkWidget *create_chat_notify_label)
+static void handle_successful_chat_creation(GtkWidget *entry_field, GtkWidget *create_chat_notify_label)
 {
     set_notify_success_style(create_chat_notify_label, "");
 
@@ -35,7 +35,7 @@ void handle_create_chat_response_code(int response_code, GtkWidget *entry_field,
     switch (response_code)
     {
     case R_SUCCESS:
-        handle_successful_chat_creation(create_chat_notify_label);
+        handle_successful_chat_creation(entry_field, create_chat_notify_label);
         break;
 
     case R_CHAT_EXISTS:

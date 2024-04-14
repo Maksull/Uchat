@@ -14,7 +14,7 @@ static bool is_new_message_empty(gchar *new_message)
 }
 
 // Function to remove the "No messages here yet..." label if present and clear the new message field
-static void clear_message_field(GtkWidget *messaging_label, GtkWidget *new_message_field)
+static void clear_message_field(GtkWidget *messaging_label, gpointer new_message_field)
 {
     if (messaging_label)
     {

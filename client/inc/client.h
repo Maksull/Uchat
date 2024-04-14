@@ -283,8 +283,8 @@ bool contains_regex(const char *str, const char *pattern);
 bool is_user_name_format_valid(const char *user_name);
 
 //HANDLE RESPONSE CODE
-void handle_login_res_code(int error_code, GtkWidget *login_notify_label);
-void handle_signup_res_code(int error_code, GtkWidget *signup_notify_label);
+void handle_login_res_code(int response_code, GtkWidget *login_notify_label);
+void handle_signup_res_code(int response_code, GtkWidget *signup_notify_label);
 void handle_create_chat_response_code(int error_code, GtkWidget* entry_field, GtkWidget *create_chat_notify_label);
 void handle_join_chat_response_code(int error_code, char *chat_name);
 void handle_edit_password_response_code(int response_code, GtkWidget* entry_field, GtkWidget *change_password_notify_label);
