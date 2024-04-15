@@ -1,5 +1,18 @@
 #include "../../inc/client.h"
 
+// Function to handle password validation and display notification
+void matching_check(GtkWidget *current_password_field, GtkWidget *current_password_notify_label, const char *current_password) {
+    if (mx_strcmp(current_password, utils->current_user->password) != 0) {
+        // If passwords don't match, set error style and display error message
+        set_field_error_style(current_password_field);
+        set_notify_error_style(current_password_notify_label, "Incorrect password");
+    } else {
+        // If passwords match, set success style and clear the notification message
+        set_field_success_style(current_password_field);
+        set_notify_success_style(current_password_notify_label, "");
+    }
+}
+
 // Function to handle change password button click
 void change_password_btn_click(GtkWidget *widget, gpointer data)
 {
@@ -22,18 +35,11 @@ void change_password_btn_click(GtkWidget *widget, gpointer data)
     // If current password validation succeeds, compare it with the user's actual password
     if (current_password_field_valid)
     {
-        if (mx_strcmp(current_password, utils->current_user->password) != 0)
-        {
-            // If passwords don't match, set error style and display error message
-            set_field_error_style(current_password_field);
-            set_notify_error_style(current_password_notify_label, "Incorrect password");
-        }
-        else
-        {
-            // If passwords match, set success style and clear the notification message
-            set_field_success_style(current_password_field);
-            set_notify_success_style(current_password_notify_label, "");
-        }
+        matching_check(current_password_field, current_password_notify_label, current_password);
+    } 
+    else 
+    {
+        return;
     }
 
     // Validate the content of the new password and re-enter new password fields
@@ -41,7 +47,7 @@ void change_password_btn_click(GtkWidget *widget, gpointer data)
     bool re_new_password_field_valid = validate_repassword_field(new_password_field, re_new_password_field, re_new_password_notify_label);
 
     // If any of the fields fail validation, return without further action
-    if (!current_password_field_valid || !new_password_field_valid || !re_new_password_field_valid)
+    if (!new_password_field_valid || !re_new_password_field_valid)
     {
         return;
     }
