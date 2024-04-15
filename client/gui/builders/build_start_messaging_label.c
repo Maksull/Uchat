@@ -1,5 +1,18 @@
 #include "../../inc/client.h"
 
+// Function to create and configure start messaging label
+GtkWidget* create_start_messaging_label() {
+    // Create a new label widget with a message prompting the user to select a chat
+    GtkWidget *messaging_label = gtk_label_new("Select a chat to start messaging");
+    gtk_widget_set_halign(GTK_WIDGET(messaging_label), GTK_ALIGN_CENTER);
+    gtk_widget_set_valign(GTK_WIDGET(messaging_label), GTK_ALIGN_CENTER);
+    gtk_widget_set_vexpand(messaging_label, TRUE);
+    gtk_widget_set_hexpand(messaging_label, TRUE);
+    add_class(messaging_label, "chatscreen_notify");
+
+    return messaging_label;
+}
+
 // Function to build start messaging label
 void build_start_messaging_label()
 {
@@ -8,12 +21,7 @@ void build_start_messaging_label()
     clear_container(chat_container); // Clear the chat container
 
     // Create a new label widget with a message prompting the user to select a chat
-    GtkWidget *messaging_label = gtk_label_new("Select a chat to start messaging");
-    gtk_widget_set_halign(GTK_WIDGET(messaging_label), GTK_ALIGN_CENTER);
-    gtk_widget_set_valign(GTK_WIDGET(messaging_label), GTK_ALIGN_CENTER);
-    gtk_widget_set_vexpand(messaging_label, TRUE);
-    gtk_widget_set_hexpand(messaging_label, TRUE);
-    add_class(messaging_label, "chatscreen_notify");
+    GtkWidget *messaging_label = create_start_messaging_label();
 
     gtk_box_pack_start(GTK_BOX(chat_container), messaging_label, FALSE, FALSE, 0); // Pack the label into the chat container
 
