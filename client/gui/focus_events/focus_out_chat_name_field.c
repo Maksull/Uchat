@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to find and validate the chat name field and its corresponding notification label within the top-level window
-void validate_chat_name_field(GtkWidget *toplevel)
+static void validate_chat_name_field(GtkWidget *toplevel)
 {
     // Find the chat name field and the corresponding notification label within the top-level window
     GtkWidget *chat_name_field = get_widget_by_name_r(toplevel, "chat_name_field");

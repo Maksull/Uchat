@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to validate the content of the "new password" and "re-enter new password" fields and update their corresponding notification label
-void validate_re_new_password_fields(GtkWidget *toplevel)
+static void validate_re_new_password_fields(GtkWidget *toplevel)
 {
     // Find the "new password" field, "re-enter new password" field, and the corresponding notification label within the top-level window
     GtkWidget *new_password_field = get_widget_by_name_r(toplevel, "new_password_field");

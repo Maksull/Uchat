@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to find and validate the login field and its corresponding notification label within the top-level window
-void validate_login_field(GtkWidget *toplevel)
+static void validate_login_field(GtkWidget *toplevel)
 {
     // Find the login field and the corresponding notification label within the top-level window
     GtkWidget *login_field = get_widget_by_name_r(toplevel, "login_field");

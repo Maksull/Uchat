@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to validate the content of the password field and update its corresponding notification label
-void validate_password_main_window()
+static void validate_password_main_window()
 {
     // Find the password field and the corresponding notification label within the main window
     GtkWidget *password_field = get_widget_by_name_r(main_window, "password_field");

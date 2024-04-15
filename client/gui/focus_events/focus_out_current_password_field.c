@@ -1,14 +1,14 @@
 #include "../../inc/client.h"
 
 // Function to find necessary widgets within the top-level window for focusing out current password field
-void find_password_widgets(GtkWidget *toplevel, GtkWidget **current_password_field, GtkWidget **current_password_notify_label)
+static void find_password_widgets(GtkWidget *toplevel, GtkWidget **current_password_field, GtkWidget **current_password_notify_label)
 {
     *current_password_field = get_widget_by_name_r(toplevel, "current_password_field");
     *current_password_notify_label = get_widget_by_name_r(toplevel, "current_password_notify_label");
 }
 
 // Function to validate the content of the current password field and compare it with the user's current password
-void validate_current_password(GtkWidget *current_password_field, GtkWidget *current_password_notify_label)
+static void validate_current_password(GtkWidget *current_password_field, GtkWidget *current_password_notify_label)
 {
     if (validate_password_field(current_password_field, current_password_notify_label))
     {

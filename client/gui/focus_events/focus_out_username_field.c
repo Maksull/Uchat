@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to validate the content of the username field and update its corresponding notification label
-void validate_username_field_main_window()
+static void validate_username_field_main_window()
 {
     // Find the username field and the corresponding notification label within the main window
     GtkWidget *username_field = get_widget_by_name_r(main_window, "username_field");

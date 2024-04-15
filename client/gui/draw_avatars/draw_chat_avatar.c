@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to construct the path to the chat avatar image file based on the color
-char *construct_avatar_path(int avatar_color)
+static char *construct_avatar_path(int avatar_color)
 {
     char *path = "client/data/img/chat_avatars/avatar";
     char *tmp = mx_strjoin(path, mx_itoa(avatar_color + 1));
@@ -11,7 +11,7 @@ char *construct_avatar_path(int avatar_color)
 }
 
 // Function to load the chat avatar image and set it as the source for Cairo
-void load_and_set_avatar_image(cairo_t *cr, char *path)
+static void load_and_set_avatar_image(cairo_t *cr, char *path)
 {
     GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(path, 42, 42, FALSE, NULL);
     mx_strdel(&path);
@@ -20,7 +20,7 @@ void load_and_set_avatar_image(cairo_t *cr, char *path)
 }
 
 // Function to draw a rounded rectangle
-void draw_rounded_rectangle(cairo_t *cr)
+static void draw_rounded_rectangle(cairo_t *cr)
 {
     double x = 0;
     double y = 0;
