@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to construct the path to the avatar image file based on the color
-static char *construct_avatar_path(int avatar_color, const char *avatar_type)
+static char *construct_avatar_path(int avatar_color, char *avatar_type)
 {
     char *path_base = avatar_type;
     char *tmp = mx_strjoin(path_base, mx_itoa(avatar_color + 1));
