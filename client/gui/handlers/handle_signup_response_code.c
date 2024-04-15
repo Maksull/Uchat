@@ -1,11 +1,12 @@
 #include "../../inc/client.h"
 
 // Function to handle successful signup response
-static void handle_successful_signup(GtkWidget *signup_notify_label, GtkWidget *main_area)
+static void handle_successful_signup(GtkWidget *signup_notify_label)
 {
     set_notify_success_style(signup_notify_label, "You are successfully registered!");
     // Destroy the signup menu and build the login menu for the user to log in
-    GtkWidget *signup_menu = get_widget_by_name_r(main_area, "signup_menu");
+    GtkWidget *signup_menu = get_widget_by_name_r(main_window, "signup_menu");
+    GtkWidget *main_area = get_widget_by_name_r(main_window, "main_area");
     gtk_widget_destroy(signup_menu);
     build_login_menu(&main_area);
 }
@@ -29,12 +30,12 @@ static void handle_invalid_password_length(GtkWidget *signup_notify_label)
 }
 
 // Function to handle signup response code
-void handle_signup_res_code(int response_code, GtkWidget *signup_notify_label, GtkWidget *main_area)
+void handle_signup_res_code(int response_code, GtkWidget *signup_notify_label)
 {
     switch (response_code)
     {
     case R_SUCCESS:
-        handle_successful_signup(signup_notify_label, main_area);
+        handle_successful_signup(signup_notify_label);
         break;
 
     case R_INVALID_INPUT:
