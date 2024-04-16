@@ -37,5 +37,6 @@ void *handle_server_updates(void *arg)
         }
         g_usleep(500000); // Sleep for 0.5 seconds
     }
+
     return NULL; // Return NULL when the function completes
 }
