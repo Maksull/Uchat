@@ -123,7 +123,7 @@ static GtkWidget *create_new_message_entry_field()
 }
 
 // Function to create and configure the send button
-static GtkWidget *create_send_button()
+static GtkWidget *create_send_button(GtkWidget *new_message_field)
 {
     GtkWidget *send_btn = gtk_button_new();
     gtk_widget_set_size_request(GTK_WIDGET(send_btn), 55, 55);
@@ -144,8 +144,8 @@ void build_rightbar_chat()
     gtk_container_foreach(GTK_CONTAINER(chat_container), (GtkCallback)gtk_widget_destroy, NULL);
 
     GtkWidget *chat_header = create_chat_header();
-    GtkWidget *avatar = create_avatar_widget();
-    GtkWidget *chat_header_title = create_chat_header_title();
+    create_avatar_widget();
+    create_chat_header_title();
     add_permission_buttons(chat_header);
 
     GtkWidget *scrollable_wrap = create_scrollable_wrap();
@@ -153,7 +153,7 @@ void build_rightbar_chat()
     gtk_container_add(GTK_CONTAINER(scrollable_wrap), chat_field);
     GtkWidget *message_field = create_message_field();
     GtkWidget *new_message_field = create_new_message_entry_field();
-    GtkWidget *send_btn = create_send_button();
+    GtkWidget *send_btn = create_send_button(new_message_field);
 
     gtk_box_pack_start(GTK_BOX(chat_container), chat_header, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(chat_container), scrollable_wrap, TRUE, TRUE, 0);
