@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to update chat list and destroy chat window
-void update_and_destroy_chat(GtkWidget *widget) {
+static void update_and_destroy_chat(GtkWidget *widget) {
     // Set the current chat pointer to NULL and update the chat list
     utils->current_chat = NULL;
     update_chatlist();

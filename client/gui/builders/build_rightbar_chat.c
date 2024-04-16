@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to create and configure avatar widget
-GtkWidget* create_avatar_widget() {
+static GtkWidget* create_avatar_widget() {
     GtkWidget *avatar = gtk_drawing_area_new();
     gtk_widget_set_size_request(GTK_WIDGET(avatar), 42, 42);
     g_signal_connect(G_OBJECT(avatar), "draw", G_CALLBACK(draw_chat_avatar), (gpointer)utils->current_chat->avatar_color);
@@ -11,7 +11,7 @@ GtkWidget* create_avatar_widget() {
 }
 
 // Function to create and configure chat header title widget
-GtkWidget* create_chat_header_title_widget() {
+static GtkWidget* create_chat_header_title_widget() {
     GtkWidget *chat_header_title = gtk_label_new(utils->current_chat->name);
     gtk_widget_set_name(chat_header_title, "chat_header_title");
     gtk_widget_set_halign(GTK_WIDGET(chat_header_title), GTK_ALIGN_START);
@@ -21,7 +21,7 @@ GtkWidget* create_chat_header_title_widget() {
 }
 
 // Function to create and configure delete chat button
-GtkWidget* create_delete_chat_button() {
+static GtkWidget* create_delete_chat_button() {
     GtkWidget *delete_chat_btn = gtk_event_box_new();
     add_class(delete_chat_btn, "event_switch_auth_menu");
     gtk_widget_set_halign(GTK_WIDGET(delete_chat_btn), GTK_ALIGN_CENTER);
@@ -35,7 +35,7 @@ GtkWidget* create_delete_chat_button() {
 }
 
 // Function to create and configure change chat name button
-GtkWidget* create_change_chat_name_button() {
+static GtkWidget* create_change_chat_name_button() {
     GtkWidget *change_chat_name_btn = gtk_event_box_new();
     add_class(change_chat_name_btn, "event_switch_auth_menu");
     gtk_widget_set_halign(GTK_WIDGET(change_chat_name_btn), GTK_ALIGN_CENTER);
@@ -49,7 +49,7 @@ GtkWidget* create_change_chat_name_button() {
 }
 
 // Function to create and configure leave chat button
-GtkWidget* create_leave_chat_button() {
+static GtkWidget* create_leave_chat_button() {
     GtkWidget *leave_chat_btn = gtk_event_box_new();
     add_class(leave_chat_btn, "event_switch_auth_menu");
     gtk_widget_set_halign(GTK_WIDGET(leave_chat_btn), GTK_ALIGN_CENTER);
@@ -63,14 +63,14 @@ GtkWidget* create_leave_chat_button() {
 }
 
 // Function to create and configure scrollable wrap for messages
-GtkWidget* create_scrollable_wrap() {
+static GtkWidget* create_scrollable_wrap() {
     GtkWidget *scrollable_wrap = gtk_scrolled_window_new(NULL, NULL);
     gtk_widget_set_name(scrollable_wrap, "scrollable_wrap");
     return scrollable_wrap;
 }
 
 // Function to create and configure chat field for messages
-GtkWidget* create_chat_field() {
+static GtkWidget* create_chat_field() {
     GtkWidget *chat_field = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
     gtk_widget_set_name(chat_field, "chat_field");
     gtk_widget_set_hexpand(chat_field, TRUE);
@@ -81,7 +81,7 @@ GtkWidget* create_chat_field() {
 }
 
 // Function to create and configure message field
-GtkWidget* create_message_field() {
+static GtkWidget* create_message_field() {
     // Create the message field for typing new messages
     GtkWidget *message_field = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_widget_set_name(message_field, "message_field");
@@ -93,7 +93,7 @@ GtkWidget* create_message_field() {
 }
 
 // Function to create and configure new message entry field
-GtkWidget* create_new_message_entry_field() {
+static GtkWidget* create_new_message_entry_field() {
     GtkWidget *new_message_field = gtk_entry_new();
     gtk_widget_set_name(new_message_field, "new_message_field");
     add_class(new_message_field, "input-msg_entry");
@@ -106,7 +106,7 @@ GtkWidget* create_new_message_entry_field() {
 }
 
 // Function to create and configure send button
-GtkWidget* create_send_button() {
+static GtkWidget* create_send_button() {
     GtkWidget *send_btn = gtk_button_new();
     gtk_widget_set_size_request(GTK_WIDGET(send_btn), 55, 55);
     gtk_widget_set_name(send_btn, "send_btn");

@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to create and configure start messaging label
-GtkWidget* create_start_messaging_label() {
+static GtkWidget* create_start_messaging_label() {
     // Create a new label widget with a message prompting the user to select a chat
     GtkWidget *messaging_label = gtk_label_new("Select a chat to start messaging");
     gtk_widget_set_halign(GTK_WIDGET(messaging_label), GTK_ALIGN_CENTER);

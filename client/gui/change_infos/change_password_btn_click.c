@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to handle password validation and display notification
-void matching_check(GtkWidget *current_password_field, GtkWidget *current_password_notify_label, const char *current_password) {
+static void matching_check(GtkWidget *current_password_field, GtkWidget *current_password_notify_label, const char *current_password) {
     if (mx_strcmp(current_password, utils->current_user->password) != 0) {
         // If passwords don't match, set error style and display error message
         set_field_error_style(current_password_field);

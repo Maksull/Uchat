@@ -1,6 +1,6 @@
 #include "../../inc/client.h"
 
-GtkWidget *create_new_chat_button(){
+static GtkWidget *create_new_chat_button(){
     GtkWidget *new_chat_btn = gtk_event_box_new();
     add_class(create_new_chat_btn, "event_switch_auth_menu");
     g_signal_connect(G_OBJECT(new_chat_btn), "enter-notify-event", G_CALLBACK(on_crossing), NULL);
@@ -12,7 +12,7 @@ GtkWidget *create_new_chat_button(){
     return new_chat_btn;
 }
 
-GtkWidget *create_search_field(){
+static GtkWidget *create_search_field(){
     GtkWidget *search_field = gtk_entry_new();
     gtk_entry_set_placeholder_text(GTK_ENTRY(search_field), "Search");
     gtk_widget_set_name(search_field, "global_search_field");
@@ -22,7 +22,7 @@ GtkWidget *create_search_field(){
     return search_field;
 }
 
-GtkWidget *create_clear_field_button(){
+static GtkWidget *create_clear_field_button(){
     GtkWidget *clear_field_btn = gtk_button_new();
     gtk_widget_set_size_request(GTK_WIDGET(clear_field_btn), 45, 45);
     add_class(clear_field_btn, "clear_search_btn");
@@ -32,7 +32,7 @@ GtkWidget *create_clear_field_button(){
     return clear_field_btn;
 }
 
-GtkWidget *create_user_avatar(){
+static GtkWidget *create_user_avatar(){
     GtkWidget *user_avatar = gtk_drawing_area_new();
     gtk_widget_set_size_request(GTK_WIDGET(user_avatar), 27, 27);
     g_signal_connect(G_OBJECT(user_avatar), "draw", G_CALLBACK(draw_user_avatar), (gpointer)utils->current_user->avatar_color);
@@ -41,7 +41,7 @@ GtkWidget *create_user_avatar(){
     return user_avatar;
 }
 
-GtkWidget *create_username(){
+static GtkWidget *create_username(){
     GtkWidget *username = gtk_label_new(utils->current_user->name);
     gtk_widget_set_name(username, "leftbar_footer_username");
     gtk_widget_set_halign(GTK_WIDGET(username), GTK_ALIGN_START);
@@ -50,7 +50,7 @@ GtkWidget *create_username(){
     return username;
 }
 
-GtkWidget *create_menubar(){
+static GtkWidget *create_menubar(){
     GtkWidget *menubar = gtk_menu_bar_new();
     g_signal_connect(G_OBJECT(menubar), "enter-notify-event", G_CALLBACK(on_crossing), NULL);
     g_signal_connect(G_OBJECT(menubar), "leave-notify-event", G_CALLBACK(on_crossing), NULL);
@@ -60,7 +60,7 @@ GtkWidget *create_menubar(){
     return menubar;
 }
 
-GtkWidget *create_menu(){
+static GtkWidget *create_menu(){
     GtkWidget *menu = gtk_menu_new();
     add_class(menu, "menubar_menu");
     GtkWidget *change_login_btn = gtk_menu_item_new_with_label("Change login");
@@ -78,7 +78,7 @@ GtkWidget *create_menu(){
     return menu;
 }
 
-GtkWidget *create_edit_profile_button(){
+static GtkWidget *create_edit_profile_button(){
     GtkWidget *edit_profile_btn = gtk_menu_item_new_with_label("");
     gtk_widget_set_size_request(GTK_WIDGET(edit_profile_btn), 30, 30);
     add_class(edit_profile_btn, "edit_profile_btn");
