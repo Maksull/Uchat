@@ -66,5 +66,6 @@ int handle_new_msg(t_chat *curr_chat, int message_id, bool is_current)
     update_chatlist_item_info(curr_chat);
 
     g_usleep(100000); // Introduce a delay to avoid overwhelming the system
+
     return 0; // Return 0 indicating success
 }

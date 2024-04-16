@@ -23,15 +23,17 @@ static t_response_code last_msg_id_res(const char *response_str, int *i_last_msg
 
     // Get last message ID from JSON response
     cJSON *last_msg_id = cJSON_GetObjectItem(json, "last_msg_id");
+    cJSON_Delete(json); // Delete JSON object to free memory
+
     // Check if last_msg_id is a number
     if (!cJSON_IsNumber(last_msg_id))
     {
-        cJSON_Delete(json); // Delete JSON object to free memory
         return R_JSON_FAILURE;
     }
+
     // Store last message ID
     *i_last_msg_id = last_msg_id->valueint;
-    cJSON_Delete(json); // Delete JSON object to free memory
+
     return R_SUCCESS; // Return success
 }
 
@@ -39,9 +41,7 @@ static t_response_code last_msg_id_res(const char *response_str, int *i_last_msg
 int handle_last_msg_id_req(int chat_id)
 {
     // Create JSON request object
-    cJSON *json = cJSON_CreateObject();
-    cJSON_AddNumberToObject(json, "chat_id", chat_id);
-    cJSON_AddNumberToObject(json, "type", REQ_LAST_MSG_ID);
+    cJSON *json = create_last_msg_id_req_json(chat_id);
     char *json_str = cJSON_PrintUnformatted(json); // Convert JSON object to string
     cJSON_Delete(json); // Delete JSON object to free memory
 
@@ -58,6 +58,8 @@ int handle_last_msg_id_req(int chat_id)
         free(response); // Free memory allocated for response string
         return -1; // Return -1 indicating failure
     }
+
     free(response); // Free memory allocated for response string
+
     return last_msg_id; // Return last message ID
 }

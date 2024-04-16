@@ -30,11 +30,7 @@ void handle_delete_msg_req(int message_id)
     utils->is_suspended = true;
 
     // Create JSON object for the request
-    cJSON *json = cJSON_CreateObject();
-    cJSON_AddNumberToObject(json, "type", REQ_DELETE_MESSAGE);
-    cJSON_AddNumberToObject(json, "id", message_id);
-    cJSON_AddNumberToObject(json, "user_id", utils->current_user->user_id);
-    cJSON_AddNumberToObject(json, "chat_id", utils->current_chat->id);
+    cJSON *json = create_delete_msg_json(message_id);
     char *json_str = cJSON_PrintUnformatted(json);
     cJSON_Delete(json);
 
@@ -46,10 +42,7 @@ void handle_delete_msg_req(int message_id)
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If response is successful, edit global messages
-    if (error_code == R_SUCCESS)
-    {
-        edit_global_messages(message_id);
-    }
+    (error_code == R_SUCCESS) ? edit_global_messages(message_id) : (void)0;
 
     // Free memory
     free(json_str);

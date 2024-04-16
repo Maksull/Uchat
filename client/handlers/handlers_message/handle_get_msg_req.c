@@ -4,11 +4,7 @@
 void handle_get_msg_req(int chat_id, int message_id)
 {
     // Create a JSON object
-    cJSON *json = cJSON_CreateObject();
-    // Add request type, message ID, and chat ID to the JSON object
-    cJSON_AddNumberToObject(json, "type", REQ_GET_MSG);
-    cJSON_AddNumberToObject(json, "message_id", message_id);
-    cJSON_AddNumberToObject(json, "chat_id", chat_id);
+    cJSON *json = create_get_msg_json(chat_id, message_id);
     // Convert JSON object to string
     char *json_str = cJSON_PrintUnformatted(json);
     // Delete JSON object to free memory

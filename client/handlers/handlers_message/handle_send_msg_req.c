@@ -11,13 +11,7 @@ t_response_code handle_send_msg_req(const char *message_str)
                                     message_str, get_string_time(curr_time), utils->current_user->avatar_color);
 
     // Create JSON object representing the message
-    cJSON *json = cJSON_CreateObject();
-    cJSON_AddNumberToObject(json, "type", REQ_SEND_MESSAGE);
-    cJSON_AddStringToObject(json, "text", sent_msg->text);
-    cJSON_AddNumberToObject(json, "user_id", sent_msg->sender_id);
-    cJSON_AddStringToObject(json, "user_name", sent_msg->sender_name);
-    cJSON_AddNumberToObject(json, "chat_id", sent_msg->chat_id);
-    cJSON_AddNumberToObject(json, "date", curr_time);
+    cJSON *json = create_send_msg_req_json(message_str, curr_time);
     char *json_str = cJSON_PrintUnformatted(json);
     cJSON_Delete(json);
 

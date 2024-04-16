@@ -30,15 +30,15 @@ t_msg *handle_get_msg_res()
     // Get message from JSON object
     t_msg *new_msg = get_msg_from_json(msg_json);
 
+    cJSON_Delete(json); // Delete JSON object to free memory
+
     // Check if message is NULL or sender ID is the same as current user's ID
     if (new_msg == NULL || new_msg->sender_id == utils->current_user->user_id)
     {
-        cJSON_Delete(json); // Delete JSON object to free memory
         logger(get_res_str(R_JSON_FAILURE), ERROR_LOG); // Log error message
         return NULL;
     }
 
-    cJSON_Delete(json); // Delete JSON object to free memory
     free(response_str); // Free memory allocated for response string
     return new_msg; // Return the message
 }

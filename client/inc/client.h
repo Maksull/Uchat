@@ -213,8 +213,10 @@ void set_msgs_as_read_for(t_chat *chat);
 t_response_code handle_server_res(const char *response_str);
 void *handle_server_updates(void *arg);
 int handle_last_msg_id_req(int chat_id);
+cJSON *create_last_msg_id_req_json(int chat_id);
 int handle_new_msg(t_chat *curr_chat, int message_id, bool is_current);
 void handle_get_msg_req(int chat_id, int message_id);
+cJSON *create_get_msg_json(int chat_id, int message_id);
 t_msg *handle_get_msg_res();
 t_response_code handle_create_chat_req(const char *chat_name);
 cJSON *create_chat_json(const char *chat_name);
@@ -253,6 +255,7 @@ t_response_code handle_signup_req(const char *user_name, const char *user_passwo
 cJSON *create_signup_json(const char *user_name, const char *user_password);
 t_response_code handle_signup_res(const char *response_str);
 t_response_code handle_send_msg_req(const char *message_str);
+cJSON *create_send_msg_req_json(const char *message_str, unsigned long curr_time);
 
 
 void add_message(t_msg *message);

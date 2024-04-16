@@ -25,11 +25,6 @@ void handle_edit_msg_req(int message_id, const char *new_msg_text)
 
     // Create JSON object for the request
     cJSON *json = cJSON_CreateObject();
-    cJSON_AddNumberToObject(json, "type", REQ_EDIT_MESSAGE);
-    cJSON_AddNumberToObject(json, "id", message_id);
-    cJSON_AddStringToObject(json, "text", new_msg_text);
-    cJSON_AddNumberToObject(json, "user_id", utils->current_user->user_id);
-    cJSON_AddNumberToObject(json, "chat_id", utils->current_chat->id);
     char *json_str = cJSON_PrintUnformatted(json);
     cJSON_Delete(json);
 
@@ -41,10 +36,7 @@ void handle_edit_msg_req(int message_id, const char *new_msg_text)
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If response is successful, edit global messages
-    if (error_code == R_SUCCESS)
-    {
-        edit_global_messages(message_id, new_msg_text);
-    }
+    (error_code == R_SUCCESS) ? edit_global_messages(message_id, new_msg_text) : (void)0;
 
     // Free memory
     free(json_str);
