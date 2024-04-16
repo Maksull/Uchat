@@ -217,7 +217,7 @@ int handle_new_msg(t_chat *curr_chat, int message_id, bool is_current);
 void handle_get_msg_req(int chat_id, int message_id);
 t_msg *handle_get_msg_res();
 t_response_code handle_create_chat_req(const char *chat_name);
-cJSON *create_create_chat_json(const char *chat_name);
+cJSON *create_chat_json(const char *chat_name);
 t_response_code handle_delete_account_req();
 cJSON *create_delete_account_json();
 int handle_delete_chat_req(const char *chat_name);

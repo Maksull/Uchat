@@ -4,8 +4,7 @@
 t_response_code handle_get_chats_req()
 {
     // Create JSON object for the request
-    cJSON *json = cJSON_CreateObject();
-    cJSON_AddNumberToObject(json, "type", REQ_GET_CHATS);
+    cJSON *json = create_get_chats_json();
     char *json_str = cJSON_PrintUnformatted(json);
     cJSON_Delete(json);
 
@@ -16,25 +15,19 @@ t_response_code handle_get_chats_req()
 
     int curr_chat_id = -1;
     // Get the ID of the current chat, if exists
-    if (utils->current_chat)
-    {
-        curr_chat_id = utils->current_chat->id;
-    }
+    (utils->current_chat) ? curr_chat_id = utils->current_chat->id : (void)0;
+
+    free(response);
 
     // Handle the response
     if ((error_code = handle_get_chats_res(&utils->chatlist, response, false)) != R_SUCCESS)
     {
         logger(get_res_str(error_code), ERROR_LOG);
-        free(response);
         return error_code;
     }
-    free(response);
 
     // Set the current chat back to what it was before, if it exists
-    if (curr_chat_id >= 0)
-    {
-        utils->current_chat = mx_get_chat_by_id(utils->chatlist, curr_chat_id);
-    }
+    (curr_chat_id >= 0) ? utils->current_chat = mx_get_chat_by_id(utils->chatlist, curr_chat_id) : (void)0;
 
     return R_SUCCESS;
 }

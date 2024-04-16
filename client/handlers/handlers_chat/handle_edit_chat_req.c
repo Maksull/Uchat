@@ -7,10 +7,7 @@ t_response_code handle_edit_chat_req(int chat_id, const char *new_name)
     utils->is_suspended = true;
 
     // Create JSON object for the request
-    cJSON *json = cJSON_CreateObject();
-    cJSON_AddNumberToObject(json, "chat_id", chat_id);
-    cJSON_AddStringToObject(json, "chat_name", new_name);
-    cJSON_AddNumberToObject(json, "type", REQ_EDIT_CHAT);
+    cJSON *json = create_edit_chat_json(chat_id, new_name);
     char *json_str = cJSON_PrintUnformatted(json);
     cJSON_Delete(json);
 
@@ -22,10 +19,7 @@ t_response_code handle_edit_chat_req(int chat_id, const char *new_name)
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If response is successful, handle get chats request
-    if (error_code == R_SUCCESS)
-    {
-        handle_get_chats_req();
-    }
+    (error_code == R_SUCCESS) ? handle_get_chats_req() : (void)0;
 
     // Free memory
     free(json_str);
