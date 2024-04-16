@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to create a label widget with a given message
-GtkWidget *create_label(const gchar *message)
+static GtkWidget *create_label(const gchar *message)
 {
     GtkWidget *label = gtk_label_new(message);
     gtk_widget_set_halign(GTK_WIDGET(label), GTK_ALIGN_CENTER);
@@ -9,7 +9,7 @@ GtkWidget *create_label(const gchar *message)
     gtk_widget_set_vexpand(label, TRUE);
     gtk_widget_set_hexpand(label, TRUE);
     add_class(label, "chatscreen_notify");
-    
+
     return label;
 }
 

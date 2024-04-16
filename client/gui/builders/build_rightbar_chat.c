@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to create the chat header
-GtkWidget *create_chat_header()
+static GtkWidget *create_chat_header()
 {
     GtkWidget *chat_header = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
     gtk_widget_set_hexpand(chat_header, TRUE);
@@ -10,7 +10,7 @@ GtkWidget *create_chat_header()
 }
 
 // Function to create and configure the avatar widget
-GtkWidget *create_avatar_widget()
+static GtkWidget *create_avatar_widget()
 {
     GtkWidget *avatar = gtk_drawing_area_new();
     gtk_widget_set_size_request(GTK_WIDGET(avatar), 42, 42);
@@ -21,7 +21,7 @@ GtkWidget *create_avatar_widget()
 }
 
 // Function to create and configure the chat header title widget
-GtkWidget *create_chat_header_title()
+static GtkWidget *create_chat_header_title()
 {
     GtkWidget *chat_header_title = gtk_label_new(utils->current_chat->name);
     gtk_widget_set_name(chat_header_title, "chat_header_title");
@@ -32,7 +32,7 @@ GtkWidget *create_chat_header_title()
 }
 
 // Function to add additional buttons based on user permissions in the chat
-void add_permission_buttons(GtkWidget *chat_header)
+static void add_permission_buttons(GtkWidget *chat_header)
 {
     if (utils->current_chat->permissions == ADMIN_MEMBER)
     {
@@ -77,7 +77,7 @@ void add_permission_buttons(GtkWidget *chat_header)
 }
 
 // Function to create the scrollable wrap for messages
-GtkWidget *create_scrollable_wrap()
+static GtkWidget *create_scrollable_wrap()
 {
     GtkWidget *scrollable_wrap = gtk_scrolled_window_new(NULL, NULL);
     gtk_widget_set_name(scrollable_wrap, "scrollable_wrap");
@@ -85,7 +85,7 @@ GtkWidget *create_scrollable_wrap()
 }
 
 // Function to create the chat field for messages
-GtkWidget *create_chat_field()
+static GtkWidget *create_chat_field()
 {
     GtkWidget *chat_field = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
     gtk_widget_set_name(chat_field, "chat_field");
@@ -97,7 +97,7 @@ GtkWidget *create_chat_field()
 }
 
 // Function to create the message field for typing new messages
-GtkWidget *create_message_field()
+static GtkWidget *create_message_field()
 {
     GtkWidget *message_field = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_widget_set_name(message_field, "message_field");
@@ -109,7 +109,7 @@ GtkWidget *create_message_field()
 }
 
 // Function to create and configure the new message entry field
-GtkWidget *create_new_message_entry_field()
+static GtkWidget *create_new_message_entry_field()
 {
     GtkWidget *new_message_field = gtk_entry_new();
     gtk_widget_set_name(new_message_field, "new_message_field");
@@ -123,7 +123,7 @@ GtkWidget *create_new_message_entry_field()
 }
 
 // Function to create and configure the send button
-GtkWidget *create_send_button()
+static GtkWidget *create_send_button()
 {
     GtkWidget *send_btn = gtk_button_new();
     gtk_widget_set_size_request(GTK_WIDGET(send_btn), 55, 55);

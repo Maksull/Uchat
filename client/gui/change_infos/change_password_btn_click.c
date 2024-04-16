@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Function to get password field widgets and their notification labels
-void get_password_fields_and_labels(GtkWidget *toplevel, GtkWidget **current_password_field, GtkWidget **current_password_notify_label, GtkWidget **new_password_field, GtkWidget **new_password_notify_label, GtkWidget **re_new_password_field, GtkWidget **re_new_password_notify_label)
+static void get_password_fields_and_labels(GtkWidget *toplevel, GtkWidget **current_password_field, GtkWidget **current_password_notify_label, GtkWidget **new_password_field, GtkWidget **new_password_notify_label, GtkWidget **re_new_password_field, GtkWidget **re_new_password_notify_label)
 {
     *current_password_field = get_widget_by_name_r(toplevel, "current_password_field");
     *current_password_notify_label = get_widget_by_name_r(toplevel, "current_password_notify_label");
@@ -12,7 +12,7 @@ void get_password_fields_and_labels(GtkWidget *toplevel, GtkWidget **current_pas
 }
 
 // Function to validate the content of the current password field
-bool validate_current_password(GtkWidget *current_password_field, GtkWidget *current_password_notify_label)
+static bool validate_current_password(GtkWidget *current_password_field, GtkWidget *current_password_notify_label)
 {
     bool current_password_field_valid = validate_password_field(current_password_field, current_password_notify_label);
     char *current_password = (char *)gtk_entry_get_text(GTK_ENTRY(current_password_field));
