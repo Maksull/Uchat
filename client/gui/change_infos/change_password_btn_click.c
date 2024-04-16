@@ -1,43 +1,51 @@
 #include "../../inc/client.h"
 
-// Function to handle password validation and display notification
-static void matching_check(GtkWidget *current_password_field, GtkWidget *current_password_notify_label, const char *current_password) {
-    if (mx_strcmp(current_password, utils->current_user->password) != 0) {
-        // If passwords don't match, set error style and display error message
-        set_field_error_style(current_password_field);
-        set_notify_error_style(current_password_notify_label, "Incorrect password");
-    } else {
-        // If passwords match, set success style and clear the notification message
-        set_field_success_style(current_password_field);
-        set_notify_success_style(current_password_notify_label, "");
-    }
+// Function to get password field widgets and their notification labels
+void get_password_fields_and_labels(GtkWidget *toplevel, GtkWidget **current_password_field, GtkWidget **current_password_notify_label, GtkWidget **new_password_field, GtkWidget **new_password_notify_label, GtkWidget **re_new_password_field, GtkWidget **re_new_password_notify_label)
+{
+    *current_password_field = get_widget_by_name_r(toplevel, "current_password_field");
+    *current_password_notify_label = get_widget_by_name_r(toplevel, "current_password_notify_label");
+    *new_password_field = get_widget_by_name_r(toplevel, "new_password_field");
+    *new_password_notify_label = get_widget_by_name_r(toplevel, "new_password_notify_label");
+    *re_new_password_field = get_widget_by_name_r(toplevel, "re_new_password_field");
+    *re_new_password_notify_label = get_widget_by_name_r(toplevel, "re_new_password_notify_label");
 }
 
-// Function to handle change password button click
-void change_password_btn_click(GtkWidget *widget, gpointer data)
+// Function to validate the content of the current password field
+bool validate_current_password(GtkWidget *current_password_field, GtkWidget *current_password_notify_label)
 {
-    GtkWidget *toplevel = gtk_widget_get_toplevel(widget); // Get the top-level window containing the widget
-    (void)data;
-
-    // Find the necessary widgets for current password, new password, and re-enter new password fields, and their corresponding notification labels
-    GtkWidget *current_password_field = get_widget_by_name_r(toplevel, "current_password_field");
-    GtkWidget *current_password_notify_label = get_widget_by_name_r(toplevel, "current_password_notify_label");
-    GtkWidget *new_password_field = get_widget_by_name_r(toplevel, "new_password_field");
-    GtkWidget *new_password_notify_label = get_widget_by_name_r(toplevel, "new_password_notify_label");
-    GtkWidget *re_new_password_field = get_widget_by_name_r(toplevel, "re_new_password_field");
-    GtkWidget *re_new_password_notify_label = get_widget_by_name_r(toplevel, "re_new_password_notify_label");
-
-    // Validate the content of the current password field
     bool current_password_field_valid = validate_password_field(current_password_field, current_password_notify_label);
-
     char *current_password = (char *)gtk_entry_get_text(GTK_ENTRY(current_password_field));
 
-    // If current password validation succeeds, compare it with the user's actual password
     if (current_password_field_valid)
     {
-        matching_check(current_password_field, current_password_notify_label, current_password);
-    } 
-    else 
+        if (mx_strcmp(current_password, utils->current_user->password) != 0)
+        {
+            set_field_error_style(current_password_field);
+            set_notify_error_style(current_password_notify_label, "Incorrect password");
+
+            return false;
+        }
+        else
+        {
+            set_field_success_style(current_password_field);
+            set_notify_success_style(current_password_notify_label, "");
+        }
+    }
+
+    return true;
+}
+
+// Function to handle the click event of the "Change Password" button
+void change_password_btn_click(GtkWidget *widget, gpointer data)
+{
+    GtkWidget *toplevel = gtk_widget_get_toplevel(widget);
+    (void)data;
+
+    GtkWidget *current_password_field, *current_password_notify_label, *new_password_field, *new_password_notify_label, *re_new_password_field, *re_new_password_notify_label;
+    get_password_fields_and_labels(toplevel, &current_password_field, &current_password_notify_label, &new_password_field, &new_password_notify_label, &re_new_password_field, &re_new_password_notify_label);
+
+    if (!validate_current_password(current_password_field, current_password_notify_label))
     {
         return;
     }
@@ -46,15 +54,13 @@ void change_password_btn_click(GtkWidget *widget, gpointer data)
     bool new_password_field_valid = validate_password_field(new_password_field, new_password_notify_label);
     bool re_new_password_field_valid = validate_repassword_field(new_password_field, re_new_password_field, re_new_password_notify_label);
 
-    // If any of the fields fail validation, return without further action
-    if (!new_password_field_valid || !re_new_password_field_valid)
+    if (!current_password_field_valid || !new_password_field_valid || !re_new_password_field_valid)
     {
         return;
     }
 
-    char *new_password = (char *)gtk_entry_get_text(GTK_ENTRY(new_password_field)); // Get the new password entered by the user
-
+    char *new_password = (char *)gtk_entry_get_text(GTK_ENTRY(new_password_field));
     // Send request to update user's password and handle the response
-    int response_code = handle_edit_password_req(new_password, current_password);
+    int response_code = handle_edit_password_req(new_password, (char *)gtk_entry_get_text(GTK_ENTRY(current_password_field)));
     handle_edit_password_response_code(response_code, new_password_field, new_password_notify_label);
 }
