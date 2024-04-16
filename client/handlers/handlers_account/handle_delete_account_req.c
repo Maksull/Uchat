@@ -7,8 +7,7 @@ t_response_code handle_delete_account_req()
     utils->is_suspended = true;
 
     // Create JSON object for the request
-    cJSON *json = cJSON_CreateObject();
-    cJSON_AddNumberToObject(json, "type", REQ_DELETE_ACCOUNT);
+    cJSON *json = create_delete_account_json();
     char *json_str = cJSON_PrintUnformatted(json);
     cJSON_Delete(json);
 

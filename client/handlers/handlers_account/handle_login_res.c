@@ -25,14 +25,14 @@ t_response_code handle_login_res(const char *response_str)
     set_current_user(&utils->current_user, json);
     pthread_mutex_unlock(&utils->lock);
 
+    // Cleanup JSON
+    cJSON_Delete(json);
+
     // Check if setting current user failed
     if (utils->current_user == NULL)
     {
-        cJSON_Delete(json);
         return R_JSON_FAILURE;
     }
 
-    // Cleanup and return success
-    cJSON_Delete(json);
     return R_SUCCESS;
 }

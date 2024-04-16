@@ -7,10 +7,7 @@ t_response_code handle_edit_password_req(const char *new_pass, const char *old_p
     utils->is_suspended = true;
 
     // Create JSON object for the request
-    cJSON *json = cJSON_CreateObject();
-    cJSON_AddStringToObject(json, "new_password", new_pass);
-    cJSON_AddStringToObject(json, "old_password", old_pass);
-    cJSON_AddNumberToObject(json, "type", REQ_EDIT_PASSWORD);
+    cJSON *json = create_edit_password_json(new_pass, old_pass);
     char *json_str = cJSON_PrintUnformatted(json);
     cJSON_Delete(json);
 
@@ -22,10 +19,7 @@ t_response_code handle_edit_password_req(const char *new_pass, const char *old_p
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If response is successful, modify global user password
-    if (error_code == R_SUCCESS)
-    {
-        modify_global_user(NULL, new_pass);
-    }
+    (error_code == R_SUCCESS) ? modify_global_user(NULL, new_pass) : (void)0;
 
     // Free memory
     free(json_str);

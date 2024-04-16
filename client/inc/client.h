@@ -161,25 +161,25 @@ typedef enum e_log_type
 } t_log_type;
 
 static const t_response response_objs[] = {
-    {R_SUCCESS, "Request handled successfully"},
-    {R_DB_FAILURE, "A database error occurred when handling the request"},
-    {R_JSON_FAILURE, "A json error occurred when handling the request"},
-    {R_INVALID_INPUT, "The input was invalid"},
-    {R_FILE_ERROR, "A file error occured"},
-    {R_USR_EXISTS, "The user with this name already exists"},
-    {R_USR_NOENT, "There's no user by that name"},
-    {R_INVALID_PASS, "The entered password is incorrect"},
-    {R_CHAT_EXISTS, "The chat with this name already exists"},
-    {R_CHAT_NOENT, "The chat with this name doesn't exist"},
-    {R_IS_CHAT_MEMBER, "You're already a member of this chat"},
-    {R_ISNT_CHAT_MEMBER, "You're not a member of this chat"},
-    {R_NO_CHAT_PERMS, "You don't have the permissions for this action"},
-    {R_CHATS_TOTAL_REACHED, "You can't be a member of more than 15 chats"},
-    {R_NAME_FORMAT_INVALID, "The name should contain only letters and digits"},
-    {R_NAME_LEN_INVALID, "The name's length should be in a (4, 16) range"},
-    {R_PASS_LEN_INVALID, "The password's length should be in a (8, 30) range"},
-    {R_MSG_LEN_INVALID, "The message's length can't be greater than 1024 symbols"},
-    {R_MSG_USR_NOENT, "Couldn't find this message's sender"},
+        {R_SUCCESS, "Request handled successfully"},
+        {R_DB_FAILURE, "A database error occurred when handling the request"},
+        {R_JSON_FAILURE, "A json error occurred when handling the request"},
+        {R_INVALID_INPUT, "The input was invalid"},
+        {R_FILE_ERROR, "A file error occured"},
+        {R_USR_EXISTS, "The user with this name already exists"},
+        {R_USR_NOENT, "There's no user by that name"},
+        {R_INVALID_PASS, "The entered password is incorrect"},
+        {R_CHAT_EXISTS, "The chat with this name already exists"},
+        {R_CHAT_NOENT, "The chat with this name doesn't exist"},
+        {R_IS_CHAT_MEMBER, "You're already a member of this chat"},
+        {R_ISNT_CHAT_MEMBER, "You're not a member of this chat"},
+        {R_NO_CHAT_PERMS, "You don't have the permissions for this action"},
+        {R_CHATS_TOTAL_REACHED, "You can't be a member of more than 15 chats"},
+        {R_NAME_FORMAT_INVALID, "The name should contain only letters and digits"},
+        {R_NAME_LEN_INVALID, "The name's length should be in a (4, 16) range"},
+        {R_PASS_LEN_INVALID, "The password's length should be in a (8, 30) range"},
+        {R_MSG_LEN_INVALID, "The message's length can't be greater than 1024 symbols"},
+        {R_MSG_USR_NOENT, "Couldn't find this message's sender"},
 };
 
 
@@ -217,25 +217,40 @@ int handle_new_msg(t_chat *curr_chat, int message_id, bool is_current);
 void handle_get_msg_req(int chat_id, int message_id);
 t_msg *handle_get_msg_res();
 t_response_code handle_create_chat_req(const char *chat_name);
+cJSON *create_create_chat_json(const char *chat_name);
 t_response_code handle_delete_account_req();
+cJSON *create_delete_account_json();
 int handle_delete_chat_req(const char *chat_name);
+cJSON *create_delete_chat_json(const char *chat_name);
 void handle_delete_msg_req(int message_id);
+cJSON *create_delete_msg_json(int message_id);
 t_response_code handle_edit_chat_req(int chat_id, const char *new_name);
+cJSON *create_edit_chat_json(int chat_id, const char *new_name);
 void handle_edit_msg_req(int message_id, const char *new_msg_text);
 t_response_code handle_edit_password_req(const char *new_pass, const char *old_pass);
+cJSON *create_edit_password_json(const char *new_pass, const char *old_pass);
 t_response_code handle_edit_username_req(const char *new_name);
+cJSON *create_edit_username_json(const char *new_name);
 t_response_code handle_get_chat_msgs_req(int chat_id);
+cJSON *create_get_chat_msgs_json(int chat_id);
 t_response_code handle_get_chat_msgs_res(const char *response_str);
 t_response_code handle_get_chats_req();
+cJSON *create_get_chats_json();
 t_response_code handle_get_chats_res(t_chat **chat_list, const char *response_str, bool is_search);
 t_response_code handle_join_chat_req(const char *chat_name);
+cJSON *create_join_chat_json(const char *chat_name);
 t_response_code handle_leave_chat_req(const char *chat_name);
+cJSON *create_leave_chat_json(const char *chat_name);
 t_response_code handle_login_req(const char *user_name, const char *user_password);
+cJSON *create_login_json(const char *user_name, const char *user_password);
 t_response_code handle_login_res(const char *response_str);
 void handle_logout_req(bool is_client_exit);
+cJSON *create_logout_json(bool is_client_exit);
 t_chat *handle_search_chats_req(const char *search_str);
+cJSON *create_search_chats_json(const char *search_str);
 t_response_code handle_send_msg_res(const char *response_str, t_msg *sent_msg);
 t_response_code handle_signup_req(const char *user_name, const char *user_password);
+cJSON *create_signup_json(const char *user_name, const char *user_password);
 t_response_code handle_signup_res(const char *response_str);
 t_response_code handle_send_msg_req(const char *message_str);
 

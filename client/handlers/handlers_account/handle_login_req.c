@@ -7,10 +7,7 @@ t_response_code handle_login_req(const char *user_name, const char *user_passwor
     utils->is_suspended = true;
 
     // Create JSON object for the request
-    cJSON *json = cJSON_CreateObject();
-    cJSON_AddStringToObject(json, "name", user_name);
-    cJSON_AddStringToObject(json, "password", user_password);
-    cJSON_AddNumberToObject(json, "type", REQ_USR_LOGIN);
+    cJSON *json = create_login_json(user_name, user_password);
     char *json_str = cJSON_PrintUnformatted(json);
     cJSON_Delete(json);
 
@@ -24,10 +21,7 @@ t_response_code handle_login_req(const char *user_name, const char *user_passwor
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If login successful, get chat list
-    if (error_code == R_SUCCESS)
-    {
-        handle_get_chats_req();
-    }
+    (error_code == R_SUCCESS) ? handle_get_chats_req() : (void)0;
 
     // Free memory and resume operations
     free(json_str);

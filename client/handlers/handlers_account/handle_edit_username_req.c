@@ -7,9 +7,7 @@ t_response_code handle_edit_username_req(const char *new_name)
     utils->is_suspended = true;
 
     // Create JSON object for the request
-    cJSON *json = cJSON_CreateObject();
-    cJSON_AddStringToObject(json, "name", new_name);
-    cJSON_AddNumberToObject(json, "type", REQ_EDIT_USERNAME);
+    cJSON *json = create_edit_username_json(new_name);
     char *json_str = cJSON_PrintUnformatted(json);
     cJSON_Delete(json);
 
@@ -21,10 +19,7 @@ t_response_code handle_edit_username_req(const char *new_name)
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If response is successful, modify global user username
-    if (error_code == R_SUCCESS)
-    {
-        modify_global_user(new_name, NULL);
-    }
+    (error_code == R_SUCCESS) ? modify_global_user(new_name, NULL) : (void)0;
 
     // Free memory
     free(json_str);
