@@ -24,7 +24,7 @@ void build_start_messaging_label()
     GtkWidget *messaging_label = create_label("Select a chat to start messaging");
 
     // Pack the label into the chat container
-    gtk_box_pack_start(GTK_BOX(container), widget, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(chat_container), messaging_label, FALSE, FALSE, 0);
 
     gtk_widget_show_all(chat_container); // Show all widgets within the chat container
 }

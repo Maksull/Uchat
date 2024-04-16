@@ -54,7 +54,7 @@ void change_password_btn_click(GtkWidget *widget, gpointer data)
     bool new_password_field_valid = validate_password_field(new_password_field, new_password_notify_label);
     bool re_new_password_field_valid = validate_repassword_field(new_password_field, re_new_password_field, re_new_password_notify_label);
 
-    if (!current_password_field_valid || !new_password_field_valid || !re_new_password_field_valid)
+    if (!new_password_field_valid || !re_new_password_field_valid)
     {
         return;
     }
