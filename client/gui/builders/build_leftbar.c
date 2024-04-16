@@ -1,8 +1,15 @@
 #include "../../inc/client.h"
 
-// Function to build and pack the header block into the left sidebar
-static void build_header_block(GtkWidget *parent, GtkWidget *chat_screen)
+// Function to build leftbar
+void build_leftbar(GtkWidget *chat_screen)
 {
+    GtkWidget *left_bar = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0); // Create a vertical box widget to serve as the left sidebar
+    // Set size request and add CSS class for styling
+    gtk_widget_set_size_request(GTK_WIDGET(left_bar), LEFT_BAR_W, WINDOW_HEIGHT);
+    gtk_grid_attach(GTK_GRID(chat_screen), left_bar, 0, 0, 1, 1);
+    add_class(left_bar, "leftbar");
+
+    // Build and pack the header block into the left sidebar
     GtkWidget *header_block = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 2);
     add_class(header_block, "leftbar_header_block");
 
@@ -21,12 +28,7 @@ static void build_header_block(GtkWidget *parent, GtkWidget *chat_screen)
     gtk_box_pack_start(GTK_BOX(header_block), header_label, FALSE, FALSE, 0);
     gtk_box_pack_end(GTK_BOX(header_block), create_new_chat_btn, FALSE, FALSE, 0);
 
-    gtk_box_pack_start(GTK_BOX(parent), header_block, FALSE, FALSE, 0);
-}
-
-// Function to build and pack the search block into the left sidebar
-static void build_search_block(GtkWidget *parent)
-{
+    // Build and pack the search block into the left sidebar
     GtkWidget *search_block = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 8);
     add_class(search_block, "search_block");
 
@@ -45,14 +47,9 @@ static void build_search_block(GtkWidget *parent)
     g_signal_connect(G_OBJECT(clear_field_btn), "clicked", G_CALLBACK(clear_search_field), search_field);
 
     gtk_box_pack_start(GTK_BOX(search_block), search_field, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(search_block), clear_field_btn, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(search_block), clear_field_btn, false, false, 0);
 
-    gtk_box_pack_start(GTK_BOX(parent), search_block, FALSE, FALSE, 0);
-}
-
-// Function to build and pack the chat list into the left sidebar
-static void build_chat_list(GtkWidget *parent)
-{
+    // Build and pack the chat list into the left sidebar
     GtkWidget *scrollable_wrap = gtk_scrolled_window_new(NULL, NULL);
     gtk_widget_set_name(scrollable_wrap, "chatlist_scrollable_wrap");
     add_class(scrollable_wrap, "scrollable_wrap");
@@ -62,11 +59,7 @@ static void build_chat_list(GtkWidget *parent)
     add_class(chatlist, "chatlist");
     gtk_container_add(GTK_CONTAINER(scrollable_wrap), chatlist);
 
-    gtk_box_pack_start(GTK_BOX(parent), scrollable_wrap, TRUE, TRUE, 0);
-}
-
-static void build_user_footer(GtkWidget *parent)
-{
+    // Build and pack the user footer into the left sidebar
     GtkWidget *leftbar_footer = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 10);
     add_class(leftbar_footer, "leftbar_footer");
 
@@ -81,7 +74,7 @@ static void build_user_footer(GtkWidget *parent)
     gtk_widget_set_name(username, "leftbar_footer_username");
     gtk_widget_set_halign(GTK_WIDGET(username), GTK_ALIGN_START);
     gtk_widget_set_valign(GTK_WIDGET(username), GTK_ALIGN_CENTER);
-    gtk_box_pack_start(GTK_BOX(leftbar_footer), username, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(leftbar_footer), username, false, false, 0);
     add_class(username, "leftbar_footer_username");
 
     GtkWidget *menubar = gtk_menu_bar_new();
@@ -113,18 +106,9 @@ static void build_user_footer(GtkWidget *parent)
     gtk_menu_shell_append(GTK_MENU_SHELL(menubar), edit_profile_btn);
     add_class(edit_profile_btn, "edit_profile_btn");
 
-    gtk_box_pack_end(GTK_BOX(parent), leftbar_footer, FALSE, FALSE, 0);
-}
-
-void build_leftbar(GtkWidget *chat_screen)
-{
-    GtkWidget *left_bar = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_widget_set_size_request(GTK_WIDGET(left_bar), LEFT_BAR_W, WINDOW_HEIGHT);
-    gtk_grid_attach(GTK_GRID(chat_screen), left_bar, 0, 0, 1, 1);
-    add_class(left_bar, "leftbar");
-
-    build_header_block(left_bar, chat_screen);
-    build_search_block(left_bar);
-    build_chat_list(left_bar);
-    build_user_footer(left_bar);
+    // Pack the header block, search block, scrollable_wrap (chat list), and leftbar_footer into the left sidebar
+    gtk_box_pack_start(GTK_BOX(left_bar), header_block, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(left_bar), search_block, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(left_bar), scrollable_wrap, true, true, 0);
+    gtk_box_pack_start(GTK_BOX(left_bar), leftbar_footer, false, false, 0);
 }
