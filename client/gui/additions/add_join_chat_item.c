@@ -1,5 +1,23 @@
 #include "../../inc/client.h"
 
+// Helper function to create a drawing area for the chat avatar
+static GtkWidget *create_avatar_drawing_area(t_avatar_color avatar_color) {
+    GtkWidget *avatar = gtk_drawing_area_new();
+    gtk_widget_set_size_request(GTK_WIDGET(avatar), 42, 42);
+    g_signal_connect(G_OBJECT(avatar), "draw", G_CALLBACK(draw_chat_avatar), (gpointer)avatar_color);
+    gtk_widget_set_halign(avatar, GTK_ALIGN_START);
+    gtk_widget_set_valign(avatar, GTK_ALIGN_CENTER);
+    return avatar;
+}
+
+// Helper function to create a vertical box widget
+static GtkWidget *create_vertical_box() {
+    GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_halign(GTK_WIDGET(box), GTK_ALIGN_START);
+    gtk_widget_set_valign(GTK_WIDGET(box), GTK_ALIGN_START);
+    return box;
+}
+
 // Function to handle add join chat item
 void add_join_chat_item(int id, char *chat_name, t_avatar_color avatar_color)
 {
@@ -30,17 +48,11 @@ void add_join_chat_item(int id, char *chat_name, t_avatar_color avatar_color)
     gtk_box_pack_start(GTK_BOX(chatlist_item), chatlist_item_id, FALSE, FALSE, 0);
 
     // Create and add the avatar drawing area
-    GtkWidget *avatar = gtk_drawing_area_new();
-    gtk_widget_set_size_request(GTK_WIDGET(avatar), 42, 42);
-    g_signal_connect(G_OBJECT(avatar), "draw", G_CALLBACK(draw_chat_avatar), (gpointer)avatar_color);
-    gtk_widget_set_halign(avatar, GTK_ALIGN_START);
-    gtk_widget_set_valign(avatar, GTK_ALIGN_CENTER);
+    GtkWidget *avatar = create_avatar_drawing_area();
     gtk_box_pack_start(GTK_BOX(chatlist_item), avatar, FALSE, FALSE, 0);
 
     // Create the text block for chat item details
-    GtkWidget *chatlist_item_text = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_widget_set_halign(GTK_WIDGET(chatlist_item_text), GTK_ALIGN_START);
-    gtk_widget_set_valign(GTK_WIDGET(chatlist_item_text), GTK_ALIGN_START);
+    GtkWidget *chatlist_item_text = create_vertical_box();
     gtk_box_pack_start(GTK_BOX(chatlist_item), chatlist_item_text, false, false, 0);
     add_class(chatlist_item_text, "chatlist_item_text");
 
