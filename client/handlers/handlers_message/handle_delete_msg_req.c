@@ -1,5 +1,17 @@
 #include "../../inc/client.h"
 
+// Function to create a JSON object for deleting a message request
+static cJSON *create_delete_msg_json(int message_id) {
+    // Create JSON object for the request
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "type", REQ_DELETE_MESSAGE);
+    cJSON_AddNumberToObject(json, "id", message_id);
+    cJSON_AddNumberToObject(json, "user_id", utils->current_user->user_id);
+    cJSON_AddNumberToObject(json, "chat_id", utils->current_chat->id);
+
+    return json;
+}
+
 // Function to edit global messages
 static void edit_global_messages(int message_id)
 {
@@ -42,7 +54,10 @@ void handle_delete_msg_req(int message_id)
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If response is successful, edit global messages
-    (error_code == R_SUCCESS) ? edit_global_messages(message_id) : (void)0;
+    if (error_code == R_SUCCESS)
+    {
+        edit_global_messages(message_id);
+    }
 
     // Free memory
     free(json_str);

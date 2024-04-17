@@ -1,5 +1,18 @@
 #include "../../inc/client.h"
 
+// Function to create a JSON object for creating a chat request
+static cJSON *create_chat_json(const char *chat_name)
+{
+    // Create JSON object for the request
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddStringToObject(json, "name", chat_name);
+    cJSON_AddNumberToObject(json, "date", get_current_time());
+    cJSON_AddNumberToObject(json, "avatar_color", get_avatar_color());
+    cJSON_AddNumberToObject(json, "type", REQ_CREATE_CHAT);
+
+    return json;
+}
+
 // Function to handle creating a chat request
 t_response_code handle_create_chat_req(const char *chat_name)
 {
@@ -20,7 +33,10 @@ t_response_code handle_create_chat_req(const char *chat_name)
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If response is successful, handle getting chats request
-    (error_code == R_SUCCESS) ? handle_get_chats_req() : (void)0;
+    if (error_code == R_SUCCESS)
+    {
+        handle_get_chats_req();
+    }
 
     // Free memory
     free(json_str);

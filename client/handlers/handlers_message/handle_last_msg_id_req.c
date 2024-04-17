@@ -1,5 +1,16 @@
 #include "../../inc/client.h"
 
+// Function to create a JSON object for requesting the last message ID
+static cJSON *create_last_msg_id_req_json(int chat_id)
+{
+    // Create JSON object for the request
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "chat_id", chat_id);
+    cJSON_AddNumberToObject(json, "type", REQ_LAST_MSG_ID);
+
+    return json;
+}
+
 // Parse last message ID response
 static t_response_code last_msg_id_res(const char *response_str, int *i_last_msg_id)
 {
@@ -18,7 +29,7 @@ static t_response_code last_msg_id_res(const char *response_str, int *i_last_msg
     if (error_code != R_SUCCESS)
     {
         cJSON_Delete(json); // Delete JSON object to free memory
-        return error_code; // Return error code
+        return error_code;  // Return error code
     }
 
     // Get last message ID from JSON response
@@ -43,7 +54,7 @@ int handle_last_msg_id_req(int chat_id)
     // Create JSON request object
     cJSON *json = create_last_msg_id_req_json(chat_id);
     char *json_str = cJSON_PrintUnformatted(json); // Convert JSON object to string
-    cJSON_Delete(json); // Delete JSON object to free memory
+    cJSON_Delete(json);                            // Delete JSON object to free memory
 
     int error_code = 0;
     // Send JSON request and receive response from the server
@@ -55,8 +66,8 @@ int handle_last_msg_id_req(int chat_id)
     if ((error_code = last_msg_id_res(response, &last_msg_id)) != R_SUCCESS)
     {
         logger(get_res_str(error_code), ERROR_LOG); // Log error message
-        free(response); // Free memory allocated for response string
-        return -1; // Return -1 indicating failure
+        free(response);                             // Free memory allocated for response string
+        return -1;                                  // Return -1 indicating failure
     }
 
     free(response); // Free memory allocated for response string

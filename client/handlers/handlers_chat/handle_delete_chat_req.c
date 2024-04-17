@@ -1,5 +1,16 @@
 #include "../../inc/client.h"
 
+// Function to create a JSON object for deleting a chat request
+static cJSON *create_delete_chat_json(const char *chat_name)
+{
+    // Create JSON object for the request
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddStringToObject(json, "name", chat_name);
+    cJSON_AddNumberToObject(json, "type", REQ_DELETE_CHAT);
+
+    return json;
+}
+
 // Function to handle deleting a chat request
 int handle_delete_chat_req(const char *chat_name)
 {
@@ -19,7 +30,10 @@ int handle_delete_chat_req(const char *chat_name)
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If response is successful, handle getting chats request
-    (error_code == R_SUCCESS) ? handle_get_chats_req() : (void)0;
+    if (error_code == R_SUCCESS)
+    {
+        handle_get_chats_req();
+    }
 
     // Free memory
     free(json_str);
