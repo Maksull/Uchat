@@ -3,6 +3,10 @@
 // Function to create a message from JSON data
 t_msg *get_msg_from_json(cJSON *json)
 {
+    if (!json) {
+        return R_JSON_FAILURE;
+    }
+
     // Extract message attributes from JSON object
     cJSON *msg_id = cJSON_GetObjectItem(json, "msg_id");
     cJSON *sender_id = cJSON_GetObjectItem(json, "sender_id");

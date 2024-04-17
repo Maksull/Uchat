@@ -3,6 +3,10 @@
 // Function to add a message to the message list
 t_response_code add_msg_to_msglist(cJSON *json)
 {
+    if (!json) {
+        return R_JSON_FAILURE;
+    }
+
     // Extract message information from the JSON object
     cJSON *msg_id = cJSON_GetObjectItem(json, "msg_id");
     cJSON *sender_id = cJSON_GetObjectItem(json, "sender_id");

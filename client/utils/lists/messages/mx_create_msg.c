@@ -5,6 +5,10 @@ t_msg *mx_create_msg(int msg_id, int user_id, const char *user_name, int chat_id
 {
     t_msg *new_node = malloc(sizeof(t_msg)); // Allocate memory for the new message object
 
+    if (new_node == NULL) {
+        exit(EXIT_FAILURE);
+    }
+
     // Assign values to the fields of the new message object
     new_node->message_id = msg_id;
     new_node->chat_id = chat_id;
