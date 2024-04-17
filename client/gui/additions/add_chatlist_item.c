@@ -36,6 +36,7 @@ void add_chatlist_item(int id, char *chat_name, t_avatar_color avatar_color)
 
     // Create an event box to hold the chat list item
     GtkWidget *event_box = create_event_box(chat_name);
+    gtk_box_pack_start(GTK_BOX(chatlist_container), event_box, FALSE, FALSE, 0);
 
     // Create a horizontal box to contain the chat list item elements
     GtkWidget *chatlist_item = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
