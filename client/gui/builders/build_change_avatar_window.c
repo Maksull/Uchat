@@ -117,10 +117,10 @@ void build_change_avatar_window(GtkWidget *widget, gpointer data)
     GtkWidget *btn_box = create_and_configure_button_box(change_login_box);
 
     // Create and configure the Submit button
-    GtkWidget *change_login_btn = create_and_configure_submit_button(btn_box);
+    create_and_configure_submit_button(btn_box);
 
     // Create and configure the Cancel button
-    GtkWidget *cancel_btn = create_and_configure_cancel_button(btn_box);
+    create_and_configure_cancel_button(btn_box);
 
     // Pack all elements into the main container
     gtk_box_pack_start(GTK_BOX(change_login_box), change_avatar_title, FALSE, FALSE, 0);

@@ -48,7 +48,7 @@ void add_join_chat_item(int id, char *chat_name, t_avatar_color avatar_color)
     gtk_box_pack_start(GTK_BOX(chatlist_item), chatlist_item_id, FALSE, FALSE, 0);
 
     // Create and add the avatar drawing area
-    GtkWidget *avatar = create_avatar_drawing_area();
+    GtkWidget *avatar = create_avatar_drawing_area(avatar_color);
     gtk_box_pack_start(GTK_BOX(chatlist_item), avatar, FALSE, FALSE, 0);
 
     // Create the text block for chat item details
