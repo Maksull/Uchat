@@ -5,6 +5,10 @@ t_chat *mx_create_chat(int id, const char *name, int permissions, int chat_color
 {
     t_chat *new_node = malloc(sizeof(t_chat)); // Allocate memory for the new chat object
 
+    if (new_node == NULL) {
+        exit(EXIT_FAILURE);
+    }
+
     // Assign values to the fields of the new chat object
     new_node->id = id;
     new_node->name = name ? mx_strdup(name) : NULL; // Duplicate the name string if not NULL

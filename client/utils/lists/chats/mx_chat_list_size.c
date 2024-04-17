@@ -10,13 +10,12 @@ int mx_chat_list_size(t_chat *list)
     }
 
     // Initialize variables
-    t_chat *head = list; // Pointer to traverse the list
     int size = 0; // Variable to store the size of the list
 
     // Traverse the list and count the number of chat objects
-    while (head != NULL)
+    while (list != NULL)
     {
-        head = head->next; // Move to the next chat object
+        list = list->next; // Move to the next chat object
         ++size; // Increment the size counter
     }
 

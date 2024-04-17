@@ -3,6 +3,9 @@
 // Function to add a chat to the chat list
 t_response_code add_chat_to_chatlist(cJSON *json, t_chat **chat_list, bool is_search)
 {
+    if (!json) {
+        return R_JSON_FAILURE;
+    }
     // Extract chat information from the JSON object
     cJSON *chat_id = cJSON_GetObjectItem(json, "chat_id");
     cJSON *chat_name = cJSON_GetObjectItemCaseSensitive(json, "chat_name");
