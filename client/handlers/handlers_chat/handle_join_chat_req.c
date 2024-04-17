@@ -31,7 +31,10 @@ t_response_code handle_join_chat_req(const char *chat_name)
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If join chat request successful, update chat list
-    (error_code == R_SUCCESS) ? handle_get_chats_req() : (void)0;
+    if (error_code == R_SUCCESS)
+    {
+        handle_get_chats_req();
+    }
 
     // Free memory and resume operations
     free(json_str);

@@ -33,7 +33,10 @@ t_response_code handle_login_req(const char *user_name, const char *user_passwor
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If login successful, get chat list
-    (error_code == R_SUCCESS) ? handle_get_chats_req() : (void)0;
+    if (error_code == R_SUCCESS)
+    {
+        handle_get_chats_req();
+    }
 
     // Free memory and resume operations
     free(json_str);

@@ -50,7 +50,6 @@ void handle_edit_msg_req(int message_id, const char *new_msg_text)
 
     // If response is successful, edit global messages
     if (error_code == R_SUCCESS)
-        (error_code == R_SUCCESS) ? edit_global_messages(message_id, new_msg_text) : (void)0;
     {
         edit_global_messages(message_id, new_msg_text);
     }

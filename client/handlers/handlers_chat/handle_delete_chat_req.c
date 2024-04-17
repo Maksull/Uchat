@@ -30,7 +30,10 @@ int handle_delete_chat_req(const char *chat_name)
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If response is successful, handle getting chats request
-    (error_code == R_SUCCESS) ? handle_get_chats_req() : (void)0;
+    if (error_code == R_SUCCESS)
+    {
+        handle_get_chats_req();
+    }
 
     // Free memory
     free(json_str);

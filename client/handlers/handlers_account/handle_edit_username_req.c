@@ -30,7 +30,10 @@ t_response_code handle_edit_username_req(const char *new_name)
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If response is successful, modify global user username
-    (error_code == R_SUCCESS) ? modify_global_user(new_name, NULL) : (void)0;
+    if (error_code == R_SUCCESS)
+    {
+        modify_global_user(new_name, NULL);
+    }
 
     // Free memory
     free(json_str);

@@ -54,7 +54,10 @@ void handle_delete_msg_req(int message_id)
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If response is successful, edit global messages
-    (error_code == R_SUCCESS) ? edit_global_messages(message_id) : (void)0;
+    if (error_code == R_SUCCESS)
+    {
+        edit_global_messages(message_id);
+    }
 
     // Free memory
     free(json_str);

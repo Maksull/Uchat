@@ -31,7 +31,10 @@ t_response_code handle_edit_chat_req(int chat_id, const char *new_name)
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If response is successful, handle get chats request
-    (error_code == R_SUCCESS) ? handle_get_chats_req() : (void)0;
+    if (error_code == R_SUCCESS)
+    {
+        handle_get_chats_req();
+    }
 
     // Free memory
     free(json_str);

@@ -25,7 +25,10 @@ t_response_code handle_get_chats_req()
 
     int curr_chat_id = -1;
     // Get the ID of the current chat, if exists
-    (utils->current_chat) ? curr_chat_id = utils->current_chat->id : (void)0;
+    if (utils->current_chat)
+    {
+        curr_chat_id = utils->current_chat->id;
+    }
 
     free(response);
 
@@ -37,7 +40,10 @@ t_response_code handle_get_chats_req()
     }
 
     // Set the current chat back to what it was before, if it exists
-    (curr_chat_id >= 0) ? utils->current_chat = mx_get_chat_by_id(utils->chatlist, curr_chat_id) : (void)0;
+    if (curr_chat_id >= 0)
+    {
+        utils->current_chat = mx_get_chat_by_id(utils->chatlist, curr_chat_id);
+    }
 
     return R_SUCCESS;
 }

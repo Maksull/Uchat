@@ -31,7 +31,10 @@ t_response_code handle_edit_password_req(const char *new_pass, const char *old_p
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If response is successful, modify global user password
-    (error_code == R_SUCCESS) ? modify_global_user(NULL, new_pass) : (void)0;
+    if (error_code == R_SUCCESS)
+    {
+        modify_global_user(NULL, new_pass);
+    }
 
     // Free memory
     free(json_str);
