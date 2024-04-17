@@ -1,5 +1,19 @@
 #include "../../inc/client.h"
 
+// Function to create a JSON object for editing a message request
+static cJSON *create_edit_msg_json(int message_id, const char *new_msg_text)
+{
+    // Create JSON object for the request
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "type", REQ_EDIT_MESSAGE);
+    cJSON_AddNumberToObject(json, "id", message_id);
+    cJSON_AddStringToObject(json, "text", new_msg_text);
+    cJSON_AddNumberToObject(json, "user_id", utils->current_user->user_id);
+    cJSON_AddNumberToObject(json, "chat_id", utils->current_chat->id);
+
+    return json;
+}
+
 // Function to edit global messages
 static void edit_global_messages(int message_id, const char *new_msg_text)
 {
@@ -16,7 +30,6 @@ static void edit_global_messages(int message_id, const char *new_msg_text)
     }
 }
 
-
 // Function to handle edit message request
 void handle_edit_msg_req(int message_id, const char *new_msg_text)
 {
@@ -24,7 +37,7 @@ void handle_edit_msg_req(int message_id, const char *new_msg_text)
     utils->is_suspended = true;
 
     // Create JSON object for the request
-    cJSON *json = cJSON_CreateObject();
+    cJSON *json = create_edit_msg_json(message_id, new_msg_text);
     char *json_str = cJSON_PrintUnformatted(json);
     cJSON_Delete(json);
 
@@ -36,7 +49,11 @@ void handle_edit_msg_req(int message_id, const char *new_msg_text)
     logger(get_res_str(error_code), error_code == R_SUCCESS ? INFO_LOG : ERROR_LOG);
 
     // If response is successful, edit global messages
-    (error_code == R_SUCCESS) ? edit_global_messages(message_id, new_msg_text) : (void)0;
+    if (error_code == R_SUCCESS)
+        (error_code == R_SUCCESS) ? edit_global_messages(message_id, new_msg_text) : (void)0;
+    {
+        edit_global_messages(message_id, new_msg_text);
+    }
 
     // Free memory
     free(json_str);

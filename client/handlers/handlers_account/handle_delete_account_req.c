@@ -1,5 +1,15 @@
 #include "../../inc/client.h"
 
+// Function to create a JSON object for delete account request
+static cJSON *create_delete_account_json()
+{
+    // Create JSON object for the request
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "type", REQ_DELETE_ACCOUNT);
+
+    return json;
+}
+
 // Function to handle deleting an account request
 t_response_code handle_delete_account_req()
 {
