@@ -146,7 +146,7 @@ void build_rightbar_chat()
     gtk_container_add(GTK_CONTAINER(scrollable_wrap), message_field);
 
     // Create the message entry field
-    GtkWidget *new_message_field = create_and_configure_message_entry_field(message_field);
+    GtkWidget *new_message_field = create_and_configure_message_entry_field();
     gtk_box_pack_start(GTK_BOX(message_field), new_message_field, TRUE, TRUE, 0);
 
     // Create and configure the send button
