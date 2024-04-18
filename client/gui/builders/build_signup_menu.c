@@ -1,7 +1,8 @@
 #include "../../inc/client.h"
 
 // Helper function to create the title box
-static GtkWidget *create_title_box() {
+static GtkWidget *create_title_box()
+{
     GtkWidget *title_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     add_class(title_box, "auth-menu_title-block");
 
@@ -16,7 +17,8 @@ static GtkWidget *create_title_box() {
 }
 
 // Helper function to create an input box with a placeholder text
-static GtkWidget *create_input_box(const gchar *placeholder_text) {
+static GtkWidget *create_input_box(const gchar *placeholder_text)
+{
     GtkWidget *input_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 
     GtkWidget *input_field = gtk_entry_new();
@@ -36,7 +38,8 @@ static GtkWidget *create_input_box(const gchar *placeholder_text) {
 }
 
 // Helper function to create the signup button box
-static GtkWidget *create_signup_btn_box() {
+static GtkWidget *create_signup_btn_box()
+{
     GtkWidget *signup_btn_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 
     GtkWidget *signup_btn = gtk_button_new_with_label("Sign up");
@@ -58,7 +61,8 @@ static GtkWidget *create_signup_btn_box() {
 }
 
 // Helper function to create the event box for switching to login menu
-static GtkWidget *create_switch_to_login_event_box() {
+static GtkWidget *create_switch_to_login_event_box()
+{
     GtkWidget *event_switch_to_login = gtk_event_box_new();
     gtk_widget_set_halign(event_switch_to_login, GTK_ALIGN_START);
     add_class(event_switch_to_login, "event_switch_auth_menu");
@@ -74,7 +78,8 @@ static GtkWidget *create_switch_to_login_event_box() {
 }
 
 // Function to build signup menu
-void build_signup_menu() {
+void build_signup_menu()
+{
     GtkWidget *main_area = get_widget_by_name_r(main_window, "main_area");
     clear_container(main_area);
 

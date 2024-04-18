@@ -1,11 +1,12 @@
 #include "../../inc/client.h"
 
 // Static function to create the chat header
-static GtkWidget* create_chat_header() {
+static GtkWidget *create_chat_header()
+{
     GtkWidget *chat_header = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
     gtk_widget_set_hexpand(chat_header, TRUE);
     add_class(chat_header, "chat_header");
-    
+
     // Create and configure the avatar widget
     GtkWidget *avatar = gtk_drawing_area_new();
     gtk_widget_set_size_request(GTK_WIDGET(avatar), 42, 42);
@@ -21,13 +22,15 @@ static GtkWidget* create_chat_header() {
     gtk_widget_set_valign(GTK_WIDGET(chat_header_title), GTK_ALIGN_CENTER);
     gtk_box_pack_start(GTK_BOX(chat_header), chat_header_title, false, false, 0);
     add_class(chat_header_title, "chat_title");
-    
+
     return chat_header;
 }
 
 // Static function to add buttons based on user permissions
-static void add_buttons_based_on_permissions(GtkWidget *chat_header) {
-    if (utils->current_chat->permissions == ADMIN_MEMBER) {
+static void add_buttons_based_on_permissions(GtkWidget *chat_header)
+{
+    if (utils->current_chat->permissions == ADMIN_MEMBER)
+    {
         // Add delete chat button
         GtkWidget *delete_chat_btn = gtk_event_box_new();
         add_class(delete_chat_btn, "event_switch_auth_menu");
@@ -51,7 +54,9 @@ static void add_buttons_based_on_permissions(GtkWidget *chat_header) {
         add_class(change_chat_name_label, "switch_auth_menu_label");
         gtk_container_add(GTK_CONTAINER(change_chat_name_btn), change_chat_name_label);
         gtk_box_pack_end(GTK_BOX(chat_header), change_chat_name_btn, FALSE, FALSE, 0);
-    } else {
+    }
+    else
+    {
         // Add leave chat button
         GtkWidget *leave_chat_btn = gtk_event_box_new();
         add_class(leave_chat_btn, "event_switch_auth_menu");
@@ -67,25 +72,30 @@ static void add_buttons_based_on_permissions(GtkWidget *chat_header) {
 }
 
 // Static function to create the scrollable wrap for messages
-static GtkWidget* create_scrollable_wrap() {
+static GtkWidget *create_scrollable_wrap()
+{
     GtkWidget *scrollable_wrap = gtk_scrolled_window_new(NULL, NULL);
     gtk_widget_set_name(scrollable_wrap, "scrollable_wrap");
+
     return scrollable_wrap;
 }
 
 // Static function to create the message field
-static GtkWidget* create_message_field() {
+static GtkWidget *create_message_field()
+{
     GtkWidget *message_field = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
     gtk_widget_set_name(message_field, "message_field");
     gtk_widget_set_hexpand(message_field, TRUE);
     add_class(message_field, "messagelist");
     gtk_widget_set_events(message_field, GDK_ALL_EVENTS_MASK);
     g_signal_connect(message_field, "size-allocate", G_CALLBACK(scroll_to_end), NULL);
+
     return message_field;
 }
 
 // Static function to create the send button
-static GtkWidget* create_send_button(GtkWidget *new_message_field) {
+static GtkWidget *create_send_button(GtkWidget *new_message_field)
+{
     GtkWidget *send_btn = gtk_button_new();
     gtk_widget_set_size_request(GTK_WIDGET(send_btn), 55, 55);
     gtk_widget_set_name(send_btn, "send_btn");
@@ -95,18 +105,35 @@ static GtkWidget* create_send_button(GtkWidget *new_message_field) {
     g_signal_connect(send_btn, "clicked", G_CALLBACK(send_button_click), new_message_field);
     gtk_widget_set_halign(GTK_WIDGET(send_btn), GTK_ALIGN_END);
     gtk_widget_set_valign(GTK_WIDGET(send_btn), GTK_ALIGN_END);
+
     return send_btn;
 }
 
+// Function definition to create and configure the message entry field
+static GtkWidget *create_and_configure_message_entry_field(GtkWidget *message_field)
+{
+    GtkWidget *new_message_field = gtk_entry_new();
+    gtk_widget_set_name(new_message_field, "new_message_field");
+    add_class(new_message_field, "input-msg_entry");
+    gtk_entry_set_placeholder_text(GTK_ENTRY(new_message_field), "Message");
+    gtk_widget_set_halign(GTK_WIDGET(new_message_field), GTK_ALIGN_FILL);
+    gtk_widget_set_valign(GTK_WIDGET(new_message_field), GTK_ALIGN_FILL);
+    gtk_entry_set_max_length(GTK_ENTRY(new_message_field), 100);
+    g_signal_connect(new_message_field, "activate", G_CALLBACK(send_button_click), new_message_field);
+
+    return new_message_field;
+}
+
 // Function to build rightbar chat
-void build_rightbar_chat() {
-    GtkWidget *chat_container = get_widget_by_name_r(main_window, "chat"); // Get the chat container
+void build_rightbar_chat()
+{
+    GtkWidget *chat_container = get_widget_by_name_r(main_window, "chat");                       // Get the chat container
     gtk_container_foreach(GTK_CONTAINER(chat_container), (GtkCallback)gtk_widget_destroy, NULL); // Remove existing widgets in the chat container
-    
+
     // Create chat header
     GtkWidget *chat_header = create_chat_header();
     gtk_box_pack_start(GTK_BOX(chat_container), chat_header, FALSE, FALSE, 0);
-    
+
     // Add buttons based on user permissions
     add_buttons_based_on_permissions(chat_header);
 
@@ -119,14 +146,7 @@ void build_rightbar_chat() {
     gtk_container_add(GTK_CONTAINER(scrollable_wrap), message_field);
 
     // Create the message entry field
-    GtkWidget *new_message_field = gtk_entry_new();
-    gtk_widget_set_name(new_message_field, "new_message_field");
-    add_class(new_message_field, "input-msg_entry");
-    gtk_entry_set_placeholder_text(GTK_ENTRY(new_message_field), "Message");
-    gtk_widget_set_halign(GTK_WIDGET(new_message_field), GTK_ALIGN_FILL);
-    gtk_widget_set_valign(GTK_WIDGET(new_message_field), GTK_ALIGN_FILL);
-    gtk_entry_set_max_length(GTK_ENTRY(new_message_field), 100);
-    g_signal_connect(new_message_field, "activate", G_CALLBACK(send_button_click), new_message_field);
+    GtkWidget *new_message_field = create_and_configure_message_entry_field(message_field);
     gtk_box_pack_start(GTK_BOX(message_field), new_message_field, TRUE, TRUE, 0);
 
     // Create and configure the send button
