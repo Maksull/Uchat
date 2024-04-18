@@ -92,7 +92,7 @@ static GtkWidget *create_new_message_field()
 }
 
 // Helper for creating send btn widget
-static GtkWidget *create_send_btn()
+static GtkWidget *create_send_btn(GtkWidget *new_message_field)
 {
     GtkWidget *send_btn = gtk_button_new();
     gtk_widget_set_size_request(GTK_WIDGET(send_btn), 55, 55);
@@ -103,7 +103,7 @@ static GtkWidget *create_send_btn()
     g_signal_connect(send_btn, "clicked", G_CALLBACK(send_button_click), new_message_field);
     gtk_widget_set_halign(GTK_WIDGET(send_btn), GTK_ALIGN_END);
     gtk_widget_set_valign(GTK_WIDGET(send_btn), GTK_ALIGN_END);
-    
+
     return send_btn;
 }
 
@@ -176,7 +176,7 @@ void build_rightbar_chat()
     gtk_box_pack_start(GTK_BOX(message_field), new_message_field, TRUE, TRUE, 0);
 
     // Create and configure the send button
-    GtkWidget *send_btn = create_send_btn();
+    GtkWidget *send_btn = create_send_btn(new_message_field);
 
     // Pack the widgets into the chat container
     gtk_box_pack_start(GTK_BOX(chat_container), chat_header, FALSE, FALSE, 0);

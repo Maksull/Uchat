@@ -223,6 +223,15 @@ static void pack_widgets_into_change_password_box(GtkWidget *change_password_box
     gtk_box_pack_start(GTK_BOX(change_password_box), btn_box, FALSE, FALSE, 0);
 }
 
+// Function definition to pack buttons into the button box
+static void pack_buttons_into_button_box(GtkWidget *btn_box, GtkWidget *change_password_btn, GtkWidget *cancel_btn)
+{
+    // Pack the "Submit" button into the button box
+    gtk_box_pack_end(GTK_BOX(btn_box), change_password_btn, FALSE, FALSE, 0);
+    // Pack the "Cancel" button into the button box
+    gtk_box_pack_end(GTK_BOX(btn_box), cancel_btn, FALSE, FALSE, 0);
+}
+
 // Function to handle building the change password window
 void build_change_password_window(GtkWidget *widget, gpointer data)
 {

@@ -109,8 +109,7 @@ void build_change_chat_name_window(GtkWidget *widget, gpointer data)
     add_class(change_chat_name_box, "edit_profile_menu");
 
     // Create and configure the title label
-    GtkWidget *change_chat_name_title = create_change_chat_name_title();
-    gtk_box_pack_start(GTK_BOX(change_chat_name_box), change_chat_name_title, FALSE, FALSE, 0);
+    GtkWidget *change_chat_name_title = create_change_chat_name_title_label();
 
     // Create and configure the label and entry field for the new chat name
     GtkWidget *chat_name_label = NULL;
