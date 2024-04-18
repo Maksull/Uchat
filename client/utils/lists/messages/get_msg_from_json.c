@@ -1,20 +1,31 @@
 #include "../../../inc/client.h"
 
+// Function definition to extract message attributes from JSON object
+static void extract_message_attributes(cJSON *json, cJSON **msg_id, cJSON **sender_id, cJSON **sender_name,
+                                cJSON **sender_color, cJSON **text, cJSON **chat_id, cJSON **date)
+{
+    *msg_id = cJSON_GetObjectItem(json, "msg_id");
+    *sender_id = cJSON_GetObjectItem(json, "sender_id");
+    *sender_name = cJSON_GetObjectItemCaseSensitive(json, "sender_name");
+    *sender_color = cJSON_GetObjectItem(json, "sender_color");
+    *text = cJSON_GetObjectItemCaseSensitive(json, "text");
+    *chat_id = cJSON_GetObjectItem(json, "chat_id");
+    *date = cJSON_GetObjectItemCaseSensitive(json, "date");
+}
+
 // Function to create a message from JSON data
 t_msg *get_msg_from_json(cJSON *json)
 {
     if (!json) {
-        return R_JSON_FAILURE;
+        return NULL;
     }
 
+    // Declare cJSON pointers for message attributes
+    cJSON *msg_id, *sender_id, *sender_name, *sender_color, *text, *chat_id, *date;
+
     // Extract message attributes from JSON object
-    cJSON *msg_id = cJSON_GetObjectItem(json, "msg_id");
-    cJSON *sender_id = cJSON_GetObjectItem(json, "sender_id");
-    cJSON *sender_name = cJSON_GetObjectItemCaseSensitive(json, "sender_name");
-    cJSON *sender_color = cJSON_GetObjectItem(json, "sender_color");
-    cJSON *text = cJSON_GetObjectItemCaseSensitive(json, "text");
-    cJSON *chat_id = cJSON_GetObjectItem(json, "chat_id");
-    cJSON *date = cJSON_GetObjectItemCaseSensitive(json, "date");
+    extract_message_attributes(json, &msg_id, &sender_id, &sender_name, &sender_color, &text, &chat_id, &date);
+
 
     // Check if all required attributes are present and of the correct type
     if (!cJSON_IsNumber(msg_id) || !cJSON_IsNumber(sender_id) || !cJSON_IsNumber(chat_id) ||

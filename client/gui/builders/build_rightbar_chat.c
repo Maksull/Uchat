@@ -110,7 +110,7 @@ static GtkWidget *create_send_button(GtkWidget *new_message_field)
 }
 
 // Function definition to create and configure the message entry field
-static GtkWidget *create_and_configure_message_entry_field(GtkWidget *message_field)
+static GtkWidget *create_and_configure_message_entry_field()
 {
     GtkWidget *new_message_field = gtk_entry_new();
     gtk_widget_set_name(new_message_field, "new_message_field");
