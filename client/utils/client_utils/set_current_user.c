@@ -10,12 +10,25 @@ static void extract_user_info(const cJSON *user_json, const cJSON **id_json, con
     *color_json = cJSON_GetObjectItem(user_json, "avatar_color");
 }
 
+// Function to check if cJSON objects meet certain conditions
+static int check_user_json(const cJSON *id_json, const cJSON *name_json, const cJSON *pass_json, const cJSON *color_json)
+{
+    // Check if any of the cJSON objects are not of the expected types
+    if (!cJSON_IsNumber(id_json) || !cJSON_IsString(name_json) ||
+        !cJSON_IsString(pass_json) || !cJSON_IsNumber(color_json))
+    {
+        return 0; // Condition not met
+    }
+
+    return 1; // Condition met
+}
+
 // Function to set current user details from a JSON object
 void set_current_user(t_user **user, const cJSON *user_json)
 {
     if (!user_json)
     {
-        return R_JSON_FAILURE;
+        exit(EXIT_FAILURE);
     }
 
     const cJSON *id_json, *name_json, *pass_json, *color_json;
@@ -23,8 +36,7 @@ void set_current_user(t_user **user, const cJSON *user_json)
     extract_user_info(user_json, &id_json, &name_json, &pass_json, &color_json);
 
     // Checking if any required field is missing or has invalid data
-    if (!cJSON_IsNumber(id_json) || !cJSON_IsString(name_json) ||
-        !cJSON_IsString(pass_json) || !cJSON_IsNumber(color_json))
+    if (!check_user_json(id_json, name_json, pass_json, color_json))
     {
         // If any required field is missing or has invalid data, return without setting user
         return;

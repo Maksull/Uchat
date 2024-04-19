@@ -1,6 +1,6 @@
 #include "../../inc/client.h"
 
-static void initialize_utils_struct(int server_fd, SSL *ssl, SSL_CTX *ctx, t_utils *utils)
+static void initialize_utils_struct(int server_fd, SSL *ssl, SSL_CTX *ctx, t_client_utils *utils)
 {
     int flags = fcntl(server_fd, F_GETFL, 0);      // Get file status flags
     fcntl(server_fd, F_SETFL, flags | O_NONBLOCK); // Set socket to non-blocking mode
