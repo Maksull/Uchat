@@ -1,5 +1,18 @@
 #include "../../../inc/client.h"
 
+// Function to extract message information from JSON object
+static void extract_msg_info(cJSON *json, cJSON **msg_id, cJSON **sender_id, cJSON **sender_name, cJSON **sender_color, cJSON **text, cJSON **chat_id, cJSON **date)
+{
+    // Extract message information from the JSON object
+    *msg_id = cJSON_GetObjectItem(json, "msg_id");
+    *sender_id = cJSON_GetObjectItem(json, "sender_id");
+    *sender_name = cJSON_GetObjectItemCaseSensitive(json, "sender_name");
+    *sender_color = cJSON_GetObjectItem(json, "sender_color");
+    *text = cJSON_GetObjectItemCaseSensitive(json, "text");
+    *chat_id = cJSON_GetObjectItem(json, "chat_id");
+    *date = cJSON_GetObjectItemCaseSensitive(json, "date");
+}
+
 // Function to add a message to the message list
 t_response_code add_msg_to_msglist(cJSON *json)
 {
@@ -7,14 +20,9 @@ t_response_code add_msg_to_msglist(cJSON *json)
         return R_JSON_FAILURE;
     }
 
+    cJSON *msg_id, *sender_id, *sender_name, *sender_color, *text, *chat_id, *date;
     // Extract message information from the JSON object
-    cJSON *msg_id = cJSON_GetObjectItem(json, "msg_id");
-    cJSON *sender_id = cJSON_GetObjectItem(json, "sender_id");
-    cJSON *sender_name = cJSON_GetObjectItemCaseSensitive(json, "sender_name");
-    cJSON *sender_color = cJSON_GetObjectItem(json, "sender_color");
-    cJSON *text = cJSON_GetObjectItemCaseSensitive(json, "text");
-    cJSON *chat_id = cJSON_GetObjectItem(json, "chat_id");
-    cJSON *date = cJSON_GetObjectItemCaseSensitive(json, "date");
+    extract_msg_info(json, &msg_id, &sender_id, &sender_name, &sender_color, &text, &chat_id, &date);
 
     // Check if the required fields are present and have the correct types
     if (!cJSON_IsNumber(msg_id) || !cJSON_IsNumber(sender_id) || !cJSON_IsNumber(chat_id) ||

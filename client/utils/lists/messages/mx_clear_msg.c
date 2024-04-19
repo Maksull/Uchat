@@ -1,5 +1,19 @@
 #include "../../../inc/client.h"
 
+// Function to clear the memory of a single message object
+static void clear_single_msg(t_msg *msg)
+{
+    if (msg == NULL) {
+        return;
+    }
+
+    free(msg->sender_name);
+    free(msg->text);
+    free(msg->date_str);
+    free(msg->avatar_path);
+    free(msg);
+}
+
 // Function to clears the memory of messages
 void mx_clear_msg(t_msg **p)
 {
@@ -9,11 +23,6 @@ void mx_clear_msg(t_msg **p)
         return; // Return if the pointer is NULL
     }
 
-    // Free the memory allocated for the sender's name, message text, date string, and avatar path
-    free((*p)->sender_name);
-    free((*p)->text);
-    free((*p)->date_str);
-    free((*p)->avatar_path);
-    free(*p); // Free the memory allocated for the message object
+    clear_single_msg(*p);
     *p = NULL; // Set the pointer to the message object to NULL
 }

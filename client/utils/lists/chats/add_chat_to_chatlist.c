@@ -1,16 +1,25 @@
 #include "../../../inc/client.h"
 
+// Function to extract chat information from JSON object
+static void extract_chat_info(cJSON *json, cJSON **chat_id, cJSON **chat_name, cJSON **chat_color, cJSON **chat_perms)
+{
+    // Extract chat information from the JSON object
+    *chat_id = cJSON_GetObjectItem(json, "chat_id");
+    *chat_name = cJSON_GetObjectItemCaseSensitive(json, "chat_name");
+    *chat_color = cJSON_GetObjectItem(json, "chat_color");
+    *chat_perms = cJSON_GetObjectItem(json, "chat_permissions");
+}
+
 // Function to add a chat to the chat list
 t_response_code add_chat_to_chatlist(cJSON *json, t_chat **chat_list, bool is_search)
 {
     if (!json) {
         return R_JSON_FAILURE;
     }
+
+    cJSON *chat_id, *chat_name, *chat_color, *chat_perms;
     // Extract chat information from the JSON object
-    cJSON *chat_id = cJSON_GetObjectItem(json, "chat_id");
-    cJSON *chat_name = cJSON_GetObjectItemCaseSensitive(json, "chat_name");
-    cJSON *chat_color = cJSON_GetObjectItem(json, "chat_color");
-    cJSON *chat_perms = cJSON_GetObjectItem(json, "chat_permissions");
+    extract_chat_info(json, &chat_id, &chat_name, &chat_color, &chat_perms);
 
     // Check if the required fields are present and have the correct types
     if (!cJSON_IsNumber(chat_id) || !cJSON_IsString(chat_name) ||

@@ -1,13 +1,25 @@
 #include "../../inc/client.h"
 
+// Function to extract user information from JSON object
+static void extract_user_info(const cJSON *user_json, const cJSON **id_json, const cJSON **name_json, const cJSON **pass_json, const cJSON **color_json)
+{
+    // Extract relevant fields from the JSON object
+    *id_json = cJSON_GetObjectItem(user_json, "id");
+    *name_json = cJSON_GetObjectItemCaseSensitive(user_json, "username");
+    *pass_json = cJSON_GetObjectItemCaseSensitive(user_json, "password");
+    *color_json = cJSON_GetObjectItem(user_json, "avatar_color");
+}
+
 // Function to set current user details from a JSON object
 void set_current_user(t_user **user, const cJSON *user_json)
 {
-    // Extracting relevant fields from the JSON object
-    const cJSON *id_json = cJSON_GetObjectItem(user_json, "id");
-    const cJSON *name_json = cJSON_GetObjectItemCaseSensitive(user_json, "username");
-    const cJSON *pass_json = cJSON_GetObjectItemCaseSensitive(user_json, "password");
-    const cJSON *color_json = cJSON_GetObjectItem(user_json, "avatar_color");
+    if (!user_json) {
+        return R_JSON_FAILURE;
+    }
+
+    const cJSON *id_json, *name_json, *pass_json, *color_json;
+    // Extract user information from the JSON object
+    extract_user_info(user_json, &id_json, &name_json, &pass_json, &color_json);
 
     // Checking if any required field is missing or has invalid data
     if (!cJSON_IsNumber(id_json) || !cJSON_IsString(name_json) ||
@@ -19,6 +31,10 @@ void set_current_user(t_user **user, const cJSON *user_json)
 
     // Allocating memory for the user structure
     *user = malloc(sizeof(t_user));
+
+    if (!*user) {
+        exit(EXIT_FAILURE);
+    }
 
     // Assigning values to the user structure fields from JSON data
     (*user)->user_id = id_json->valueint;
