@@ -13,7 +13,8 @@ static void extract_user_info(const cJSON *user_json, const cJSON **id_json, con
 // Function to set current user details from a JSON object
 void set_current_user(t_user **user, const cJSON *user_json)
 {
-    if (!user_json) {
+    if (!user_json)
+    {
         return R_JSON_FAILURE;
     }
 
@@ -32,7 +33,8 @@ void set_current_user(t_user **user, const cJSON *user_json)
     // Allocating memory for the user structure
     *user = malloc(sizeof(t_user));
 
-    if (!*user) {
+    if (!*user)
+    {
         exit(EXIT_FAILURE);
     }
 

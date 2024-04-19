@@ -1,7 +1,7 @@
 #include "../../inc/client.h"
 
 // Helper for creating create_new_chat_btn widget
-static GtkWidget *create_create_new_chat_btn()
+static GtkWidget *create_create_new_chat_btn(GtkWidget *chat_screen)
 {
     GtkWidget *create_new_chat_btn = gtk_event_box_new();
     add_class(create_new_chat_btn, "event_switch_auth_menu");
@@ -26,7 +26,7 @@ static GtkWidget *create_search_field()
 }
 
 // Helper for creating clear_field_btn widget
-static GtkWidget *create_clear_field_btn()
+static GtkWidget *create_clear_field_btn(GtkWidget *search_field)
 {
     GtkWidget *clear_field_btn = gtk_button_new();
     gtk_widget_set_size_request(GTK_WIDGET(clear_field_btn), 45, 45);
@@ -78,7 +78,7 @@ void build_leftbar(GtkWidget *chat_screen)
     GtkWidget *header_label = gtk_label_new("Messages");
     add_class(header_label, "leftbar_header_label");
 
-    GtkWidget *create_new_chat_btn = create_create_new_chat_btn();
+    GtkWidget *create_new_chat_btn = create_create_new_chat_btn(chat_screen);
     GtkWidget *create_chat_label = gtk_label_new("+ New chat");
     add_class(create_chat_label, "switch_auth_menu_label");
     gtk_container_add(GTK_CONTAINER(create_new_chat_btn), create_chat_label);
@@ -92,7 +92,7 @@ void build_leftbar(GtkWidget *chat_screen)
 
     GtkWidget *search_field = create_search_field();
 
-    GtkWidget *clear_field_btn = create_clear_field_btn();
+    GtkWidget *clear_field_btn = create_clear_field_btn(search_field);
 
     gtk_box_pack_start(GTK_BOX(search_block), search_field, TRUE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(search_block), clear_field_btn, false, false, 0);
