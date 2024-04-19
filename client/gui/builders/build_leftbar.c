@@ -1,54 +1,64 @@
 #include "../../inc/client.h"
 
-//Helper for creating create_new_chat_btn widget
-static GtkWidget *create_create_new_chat_btn(){
+// Helper for creating create_new_chat_btn widget
+static GtkWidget *create_create_new_chat_btn()
+{
     GtkWidget *create_new_chat_btn = gtk_event_box_new();
     add_class(create_new_chat_btn, "event_switch_auth_menu");
     g_signal_connect(G_OBJECT(create_new_chat_btn), "enter-notify-event", G_CALLBACK(on_crossing), NULL);
     g_signal_connect(G_OBJECT(create_new_chat_btn), "leave-notify-event", G_CALLBACK(on_crossing), NULL);
     g_signal_connect(G_OBJECT(create_new_chat_btn), "button_press_event", G_CALLBACK(popup_create_chat_menu), chat_screen);
+
     return create_new_chat_btn;
 }
 
-//Helper for creating search_field widget
-static GtkWidget *create_search_field(){
+// Helper for creating search_field widget
+static GtkWidget *create_search_field()
+{
     GtkWidget *search_field = gtk_entry_new();
     gtk_entry_set_placeholder_text(GTK_ENTRY(search_field), "Search");
     gtk_widget_set_name(search_field, "global_search_field");
     add_class(search_field, "input-field");
     add_class(search_field, "input-field--search");
     g_signal_connect(G_OBJECT(search_field), "changed", G_CALLBACK(search_field_change_event), NULL);
+
     return search_field;
 }
 
-//Helper for creating clear_field_btn widget
-static GtkWidget *create_clear_field_btn(){
+// Helper for creating clear_field_btn widget
+static GtkWidget *create_clear_field_btn()
+{
     GtkWidget *clear_field_btn = gtk_button_new();
     gtk_widget_set_size_request(GTK_WIDGET(clear_field_btn), 45, 45);
     add_class(clear_field_btn, "clear_search_btn");
     g_signal_connect(G_OBJECT(clear_field_btn), "enter-notify-event", G_CALLBACK(on_crossing), NULL);
     g_signal_connect(G_OBJECT(clear_field_btn), "leave-notify-event", G_CALLBACK(on_crossing), NULL);
     g_signal_connect(G_OBJECT(clear_field_btn), "clicked", G_CALLBACK(clear_search_field), search_field);
+
     return clear_field_btn;
 }
 
-//Helper for creating user_avatar widget
-static GtkWidget *create_user_avatar(){
+// Helper for creating user_avatar widget
+static GtkWidget *create_user_avatar()
+{
     GtkWidget *user_avatar = gtk_drawing_area_new();
     gtk_widget_set_size_request(GTK_WIDGET(user_avatar), 27, 27);
     g_signal_connect(G_OBJECT(user_avatar), "draw", G_CALLBACK(draw_user_avatar), (gpointer)utils->current_user->avatar_color);
     gtk_widget_set_halign(user_avatar, GTK_ALIGN_START);
     gtk_widget_set_valign(user_avatar, GTK_ALIGN_CENTER);
+    
     return user_avatar;
 }
 
-//Helper for creating username widget
-static GtkWidget *create_username(){
+// Helper for creating username widget
+static GtkWidget *create_username()
+{
     GtkWidget *username = gtk_label_new(utils->current_user->name);
     gtk_widget_set_name(username, "leftbar_footer_username");
     gtk_widget_set_halign(GTK_WIDGET(username), GTK_ALIGN_START);
     gtk_widget_set_valign(GTK_WIDGET(username), GTK_ALIGN_CENTER);
     add_class(username, "leftbar_footer_username");
+    
     return username;
 }
 
