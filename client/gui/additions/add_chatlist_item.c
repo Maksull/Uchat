@@ -1,8 +1,7 @@
 #include "../../inc/client.h"
 
 // Helper function to create an event box for a chat list item
-static GtkWidget *create_event_box(const char *chat_name)
-{
+static GtkWidget *create_event_box(const char *chat_name) {
     GtkWidget *event_box = gtk_event_box_new();
     gtk_event_box_set_above_child(GTK_EVENT_BOX(event_box), TRUE);
     gtk_widget_set_name(event_box, chat_name);
@@ -10,99 +9,24 @@ static GtkWidget *create_event_box(const char *chat_name)
     g_signal_connect(G_OBJECT(event_box), "enter-notify-event", G_CALLBACK(on_crossing), NULL);
     g_signal_connect(G_OBJECT(event_box), "leave-notify-event", G_CALLBACK(on_crossing), NULL);
     g_signal_connect(G_OBJECT(event_box), "button_press_event", G_CALLBACK(chatlist_item_on_click), NULL);
-
     return event_box;
 }
 
-// Helper function to create a vertical box widget
-static GtkWidget *create_vertical_box()
-{
-    GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_widget_set_halign(GTK_WIDGET(box), GTK_ALIGN_START);
-    gtk_widget_set_valign(GTK_WIDGET(box), GTK_ALIGN_START);
-
-    return box;
-}
-
-// Function to create a horizontal box to contain the chat list item elements
-static GtkWidget *create_chatlist_item_box(int id)
-{
-    GtkWidget *chatlist_item = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_widget_set_name(chatlist_item, mx_itoa(id));
-    add_class(chatlist_item, "chatlist_item");
-    return chatlist_item;
-}
-
-// Function to create a label to display the chat ID (hidden)
-static GtkWidget *create_chat_id_label(int id)
-{
-    GtkWidget *chatlist_item_id = gtk_label_new(mx_itoa(id)); /// CHAT ID
-    gtk_widget_set_name(chatlist_item_id, "chat_id");
-    add_class(chatlist_item_id, "hidden");
-    return chatlist_item_id;
-}
-
-// Function to create a drawing area for the chat avatar
-static GtkWidget *create_chat_avatar_drawing_area(t_avatar_color avatar_color)
-{
+// Helper function to create a drawing area for the chat avatar
+static GtkWidget *create_avatar_drawing_area() {
     GtkWidget *avatar = gtk_drawing_area_new();
     gtk_widget_set_size_request(GTK_WIDGET(avatar), 42, 42);
     gtk_widget_set_halign(avatar, GTK_ALIGN_START);
     gtk_widget_set_valign(avatar, GTK_ALIGN_CENTER);
-    g_signal_connect(G_OBJECT(avatar), "draw", G_CALLBACK(draw_chat_avatar), (gpointer)avatar_color);
     return avatar;
 }
 
-// Function to create a label to display the chat name
-static GtkWidget *create_chat_name_label(GtkWidget *chatlist_item_text, const char *chat_name)
-{
-    GtkWidget *chatlist_item_title = gtk_label_new(chat_name);
-    add_class(chatlist_item_title, "chatlist_item_title");
-    gtk_widget_set_halign(GTK_WIDGET(chatlist_item_title), GTK_ALIGN_START);
-    gtk_widget_set_valign(GTK_WIDGET(chatlist_item_text), GTK_ALIGN_CENTER);
-    gtk_box_pack_start(GTK_BOX(chatlist_item_text), chatlist_item_title, false, false, 0);
-    return chatlist_item_title;
-}
-
-// Function to pack message, time, and notification labels into the text block
-static void pack_message_labels(GtkWidget *chatlist_item_text, GtkWidget *chatlist_item_message)
-{
-    gtk_widget_set_halign(GTK_WIDGET(chatlist_item_message), GTK_ALIGN_START);
-    gtk_widget_set_valign(GTK_WIDGET(chatlist_item_text), GTK_ALIGN_CENTER);
-    gtk_box_pack_start(GTK_BOX(chatlist_item_text), chatlist_item_message, false, false, 0);
-    gtk_widget_set_name(chatlist_item_message, "chatlist_item_message");
-    add_class(chatlist_item_message, "chatlist_item_message");
-}
-
-// Function to create a vertical box for the info block
-static GtkWidget *create_chatlist_item_info_box()
-{
-    GtkWidget *chatlist_item_info = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_widget_set_halign(GTK_WIDGET(chatlist_item_info), GTK_ALIGN_END);
-    // gtk_widget_set_valign(GTK_WIDGET(chatlist_item_info), GTK_ALIGN_END);
-    add_class(chatlist_item_info, "chatlist_item_info");
-    return chatlist_item_info;
-}
-
-// Function to pack time label into the info block
-static void pack_time_label(GtkWidget *chatlist_item_info, GtkWidget *chatlist_item_time)
-{
-    gtk_widget_set_valign(GTK_WIDGET(chatlist_item_time), GTK_ALIGN_START);
-    gtk_widget_set_halign(GTK_WIDGET(chatlist_item_time), GTK_ALIGN_END);
-    gtk_box_pack_start(GTK_BOX(chatlist_item_info), chatlist_item_time, false, false, 0);
-    gtk_widget_set_name(chatlist_item_time, "chatlist_item_time");
-    add_class(chatlist_item_time, "chatlist_item_time");
-}
-
-// Function to set size and alignment of notification label and pack it into the info block
-static void set_and_pack_notification_label(GtkWidget *chatlist_item_info, GtkWidget *chatlist_item_notify)
-{
-    gtk_widget_set_size_request(GTK_WIDGET(chatlist_item_notify), 20, 20);
-    gtk_widget_set_valign(GTK_WIDGET(chatlist_item_notify), GTK_ALIGN_END);
-    gtk_widget_set_halign(GTK_WIDGET(chatlist_item_notify), GTK_ALIGN_END);
-    gtk_box_pack_start(GTK_BOX(chatlist_item_info), chatlist_item_notify, false, false, 0);
-    gtk_widget_set_name(chatlist_item_notify, "chatlist_item_notify");
-    add_class(chatlist_item_notify, "chatlist_item_notify");
+// Helper function to create a vertical box widget
+static GtkWidget *create_vertical_box() {
+    GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_halign(GTK_WIDGET(box), GTK_ALIGN_START);
+    gtk_widget_set_valign(GTK_WIDGET(box), GTK_ALIGN_START);
+    return box;
 }
 
 // Function to add a chatlist item
@@ -115,15 +39,20 @@ void add_chatlist_item(int id, char *chat_name, t_avatar_color avatar_color)
     gtk_box_pack_start(GTK_BOX(chatlist_container), event_box, FALSE, FALSE, 0);
 
     // Create a horizontal box to contain the chat list item elements
-    GtkWidget *chatlist_item = create_chatlist_item_box(id);
+    GtkWidget *chatlist_item = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_widget_set_name(chatlist_item, mx_itoa(id));
+    add_class(chatlist_item, "chatlist_item");
     gtk_container_add(GTK_CONTAINER(event_box), chatlist_item);
 
     // Create a label to display the chat ID (hidden)
-    GtkWidget *chatlist_item_id = create_chat_id_label(id);
+    GtkWidget *chatlist_item_id = gtk_label_new(mx_itoa(id)); /// CHAT ID
+    gtk_widget_set_name(chatlist_item_id, "chat_id");
+    add_class(chatlist_item_id, "hidden");
     gtk_box_pack_start(GTK_BOX(chatlist_item), chatlist_item_id, FALSE, FALSE, 0);
 
     // Create a drawing area for the chat avatar
-    GtkWidget *avatar = create_chat_avatar_drawing_area(avatar_color);
+    GtkWidget *avatar = create_avatar_drawing_area();
+    g_signal_connect(G_OBJECT(avatar), "draw", G_CALLBACK(draw_chat_avatar), (gpointer)avatar_color);
     gtk_box_pack_start(GTK_BOX(chatlist_item), avatar, FALSE, FALSE, 0);
 
     // Create a vertical box for the text block
@@ -132,10 +61,16 @@ void add_chatlist_item(int id, char *chat_name, t_avatar_color avatar_color)
     add_class(chatlist_item_text, "chatlist_item_text");
 
     // Create a label to display the chat name
-    GtkWidget *chatlist_item_title = create_chat_name_label(chatlist_item_text, chat_name);
+    GtkWidget *chatlist_item_title = gtk_label_new(chat_name);
+    add_class(chatlist_item_title, "chatlist_item_title");
+    gtk_widget_set_halign(GTK_WIDGET(chatlist_item_title), GTK_ALIGN_START);
+    gtk_widget_set_valign(GTK_WIDGET(chatlist_item_text), GTK_ALIGN_CENTER);
+    gtk_box_pack_start(GTK_BOX(chatlist_item_text), chatlist_item_title, false, false, 0);
 
     // Initialize variables for message, time, and notification labels
-    GtkWidget *chatlist_item_message, *chatlist_item_time, *chatlist_item_notify;
+    GtkWidget *chatlist_item_message = NULL;
+    GtkWidget *chatlist_item_time = NULL;
+    GtkWidget *chatlist_item_notify = NULL;
 
     // Retrieve the chat information and update the message, time, and notification labels
     t_chat *curr_chat = mx_get_chat_by_name(utils->chatlist, chat_name);
@@ -157,17 +92,32 @@ void add_chatlist_item(int id, char *chat_name, t_avatar_color avatar_color)
     }
 
     // Pack message, time, and notification labels into the text block
-    pack_message_labels(chatlist_item_text, chatlist_item_message);
+    gtk_widget_set_halign(GTK_WIDGET(chatlist_item_message), GTK_ALIGN_START);
+    gtk_widget_set_valign(GTK_WIDGET(chatlist_item_text), GTK_ALIGN_CENTER);
+    gtk_box_pack_start(GTK_BOX(chatlist_item_text), chatlist_item_message, false, false, 0);
+    gtk_widget_set_name(chatlist_item_message, "chatlist_item_message");
+    add_class(chatlist_item_message, "chatlist_item_message");
 
     // Create a vertical box for the info block
-    GtkWidget *chatlist_item_info = create_chatlist_item_info_box();
+    GtkWidget *chatlist_item_info = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_halign(GTK_WIDGET(chatlist_item_info), GTK_ALIGN_END);
+    // gtk_widget_set_valign(GTK_WIDGET(chatlist_item_info), GTK_ALIGN_END);
     gtk_box_pack_end(GTK_BOX(chatlist_item), chatlist_item_info, false, false, 0);
+    add_class(chatlist_item_info, "chatlist_item_info");
 
-    // Pack time label into the info block
-    pack_time_label(chatlist_item_info, chatlist_item_time);
+    // Pack time and notification labels into the info block
+    gtk_widget_set_valign(GTK_WIDGET(chatlist_item_time), GTK_ALIGN_START);
+    gtk_widget_set_halign(GTK_WIDGET(chatlist_item_time), GTK_ALIGN_END);
+    gtk_box_pack_start(GTK_BOX(chatlist_item_info), chatlist_item_time, false, false, 0);
+    gtk_widget_set_name(chatlist_item_time, "chatlist_item_time");
+    add_class(chatlist_item_time, "chatlist_item_time");
 
-    // Set size and alignment of notification label and pack it into the info block
-    set_and_pack_notification_label(chatlist_item_info, chatlist_item_notify);
+    gtk_widget_set_size_request(GTK_WIDGET(chatlist_item_notify), 20, 20);
+    gtk_widget_set_valign(GTK_WIDGET(chatlist_item_notify), GTK_ALIGN_END);
+    gtk_widget_set_halign(GTK_WIDGET(chatlist_item_notify), GTK_ALIGN_END);
+    gtk_box_pack_start(GTK_BOX(chatlist_item_info), chatlist_item_notify, false, false, 0);
+    gtk_widget_set_name(chatlist_item_notify, "chatlist_item_notify");
+    add_class(chatlist_item_notify, "chatlist_item_notify");
 
     // Show the event box containing the chat list item
     gtk_widget_show_all(event_box);
