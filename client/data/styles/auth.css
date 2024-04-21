@@ -1,7 +1,6 @@
 .login_menu, .signup_menu {
     color: @second-font-color;
     background-color: @main-bg-color;
-    border: 2px solid #fff;
     padding: 40px 80px;
 }
 
