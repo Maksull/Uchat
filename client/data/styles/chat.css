@@ -1,39 +1,39 @@
 .chat_header {
-    padding: 25px 35px 25px 35px;
+    color: @main-font-color;
     background-color: @main-bg-color;
     border-bottom: 1px solid @second-bg-color;
-    color: @main-font-color;
+    padding: 25px 35px 25px 35px;
 }
 
 .chat_title {
-    margin-left: 10px;
+    color: @main-font-color;
     font-size: 16px;
     font-weight: 500;
-    color: @main-font-color;
+    margin-left: 10px;
 }
 
 .messagelist {
-    padding: 20px 35px 0px;
-    background-color: @main-bg-color;;
+    background-color: @main-bg-color;
+    padding: 20px 35px 0;
 }
 
 .right_message {
-    padding: 10px 15px;
-    border-radius: 10px 0 10px 10px;
-    background-color: @onfocus-color;
     color: @main-font-color;
+    border-radius: 3px 0 3px 3px;
+    background-color: @onfocus-color;
+    padding: 10px 15px;
 }
 
 .left_message {
-    padding: 15px;
-    border-radius: 0 10px 10px 10px;
-    background-color: @second-bg-color;
     color: @main-font-color;
+    border-radius: 0 3px 3px 3px;
+    background-color: @second-bg-color;
+    padding: 15px;
 }
 
 .msg_box {
-    margin-bottom: 10px;
     color: @second-font-color;
+    margin-bottom: 10px;
 }
 
 .delete_msg_btn {
@@ -77,17 +77,17 @@
 }
 
 .input-msg_box {
-    padding: 20px 35px;
     border-top: 1px solid @second-bg-color;
     background-color: @main-bg-color;
+    padding: 20px 35px;
 }
 
 .input-msg_entry {
     outline: none;
     border: none;
-    box-shadow: none;
-    font-size: 15px;
     color: @main-font-color;
+    font-size: 15px;
+    box-shadow: none;
     background-color: @main-bg-color;
 }
 
@@ -95,4 +95,3 @@
     outline: none;
     box-shadow: none;
 }
-

@@ -1,18 +1,17 @@
 .btn {
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    border-radius: 10px;
-    padding: 8px 0px;
-    border: none;
     outline: none;
-    transition: 0.2s all linear;
     color: @main-font-color;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 0;
+    transition: 0.2s all linear;
 }
 
 .btn--blue {
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     background: @onfocus-color;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .btn--blue:hover {
@@ -31,8 +30,8 @@
 }
 
 .btn--dark-blue {
-    box-shadow: rgba(61, 64, 67, 0.2) 0px 8px 24px;
     background: @second-bg-color;
+    box-shadow: rgba(61, 64, 67, 0.2) 0px 8px 24px;
 }
 
 .btn--dark-blue:hover {
@@ -51,17 +50,17 @@
 }
 
 .clear_search_btn {
-    font-size: 14px;
-    border-radius: 10px;
-    border: none;
     outline: none;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
     background-repeat: no-repeat;
     background-image: url("../img/close.png");
     background-size: 14px 14px;
     background-position: 50% 50%;
-    transition: 0.2s background linear;
     box-shadow: none;
     background-color: @second-bg-color;
+    transition: 0.2s background linear;
 }
 
 .clear_search_btn:hover {
@@ -91,17 +90,28 @@
     color: rgb(167, 188, 255);
 }
 
+.popup-btn {
+    color: @onfocus-color;
+    border: 1px solid @onfocus-color;
+    padding: 3px 5px;
+    transition: all 0.2s linear;
+}
+
+.popup-btn:hover {
+    color: #fff;
+}
+
 .input-msg_send-btn {
-    border-radius: 50%;
+    outline: none;
+    border: none;
+    border-radius: 3px;
     background-image: url("../img/send.png");
     background-size: 25px 25px;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    outline: none;
-    border: none;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    transition: 0.2s all linear;
     background-color: @onfocus-color;
+    transition: 0.2s all linear;
 }
 
 .input-msg_send-btn:hover {

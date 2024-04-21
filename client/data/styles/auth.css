@@ -1,25 +1,22 @@
 .login_menu, .signup_menu {
-    font-family: "Poppins", sans-serif;
-    padding: 40px 70px 50px;
     color: @second-font-color;
     background-color: @main-bg-color;
+    border: 2px solid #fff;
+    padding: 40px 80px;
 }
 
 .auth-menu_title-block {
-    margin-bottom: 30px;
+    margin-bottom: 24px;
 }
 
 .auth-menu_title {
+    color: @main-font-color;
     font-size: 24px;
     font-weight: 600;
-    color: @main-font-color;
 }
 
 .auth-menu_subtitle {
-    margin-top: 5px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    font-weight: 400;
     color: @second-font-color;
+    font-size: 14px;
+    margin: 12px 0 20px;
 }
-

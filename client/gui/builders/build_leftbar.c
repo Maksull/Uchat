@@ -80,7 +80,7 @@ void build_leftbar(GtkWidget *chat_screen)
 
     GtkWidget *create_new_chat_btn = create_create_new_chat_btn();
     GtkWidget *create_chat_label = gtk_label_new("+ New chat");
-    add_class(create_chat_label, "switch_auth_menu_label");
+    add_class(create_chat_label, "popup-btn");
     gtk_container_add(GTK_CONTAINER(create_new_chat_btn), create_chat_label);
 
     gtk_box_pack_start(GTK_BOX(header_block), header_label, FALSE, FALSE, 0);

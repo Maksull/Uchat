@@ -133,14 +133,14 @@ void build_rightbar_chat()
         // Delete chat button
         GtkWidget *delete_chat_btn = create_delete_chat_btn();
         GtkWidget *delete_chat_label = gtk_label_new("Delete chat");
-        add_class(delete_chat_label, "switch_auth_menu_label");
+        add_class(delete_chat_label, "popup-btn");
         gtk_container_add(GTK_CONTAINER(delete_chat_btn), delete_chat_label);
         gtk_box_pack_end(GTK_BOX(chat_header), delete_chat_btn, FALSE, FALSE, 0);
 
         // Change chat name button
         GtkWidget *change_chat_name_btn = create_change_chat_name_btn();
         GtkWidget *change_chat_name_label = gtk_label_new("Change chat name");
-        add_class(change_chat_name_label, "switch_auth_menu_label");
+        add_class(change_chat_name_label, "popup-btn");
         gtk_container_add(GTK_CONTAINER(change_chat_name_btn), change_chat_name_label);
         gtk_box_pack_end(GTK_BOX(chat_header), change_chat_name_btn, FALSE, FALSE, 0);
     }
@@ -149,7 +149,7 @@ void build_rightbar_chat()
         // Leave chat button
         GtkWidget *leave_chat_btn = create_leave_chat_btn();
         GtkWidget *leave_chat_label = gtk_label_new("Leave chat");
-        add_class(leave_chat_label, "switch_auth_menu_label");
+        add_class(leave_chat_label, "popup-btn");
         gtk_container_add(GTK_CONTAINER(leave_chat_btn), leave_chat_label);
         gtk_box_pack_end(GTK_BOX(chat_header), leave_chat_btn, FALSE, FALSE, 0);
     }

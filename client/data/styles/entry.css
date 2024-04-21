@@ -1,22 +1,21 @@
 .input-field {
-    padding: 5px 20px 5px 45px;
-    font-size: 14px;
-    border-radius: 10px;
-    transition: 0.2s all linear;
     outline: none;
-    box-shadow: none;
-    border: 3px solid @second-bg-color;
-    background-color: @second-bg-color;
     color: @second-font-color;
+    font-size: 16px;
+    border: 1px solid @second-bg-color;
+    border-radius: 3px;
+    box-shadow: none;
+    background-color: @second-bg-color;
+    padding: 5px 20px 5px 45px;
+    transition: 0.2s all linear;
 }
 
 .input-field:focus {
     outline: none;
-    box-shadow: none;
-    background-color: rgba(71, 110, 239, 0.1);
-    border-color: rgba(71, 110, 239, 0.1);
-    border-bottom: 3px solid @onfocus-color;
     color: @onfocus-color;
+    box-shadow: none;
+    border: 1px solid @onfocus-color;
+    background-color: rgba(71, 110, 239, 0.1);
     caret-color: @onfocus-color;
 }
 
@@ -70,48 +69,44 @@
 }
 
 .input-field--danger {
+    color: @danger-color;
     background-color: rgba(255,71,87, 0.1);
     border-color: rgba(255,71,87, 0.1);
-    color: @danger-color;
     caret-color: @danger-color;
 }
 
 .input-field--danger:focus {
-    background-color: rgba(255,71,87, 0.1);
-    border-color: rgba(255,71,87, 0.1);
-    border-bottom: 3px solid @danger-color;
     color: @danger-color;
+    background-color: rgba(255,71,87, 0.1);
+    border: 1px solid @danger-color;
     caret-color: @danger-color;
 }
 
-.input-field--success { 
+.input-field--success {
+    color: @success-color;
     background-color: rgba(70,201,58, 0.1);
     border-color: rgba(70,201,58, 0.1);
-    color: @success-color;
     caret-color: @success-color;
 }
 
 .input-field--success:focus {
-    background-color: rgba(70,201,58, 0.1);
-    border-color: rgba(70,201,58, 0.1);
-    border-bottom: 3px solid @success-color;
     color: @success-color;
+    background-color: rgba(70,201,58, 0.1);
+    border-bottom: 1px solid @success-color;
     caret-color: @success-color;
 }
 
 .input-field_title {
-    margin: 0 0 5px 10px;
+    color: @second-font-color;
     font-size: 16px;
     font-weight: 500;
-    color: @second-font-color;
+    margin: 0 0 5px 10px;
 }
 
 .notify-label {
-    font-family: 'Poppins', sans-serif;
-    font-weight: normal;
+    color: @second-font-color;
     font-size: 12px;
     margin: 5px 0 20px 10px;
-    color: @second-font-color;
 }
 
 .notify-label--danger {
