@@ -16,7 +16,8 @@ static void extract_msg_info(cJSON *json, cJSON **msg_id, cJSON **sender_id, cJS
 // Function to add a message to the message list
 t_response_code add_msg_to_msglist(cJSON *json)
 {
-    if (!json) {
+    if (!json)
+    {
         return R_JSON_FAILURE;
     }
 

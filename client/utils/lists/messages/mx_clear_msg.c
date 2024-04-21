@@ -3,7 +3,8 @@
 // Function to clear the memory of a single message object
 static void clear_single_msg(t_msg *msg)
 {
-    if (msg == NULL) {
+    if (msg == NULL)
+    {
         return;
     }
 

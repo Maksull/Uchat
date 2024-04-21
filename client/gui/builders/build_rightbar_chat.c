@@ -125,7 +125,7 @@ void build_rightbar_chat()
 
     // Create and configure the chat header title widget
     GtkWidget *chat_header_title = create_chat_header_title();
-    gtk_box_pack_start(GTK_BOX(chat_header), chat_header_title, false, false, 0);
+    gtk_box_pack_start(GTK_BOX(chat_header), chat_header_title, FALSE, FALSE, 0);
 
     // Add additional buttons based on user permissions in the chat
     if (utils->current_chat->permissions == ADMIN_MEMBER)

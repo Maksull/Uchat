@@ -8,8 +8,8 @@ static void initialize_msg_node(t_msg *new_node, int msg_id, int user_id, const 
     new_node->chat_id = chat_id;
     new_node->sender_id = user_id;
     new_node->sender_name = mx_strdup(user_name); // Duplicate the username string
-    new_node->text = mx_strdup(text); // Duplicate the message text string
-    new_node->date_str = mx_strdup(date_str); // Duplicate the date string
+    new_node->text = mx_strdup(text);             // Duplicate the message text string
+    new_node->date_str = mx_strdup(date_str);     // Duplicate the date string
     new_node->avatar_color = color;
     new_node->avatar_path = NULL;
     new_node->next = NULL;
@@ -20,7 +20,8 @@ t_msg *mx_create_msg(int msg_id, int user_id, const char *user_name, int chat_id
 {
     t_msg *new_node = malloc(sizeof(t_msg)); // Allocate memory for the new message object
 
-    if (new_node == NULL) {
+    if (new_node == NULL)
+    {
         exit(EXIT_FAILURE);
     }
 

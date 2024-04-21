@@ -9,7 +9,7 @@ void build_chat_window()
         gtk_widget_destroy(main_window);
     }
 
-    main_window = create_new_window("UChat", 500, 0, true); // Create a new main window with the title "UChat"
+    main_window = create_new_window("UChat", 500, 0, TRUE); // Create a new main window with the title "UChat"
 
     // Create a new main area widget to hold the chat interface components
     GtkWidget *main_area = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);

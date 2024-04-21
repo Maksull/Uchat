@@ -13,7 +13,8 @@ static void extract_chat_info(cJSON *json, cJSON **chat_id, cJSON **chat_name, c
 // Function to add a chat to the chat list
 t_response_code add_chat_to_chatlist(cJSON *json, t_chat **chat_list, bool is_search)
 {
-    if (!json) {
+    if (!json)
+    {
         return R_JSON_FAILURE;
     }
 

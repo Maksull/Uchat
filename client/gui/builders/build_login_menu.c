@@ -54,7 +54,7 @@ static GtkWidget *create_password_box()
     gtk_widget_set_name(password_field, "password_field");                 // Set name for styling
     add_class(password_field, "input-field");                              // Add class for styling
     add_class(password_field, "input-field--password");                    // Add class for styling
-    gtk_entry_set_visibility(GTK_ENTRY(password_field), false);            // Hide password characters
+    gtk_entry_set_visibility(GTK_ENTRY(password_field), FALSE);            // Hide password characters
 
     GtkWidget *password_notify_label = gtk_label_new(" ");               // Create notification label for password
     gtk_widget_set_halign(password_notify_label, GTK_ALIGN_START);       // Set horizontal alignment
@@ -121,7 +121,7 @@ void build_login_menu()
     GtkWidget *main_area = get_widget_by_name_r(main_window, "main_area"); // Get the main_area widget from the main window
 
     GtkWidget *login_menu = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);   // Create a vertical box for login menu
-    gtk_box_pack_start(GTK_BOX(main_area), login_menu, true, false, 0); // Pack login_menu into main_area
+    gtk_box_pack_start(GTK_BOX(main_area), login_menu, TRUE, FALSE, 0); // Pack login_menu into main_area
     gtk_widget_set_name(login_menu, "login_menu");                      // Set name for styling
     add_class(login_menu, "login_menu");                                // Add class for styling
 
