@@ -95,7 +95,7 @@ void build_leftbar(GtkWidget *chat_screen)
     GtkWidget *clear_field_btn = create_clear_field_btn(search_field);
 
     gtk_box_pack_start(GTK_BOX(search_block), search_field, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(search_block), clear_field_btn, false, false, 0);
+    gtk_box_pack_start(GTK_BOX(search_block), clear_field_btn, FALSE, FALSE, 0);
 
     // Build and pack the chat list into the left sidebar
     GtkWidget *scrollable_wrap = gtk_scrolled_window_new(NULL, NULL);
@@ -149,6 +149,6 @@ void build_leftbar(GtkWidget *chat_screen)
     // Pack the header block, search block, scrollable_wrap (chat list), and leftbar_footer into the left sidebar
     gtk_box_pack_start(GTK_BOX(left_bar), header_block, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(left_bar), search_block, FALSE, FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(left_bar), scrollable_wrap, true, true, 0);
-    gtk_box_pack_start(GTK_BOX(left_bar), leftbar_footer, false, false, 0);
+    gtk_box_pack_start(GTK_BOX(left_bar), scrollable_wrap, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(left_bar), leftbar_footer, FALSE, FALSE, 0);
 }

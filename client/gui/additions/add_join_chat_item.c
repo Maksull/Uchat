@@ -102,16 +102,16 @@ void add_join_chat_item(int id, char *chat_name, t_avatar_color avatar_color)
     GtkWidget *chatlist_item = create_chat_item_box(id, event_box);
 
     // Add the chat ID as a hidden label
-    GtkWidget *chatlist_item_id = create_hidden_chat_id_label(id, chatlist_item);
+    create_hidden_chat_id_label(id, chatlist_item);
 
     // Create and add the avatar drawing area
-    GtkWidget *avatar = create_and_pack_avatar(chatlist_item, avatar_color);
+    create_and_pack_avatar(chatlist_item, avatar_color);
 
     // Create the text block for chat item details
     GtkWidget *chatlist_item_text = create_and_pack_text_block(chatlist_item);
 
     // Add the chat name as a label to the text block
-    GtkWidget *chatlist_item_title = create_and_pack_chat_name_label(chat_name, chatlist_item_text);
+    create_and_pack_chat_name_label(chat_name, chatlist_item_text);
 
     gtk_widget_show_all(event_box); // Show all widgets within the event box
 }

@@ -179,7 +179,7 @@ void add_chatlist_item(int id, char *chat_name, t_avatar_color avatar_color)
     GtkWidget *chatlist_item_text = create_text_block_widget(chatlist_item);
 
     // Create a label to display the chat name
-    GtkWidget *chatlist_item_title = create_chat_name_label(chat_name, chatlist_item_text);
+    create_chat_name_label(chat_name, chatlist_item_text);
 
     // Initialize variables for message, time, and notification labels
     GtkWidget *chatlist_item_message = NULL, *chatlist_item_time = NULL, *chatlist_item_notify = NULL;
