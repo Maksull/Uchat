@@ -6,12 +6,12 @@ static GtkWidget *create_title_box()
     GtkWidget *title_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     add_class(title_box, "auth-menu_title-block"); // Add class for styling
 
-    GtkWidget *login_menu_title = gtk_label_new("Welcome back!"); // Create title label
+    GtkWidget *login_menu_title = gtk_label_new("Glad to see You!"); // Create title label
     gtk_widget_set_halign(login_menu_title, GTK_ALIGN_CENTER);    // Set horizontal alignment
     gtk_widget_set_valign(login_menu_title, GTK_ALIGN_CENTER);    // Set vertical alignment
     add_class(login_menu_title, "auth-menu_title");               // Add class for styling
 
-    GtkWidget *login_menu_subtitle = gtk_label_new("We're so excited to see you again!"); // Create subtitle label
+    GtkWidget *login_menu_subtitle = gtk_label_new("We have missed You!"); // Create subtitle label
     gtk_widget_set_halign(login_menu_subtitle, GTK_ALIGN_CENTER);                         // Set horizontal alignment
     gtk_widget_set_valign(login_menu_subtitle, GTK_ALIGN_CENTER);                         // Set vertical alignment
     add_class(login_menu_subtitle, "auth-menu_subtitle");                                 // Add class for styling
@@ -90,15 +90,6 @@ static GtkWidget *create_login_button_box()
     return login_btn_box;
 }
 
-// Function definition to create the text box
-static GtkWidget *create_text_box()
-{
-    GtkWidget *text_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    GtkWidget *label = gtk_label_new("Don't have an account yet? "); // Create label
-    gtk_box_pack_start(GTK_BOX(text_box), label, FALSE, FALSE, 0);   // Pack label into text box
-    return text_box;
-}
-
 // Function definition to create the signup event box
 static GtkWidget *create_signup_event_box()
 {
@@ -108,7 +99,7 @@ static GtkWidget *create_signup_event_box()
     g_signal_connect(G_OBJECT(event_switch_to_signup), "leave-notify-event", G_CALLBACK(on_crossing), NULL);           // Connect signal for mouse leave event
     g_signal_connect(G_OBJECT(event_switch_to_signup), "button_press_event", G_CALLBACK(switch_to_signup_menu), NULL); // Connect signal for button press event
 
-    GtkWidget *signup_label = gtk_label_new("Register");                    // Create label
+    GtkWidget *signup_label = gtk_label_new("Don't have an account yet?");  // Create label
     add_class(signup_label, "switch_auth_menu_label");                      // Add class for styling
     gtk_container_add(GTK_CONTAINER(event_switch_to_signup), signup_label); // Add label to event box
 
@@ -141,13 +132,11 @@ void build_login_menu()
     GtkWidget *login_btn_box = create_login_button_box();
     gtk_box_pack_start(GTK_BOX(login_menu), login_btn_box, FALSE, FALSE, 0);
 
-    // Create the text box and pack it into login_menu
-    GtkWidget *text_box = create_text_box();
-    gtk_box_pack_start(GTK_BOX(login_menu), text_box, FALSE, FALSE, 0);
-
     // Create the signup event box and pack it into text_box
+    GtkWidget *text_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(login_menu), text_box, FALSE, FALSE, 0);
     GtkWidget *signup_event_box = create_signup_event_box();
-    gtk_box_pack_start(GTK_BOX(text_box), signup_event_box, FALSE, FALSE, 0);
+    gtk_box_pack_end(GTK_BOX(text_box), signup_event_box, FALSE, FALSE, 0);
 
     gtk_widget_show_all(login_menu); // Show all widgets in the login menu)
 }
