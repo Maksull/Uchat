@@ -39,7 +39,7 @@ $(CLIENT):
 
 font:
 	@mkdir -p ${HOME}/Library/Fonts
-	@cp client/data/fonts/Poppins/* ${HOME}/Library/Fonts/
+	@cp client/data/fonts/Montserrat/* ${HOME}/Library/Fonts/
 
 clean:
 	rm -f $(OBJS)
