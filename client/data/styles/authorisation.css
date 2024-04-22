@@ -1,6 +1,6 @@
 .login_menu, .signup_menu {
-    color: @second-font-color;
-    background-color: @main-bg-color;
+    color: #8ab68b;
+    background-color: #2b4f38;
     padding: 40px 80px;
 }
 
@@ -9,13 +9,13 @@
 }
 
 .auth-menu_title {
-    color: @main-font-color;
+    color: #f1f2f3;
     font-size: 24px;
     font-weight: 600;
 }
 
 .auth-menu_subtitle {
-    color: @second-font-color;
+    color: #8ab68b;
     font-size: 14px;
     margin: 12px 0 20px;
 }

@@ -1,38 +1,38 @@
 .chat_header {
-    color: @main-font-color;
-    background-color: @main-bg-color;
-    border-bottom: 1px solid @second-bg-color;
+    color: #f1f2f3;
+    background-color: #2b4f38;
+    border-bottom: 1px solid #355c45;
     padding: 25px 35px 25px 35px;
 }
 
 .chat_title {
-    color: @main-font-color;
+    color: #f1f2f3;
     font-size: 16px;
     font-weight: 500;
     margin-left: 10px;
 }
 
 .messagelist {
-    background-color: @main-bg-color;
+    background-color: #2b4f38;
     padding: 20px 35px 0;
 }
 
 .right_message {
-    color: @main-font-color;
+    color: #f1f2f3;
     border-radius: 3px 0 3px 3px;
-    background-color: @onfocus-color;
+    background-color: rgb(87, 173, 104);
     padding: 10px 15px;
 }
 
 .left_message {
-    color: @main-font-color;
+    color: #f1f2f3;
     border-radius: 0 3px 3px 3px;
-    background-color: @second-bg-color;
+    background-color: #355c45;
     padding: 15px;
 }
 
 .msg_box {
-    color: @second-font-color;
+    color: #8ab68b;
     margin-bottom: 10px;
 }
 
@@ -41,7 +41,6 @@
     background-size: 12px 12px;
     background-position: 4px 5px;
     background-repeat: no-repeat;
-    padding: 0;
 }
 
 .delete_msg_btn:hover {
@@ -53,7 +52,6 @@
     background-size: 13px 13px;
     background-position: 4px 4px;
     background-repeat: no-repeat;
-    padding: 0;
 }
 
 .edit_msg_btn:hover {
@@ -77,18 +75,18 @@
 }
 
 .input-msg_box {
-    border-top: 1px solid @second-bg-color;
-    background-color: @main-bg-color;
+    border-top: 1px solid #355c45;
+    background-color: rgba(255, 255, 255, .1);
     padding: 20px 35px;
 }
 
 .input-msg_entry {
     outline: none;
     border: none;
-    color: @main-font-color;
+    color: #f1f2f3;
     font-size: 15px;
     box-shadow: none;
-    background-color: @main-bg-color;
+    background-color: transparent;
 }
 
 .input-msg_entry:focus {

@@ -1,22 +1,22 @@
 .input-field {
     outline: none;
-    color: @second-font-color;
+    color: #8ab68b;
     font-size: 16px;
-    border: 1px solid @second-bg-color;
+    border: 1px solid #355c45;
     border-radius: 3px;
     box-shadow: none;
-    background-color: @second-bg-color;
+    background-color: #355c45;
     padding: 5px 20px 5px 45px;
     transition: 0.2s all linear;
 }
 
 .input-field:focus {
     outline: none;
-    color: @onfocus-color;
+    color: rgb(87, 173, 104);
     box-shadow: none;
-    border: 1px solid @onfocus-color;
+    border: 1px solid rgb(87, 173, 104);
     background-color: rgba(71, 110, 239, 0.1);
-    caret-color: @onfocus-color;
+    caret-color: rgb(87, 173, 104);
 }
 
 .input-field--search {
@@ -69,50 +69,50 @@
 }
 
 .input-field--danger {
-    color: @danger-color;
+    color: rgb(255, 71, 87);
     background-color: rgba(255,71,87, 0.1);
     border-color: rgba(255,71,87, 0.1);
-    caret-color: @danger-color;
+    caret-color: rgb(255, 71, 87);
 }
 
 .input-field--danger:focus {
-    color: @danger-color;
+    color: rgb(255, 71, 87);
     background-color: rgba(255,71,87, 0.1);
-    border: 1px solid @danger-color;
-    caret-color: @danger-color;
+    border: 1px solid rgb(255, 71, 87);
+    caret-color: rgb(255, 71, 87);
 }
 
 .input-field--success {
-    color: @success-color;
+    color: rgb(70, 201, 58);
     background-color: rgba(70,201,58, 0.1);
     border-color: rgba(70,201,58, 0.1);
-    caret-color: @success-color;
+    caret-color: rgb(70, 201, 58);
 }
 
 .input-field--success:focus {
-    color: @success-color;
+    color: rgb(70, 201, 58);
     background-color: rgba(70,201,58, 0.1);
-    border-bottom: 1px solid @success-color;
-    caret-color: @success-color;
+    border-bottom: 1px solid rgb(70, 201, 58);
+    caret-color: rgb(70, 201, 58);
 }
 
 .input-field_title {
-    color: @second-font-color;
+    color: #8ab68b;
     font-size: 16px;
     font-weight: 500;
     margin: 0 0 5px 10px;
 }
 
 .notify-label {
-    color: @second-font-color;
+    color: #8ab68b;
     font-size: 12px;
     margin: 5px 0 20px 10px;
 }
 
 .notify-label--danger {
-    color: @danger-color;
+    color: rgb(255, 71, 87);
 }
 
 .notify-label--success {
-    color: @success-color;
+    color: rgb(70, 201, 58);
 }

@@ -1,6 +1,6 @@
 .leftbar {
-    background-color: @main-bg-color;
-    border-right: 1px solid @second-bg-color;
+    background-color: #2b4f38;
+    border-right: 1px solid #355c45;
 }
 
 .leftbar_header_block {
@@ -9,7 +9,7 @@
 }
 
 .leftbar_header_label {
-    color: @main-font-color;
+    color: #f1f2f3;
     font-size: 32px;
     font-weight: 600;
 }
@@ -34,7 +34,7 @@
 }
 
 .leftbar_footer_username {
-    color: @second-font-color;
+    color: #8ab68b;
     font-size: 14px;
 }
 
@@ -47,60 +47,33 @@
 
 /* chat list item */
 .chatlist_item {
-    color: @second-font-color;
-    background-color: #2f334d;
+    color: #8ab68b;
+    background-color: #384d2f;
     border-radius: 3px;
     padding: 15px 18px;
 }
 
 .chatlist_item_wrap:hover .chatlist_item{
-    background-color: rgba(71, 110, 239, 0.3);
+    background-color: rgba(113, 239, 71, 0.3);
     transition: 0.2s background linear;
 }
 
 .chatlist_item_wrap.active .chatlist_item{
-    background-color: @onfocus-color;
+    background-color: rgb(87, 173, 104);
     transition: 0.2s background linear;
 }
 
 .chatlist_item_wrap.active .chatlist_item_message{
-    color: @main-font-color;
+    color: #f1f2f3;
     transition: 0.2s color linear;
 }
 
 .chatlist_item_wrap.active .chatlist_item_time{
-    color: @main-font-color;
+    color: #f1f2f3;
     transition: 0.2s color linear;
 }
 
 .chatlist_item_avatar {
-    /* background-color: yellow; */
-    /*YELLOW*/
-    /* background-color: rgb(255, 235, 59);  */
-    /*LIME*/
-    /* background-color: rgb(205, 220, 57); */
-    /*CYAN*/ 
-    /* background-color: rgb(0, 188, 212);  */
-    /*ORANGE*/
-    /* background-color: rgb(255, 152, 0);  */
-    /*GREEN*/
-    /* background-color: rgb(76, 175, 80);  */
-    /*PINK*/
-    /* background-color: rgb(233, 30, 99);  */
-    /*AMBER*/
-    /* background-color: rgb(255, 193, 7);  */
-    /*DEEP PURPLE*/
-    /* background-color: rgb(103, 58, 183);  */
-    /* LIGHT GREEN */
-    /* background-color: rgb(139, 195, 74); */
-    /* PURPLE */
-    /* background-color: rgb(156, 39, 176); */
-    /* background-image: url("../img/user-avatar4.png"); */
-    /* background-size: 25px 25px; */
-    /* background-size: contain;
-    background-position: 50% 50%;
-    background-repeat: no-repeat; */
-
     border-radius: 3px;
 }
 
@@ -109,32 +82,32 @@
 }
 
 .chatlist_item_title {
-    color: @main-font-color;
+    color: #f1f2f3;
     font-size: 16px;
     font-weight: 500;
 }
 
 .chatlist_item_message {
-    color: @second-font-color;
+    color: #8ab68b;
 }
 
 .chatlist_item_info {
 }
 
 .chatlist_item_time {
-    color: @second-font-color;
+    color: #8ab68b;
     margin-bottom: 15px;
 }
 
 .chatlist_item_notify {
-    color: @second-bg-color;
+    color: #355c45;
     font-weight: 500;
     border-radius: 3px;
     opacity: 0;
 }
 
 .chatlist_item_notify--visible {
-    color: @main-font-color;
+    color: #f1f2f3;
     background-color: #f84469;
     opacity: 1;
     transition: 0.2s all linear;

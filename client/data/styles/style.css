@@ -1,30 +1,29 @@
-@import url("vars.css");
-@import url("entry.css");
-@import url("button.css");
-@import url("auth.css");
-@import url("popup.css");
-@import url("leftbar.css");
+@import url("inputs.css");
+@import url("buttons.css");
+@import url("authorisation.css");
+@import url("windows.css");
+@import url("menu.css");
 @import url("chat.css");
 
 * {
     font-family: 'Poppins', sans-serif;
+    padding: 0;
+    margin: 0;
 }
 
 window {
-    color: @main-font-color;
-    background-color: @main-bg-color;
+    color: #f1f2f3;
+    background-color: #2b4f38;
 }
 
 
 .chatscreen_notify {
-    color: @main-font-color;
+    color: #f1f2f3;
 }
 
 .hidden {
     font-size: 0;
     opacity: 0;
-    padding: 0;
-    margin: 0;
 }
 
 .menubar {
@@ -42,8 +41,8 @@ window {
     outline: none;
     border: none;
     box-shadow: none;
-    color: @main-font-color;
-    background-color: @second-bg-color;
+    color: #f1f2f3;
+    background-color: #355c45;
     padding: 10px;
 }
 
@@ -51,9 +50,9 @@ window {
     font-size: 14px;
     font-weight: 500;
     padding: 3px 0;
-    color: @main-font-color;
+    color: #f1f2f3;
 }
 
 .menubar_menu *:hover {
-    background-color: @main-bg-color;
+    background-color: #2b4f38;
 }
