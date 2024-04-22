@@ -113,7 +113,7 @@ static GtkWidget *create_signup_notify_label()
 static GtkWidget *create_event_switch_to_login()
 {
     GtkWidget *event_switch_to_login = gtk_event_box_new();
-    gtk_widget_set_halign(event_switch_to_login, GTK_ALIGN_START);
+    gtk_widget_set_halign(event_switch_to_login, GTK_ALIGN_END);
     add_class(event_switch_to_login, "event_switch_auth_menu");
     g_signal_connect(G_OBJECT(event_switch_to_login), "enter-notify-event", G_CALLBACK(on_crossing), NULL);
     g_signal_connect(G_OBJECT(event_switch_to_login), "leave-notify-event", G_CALLBACK(on_crossing), NULL);

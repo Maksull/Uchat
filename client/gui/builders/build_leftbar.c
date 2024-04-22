@@ -79,7 +79,7 @@ void build_leftbar(GtkWidget *chat_screen)
     add_class(header_label, "leftbar_header_label");
 
     GtkWidget *create_new_chat_btn = create_create_new_chat_btn(chat_screen);
-    GtkWidget *create_chat_label = gtk_label_new("+ New chat");
+    GtkWidget *create_chat_label = gtk_label_new("Create chat");
     add_class(create_chat_label, "popup-btn");
     gtk_container_add(GTK_CONTAINER(create_new_chat_btn), create_chat_label);
 
