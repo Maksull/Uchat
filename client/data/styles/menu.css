@@ -1,6 +1,6 @@
 .leftbar {
     background-color: #2b4f38;
-    border-right: 1px solid #355c45;
+    border-right: 4px solid #355c45;
 }
 
 .leftbar_header_block {
@@ -19,10 +19,6 @@
     padding: 0 30px;
     margin-bottom: 10px;
 }
-
-/* .scrollable_wrap {
-    background-color: lime;
-} */
 
 .chatlist {
     padding: 0 30px;
@@ -78,24 +74,23 @@
 }
 
 .chatlist_item_text {
-    margin-left: 10px;
+    margin-left: 16px;
 }
 
 .chatlist_item_title {
     color: #f1f2f3;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
+    margin-bottom: 8px;
 }
 
 .chatlist_item_message {
     color: #8ab68b;
 }
 
-.chatlist_item_info {
-}
-
 .chatlist_item_time {
     color: #8ab68b;
+    font-style: italic;
     margin-bottom: 15px;
 }
 
