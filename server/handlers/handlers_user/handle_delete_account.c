@@ -9,6 +9,7 @@ static int delete_user_messages(t_server_utils *utils)
     if ((error_code = db_delete_messages(utils->user->user_id)) != R_SUCCESS)
     {
         send_server_response(utils->ssl, error_code, REQ_DELETE_ACCOUNT);
+
         return error_code;
     }
 
@@ -24,6 +25,7 @@ static int delete_user_account(t_server_utils *utils)
     if ((error_code = db_delete_user(utils->user->user_id)) != R_SUCCESS)
     {
         send_server_response(utils->ssl, error_code, REQ_DELETE_ACCOUNT);
+
         return error_code;
     }
 
@@ -31,6 +33,7 @@ static int delete_user_account(t_server_utils *utils)
     if ((error_code = db_delete_member_by_user_id(utils->user->user_id)) != R_SUCCESS)
     {
         send_server_response(utils->ssl, error_code, REQ_DELETE_ACCOUNT);
+
         return error_code;
     }
 
@@ -48,6 +51,7 @@ void handle_delete_account(const cJSON *chat_info, t_server_utils *utils)
     if (init_db() != 0)
     {
         send_server_response(utils->ssl, R_DB_FAILURE, REQ_DELETE_ACCOUNT);
+
         return;
     }
 
@@ -55,6 +59,7 @@ void handle_delete_account(const cJSON *chat_info, t_server_utils *utils)
     if (delete_user_account(utils) != R_SUCCESS)
     {
         client_cleanup(utils, false);
+        
         return;
     }
 

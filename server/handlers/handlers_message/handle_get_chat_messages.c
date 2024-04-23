@@ -6,6 +6,7 @@ static int initialize_database(t_server_utils *utils, t_request_type request_typ
     if (init_db() != 0)
     {
         send_server_response(utils->ssl, R_DB_FAILURE, request_type);
+        
         return 1; // Error
     }
     return 0; // Success

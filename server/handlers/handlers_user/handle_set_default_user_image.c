@@ -8,6 +8,7 @@ static FILE *open_image_file(const char *path)
     {
         logger("Cannot open image file\n", ERROR_LOG);
     }
+    
     return fp;
 }
 
@@ -21,6 +22,7 @@ static int get_image_file_length(FILE *fp)
         logger("ftell() error\n", ERROR_LOG);
     }
     fseek(fp, 0, SEEK_SET);
+
     return flen;
 }
 
@@ -31,6 +33,7 @@ static char *read_image_data(FILE *fp, int flen)
     if (!data)
     {
         logger("Memory allocation failed\n", ERROR_LOG);
+
         return NULL;
     }
 
@@ -39,6 +42,7 @@ static char *read_image_data(FILE *fp, int flen)
     {
         logger("Failed to read image data\n", ERROR_LOG);
         free(data);
+
         return NULL;
     }
 
@@ -56,8 +60,10 @@ static sqlite3 *open_database()
         sprintf(error, "Cannot open database: %s\n", sqlite3_errmsg(db));
         logger(error, ERROR_LOG);
         sqlite3_close(db);
+
         return NULL;
     }
+
     return db;
 }
 
@@ -74,6 +80,7 @@ static int write_image_to_database(sqlite3 *db, int id, const char *data, int si
         sprintf(error, "Cannot prepare statement: %s\n", sqlite3_errmsg(db));
         logger(error, ERROR_LOG);
         sqlite3_free(sql);
+
         return rc;
     }
 
@@ -86,11 +93,13 @@ static int write_image_to_database(sqlite3 *db, int id, const char *data, int si
         logger(error, ERROR_LOG);
         sqlite3_finalize(pStmt);
         sqlite3_free(sql);
+
         return rc;
     }
 
     sqlite3_finalize(pStmt);
     sqlite3_free(sql);
+
     return rc;
 }
 
@@ -107,6 +116,7 @@ void handle_set_default_user_image(const char *path, int id)
     if (flen < 0)
     {
         fclose(fp);
+
         return;
     }
 
@@ -121,6 +131,7 @@ void handle_set_default_user_image(const char *path, int id)
     if (!db)
     {
         free(data);
+
         return;
     }
 
@@ -128,6 +139,7 @@ void handle_set_default_user_image(const char *path, int id)
     {
         sqlite3_close(db);
         free(data);
+
         return;
     }
 

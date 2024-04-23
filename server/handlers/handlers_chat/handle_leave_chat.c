@@ -41,6 +41,7 @@ void handle_leave_chat(const cJSON *chat_info, t_server_utils *utils)
     if (!cJSON_IsString(chat_name))
     {
         send_server_response(utils->ssl, R_JSON_FAILURE, REQ_LEAVE_CHAT); // Send response indicating JSON failure
+
         return;
     }
 
@@ -49,6 +50,7 @@ void handle_leave_chat(const cJSON *chat_info, t_server_utils *utils)
     if (chat_id == -1)
     {
         send_server_response(utils->ssl, R_CHAT_NOENT, REQ_LEAVE_CHAT); // Send response indicating chat does not exist
+        
         return;
     }
 

@@ -50,6 +50,7 @@ void handle_edit_username(const cJSON *user_info, t_server_utils *utils)
     if (init_db() != 0)
     {
         send_server_response(utils->ssl, R_DB_FAILURE, REQ_EDIT_USERNAME);
+
         return;
     }
 
@@ -58,6 +59,7 @@ void handle_edit_username(const cJSON *user_info, t_server_utils *utils)
     if (validity_check_result != R_SUCCESS)
     {
         send_server_response(utils->ssl, validity_check_result, REQ_EDIT_USERNAME);
+        
         return;
     }
 
@@ -65,6 +67,7 @@ void handle_edit_username(const cJSON *user_info, t_server_utils *utils)
     if (modify_username(user_info, utils) != R_SUCCESS)
     {
         send_server_response(utils->ssl, R_DB_FAILURE, REQ_EDIT_USERNAME);
+
         return;
     }
 

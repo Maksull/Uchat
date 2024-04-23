@@ -61,6 +61,7 @@ static t_response_code set_user_by_username(const char *username, const char *pa
     {
         // If password does not match, clear user object and return invalid password error code
         mx_clear_user(&utils->user);
+        
         return R_INVALID_PASS;
     }
 
@@ -86,6 +87,7 @@ void handle_user_login(const cJSON *user_info, t_server_utils *utils)
     {
         // If database initialization fails, send database failure response and return
         send_server_response(utils->ssl, R_DB_FAILURE, REQ_USR_LOGIN); // Send database failure response
+
         return;                                                        // Return from function
     }
 
@@ -98,6 +100,7 @@ void handle_user_login(const cJSON *user_info, t_server_utils *utils)
     {
         // If username or password is not a string, send JSON failure response and return
         send_server_response(utils->ssl, R_JSON_FAILURE, REQ_USR_LOGIN); // Send JSON failure response
+
         return;
     }
 

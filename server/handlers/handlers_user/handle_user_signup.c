@@ -33,6 +33,7 @@ void handle_user_signup(const cJSON *user_info, t_server_utils *utils)
     {
         // If adding user to the database fails, send corresponding error response and return
         send_server_response(utils->ssl, error_code, REQ_USR_SIGNUP);
+        
         return;
     }
 

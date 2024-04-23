@@ -10,6 +10,7 @@ sqlite3 *open_db()
     {
         // If opening the database fails, log the error message and return NULL
         logger(strerror(errno), ERROR_LOG);
+        
         return NULL;
     }
 

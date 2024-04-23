@@ -6,6 +6,7 @@ static int initialize_database(t_server_utils *utils)
     if (init_db() != 0)
     {
         send_server_response(utils->ssl, R_DB_FAILURE, REQ_DELETE_MESSAGE);
+        
         return 1; // Error
     }
 
@@ -19,6 +20,7 @@ static int delete_message_from_database(const cJSON *message_info, t_server_util
     if ((resp_code = db_delete_message(message_info, utils)) != R_SUCCESS)
     {
         send_server_response(utils->ssl, resp_code, REQ_DELETE_MESSAGE);
+
         return 1; // Error
     }
 

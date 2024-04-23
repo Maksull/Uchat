@@ -83,6 +83,7 @@ void handle_join_chat(const cJSON *chat_info, t_server_utils *utils)
     if (chat_id == -1)
     {
         send_server_response(utils->ssl, R_CHAT_NOENT, REQ_JOIN_CHAT); // Send response indicating chat does not exist
+        
         return;
     }
 

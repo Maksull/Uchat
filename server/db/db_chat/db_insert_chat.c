@@ -27,6 +27,7 @@ t_response_code insert_chat_into_db(const char *chat_name, int date, int avatar_
 // Original function refactored
 t_response_code db_insert_chat(const char *chat_name, int date, int avatar_color)
 {
+    // Call the internal function to insert the chat into the database
     t_response_code response = insert_chat_into_db(chat_name, date, avatar_color);
 
     return response;

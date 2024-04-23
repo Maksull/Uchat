@@ -37,5 +37,6 @@ int init_server_socket(struct sockaddr *server_address, socklen_t address_size)
     int server_socket = create_tcp_socket();
     bind_socket(server_socket, server_address, address_size);
     start_listening(server_socket);
+    
     return server_socket;
 }

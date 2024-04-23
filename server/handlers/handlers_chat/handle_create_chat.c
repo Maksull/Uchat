@@ -94,6 +94,7 @@ void handle_create_chat(const cJSON *chat_info, t_server_utils *utils)
     if (db_get_chats_total(utils->user->user_id) >= MAX_CHATS_TOTAL)
     {
         send_server_response(utils->ssl, R_CHATS_TOTAL_REACHED, REQ_CREATE_CHAT); // Send response indicating maximum chats reached
+        
         return;
     }
 

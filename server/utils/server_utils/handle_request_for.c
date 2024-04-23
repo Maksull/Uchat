@@ -23,6 +23,7 @@ static t_request_type handle_user_logout_request(cJSON *json, t_server_utils *ut
 {
     t_request_type type = handle_user_logout(json, utils);
     cJSON_Delete(json);
+    
     return type;
 }
 
@@ -43,6 +44,7 @@ t_request_type handle_request_for(const char *request, t_server_utils *utils)
     if (json == NULL)
     {
         log_json_error();
+
         return -1;
     }
 

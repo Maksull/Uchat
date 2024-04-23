@@ -11,6 +11,7 @@ static int modify_password(const cJSON *pass_info, t_server_utils *utils)
     if (error_code != R_SUCCESS)
     {
         send_server_response(utils->ssl, error_code, REQ_EDIT_PASSWORD);
+
         return error_code;
     }
 
@@ -28,6 +29,7 @@ static int check_password_validity(const cJSON *pass_info, t_server_utils *utils
     if (!cJSON_IsString(new_pass) || !cJSON_IsString(old_pass))
     {
         send_server_response(utils->ssl, R_JSON_FAILURE, REQ_EDIT_PASSWORD);
+
         return R_JSON_FAILURE;
     }
 
@@ -35,6 +37,7 @@ static int check_password_validity(const cJSON *pass_info, t_server_utils *utils
     if (strcmp(utils->user->password, old_pass->valuestring) != 0)
     {
         send_server_response(utils->ssl, R_INVALID_PASS, REQ_EDIT_PASSWORD);
+
         return R_INVALID_PASS;
     }
 
@@ -42,6 +45,7 @@ static int check_password_validity(const cJSON *pass_info, t_server_utils *utils
     if (!is_strlen_valid(new_pass->valuestring, MIN_PASS_INPUT_LEN, MAX_PASS_INPUT_LEN))
     {
         send_server_response(utils->ssl, R_PASS_LEN_INVALID, REQ_EDIT_PASSWORD);
+
         return R_PASS_LEN_INVALID;
     }
 
@@ -56,6 +60,7 @@ void handle_edit_password(const cJSON *pass_info, t_server_utils *utils)
     if (init_db() != 0)
     {
         send_server_response(utils->ssl, R_DB_FAILURE, REQ_EDIT_PASSWORD);
+        
         return;
     }
 

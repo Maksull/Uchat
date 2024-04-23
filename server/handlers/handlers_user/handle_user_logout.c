@@ -26,6 +26,7 @@ static void log_logout_event(t_server_utils *utils)
 static t_request_type perform_client_cleanup(t_server_utils *utils, int is_client_exit)
 {
     client_cleanup(utils, is_client_exit);
+
     return is_client_exit ? REQ_CLIENT_EXIT : REQ_USR_LOGOUT;
 }
 
@@ -36,9 +37,11 @@ t_request_type handle_user_logout(const cJSON *logout_info, t_server_utils *util
     if (is_client_exit < 0)
     {
         send_server_response(utils->ssl, R_JSON_FAILURE, REQ_USR_LOGOUT);
+
         return REQ_USR_LOGOUT;
     }
 
     log_logout_event(utils);
+    
     return perform_client_cleanup(utils, is_client_exit);
 }

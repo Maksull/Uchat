@@ -10,6 +10,7 @@ t_response_code modify_chat_name_in_db(int chat_id, const char *new_name)
         return R_CHAT_EXISTS;
     }
 
+    // Construct the SQL query to update the name of the chat
     char query[QUERY_LEN];
     sprintf(query, "UPDATE `chats` SET `name` = '%s' WHERE `id` = '%d'", new_name, chat_id);
 
@@ -21,10 +22,10 @@ t_response_code modify_chat_name_in_db(int chat_id, const char *new_name)
 
     return R_SUCCESS;
 }
-
 // Original function refactored
 t_response_code db_modify_chat_name(int chat_id, const char *new_name)
 {
+    // Call the internal function to modify the chat name in the database
     t_response_code response = modify_chat_name_in_db(chat_id, new_name);
 
     return response;

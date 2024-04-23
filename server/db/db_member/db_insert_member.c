@@ -40,6 +40,7 @@ int db_insert_member(const char *chat_name, t_member_type member_type, t_server_
     {
         return R_DB_FAILURE; // Return failure code if chat ID retrieval fails
     }
+    
     int user_id = utils->user->user_id;
 
     return insert_member(user_id, chat_id, member_type);
