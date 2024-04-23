@@ -34,7 +34,6 @@ t_chat *handle_search_chats_req(const char *search_str)
         // Log error and free memory
         logger(get_res_str(error_code), ERROR_LOG);
         utils->is_suspended = false;
-        
         return NULL;
     }
 
