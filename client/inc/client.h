@@ -358,7 +358,6 @@ gboolean draw_chat_avatar(GtkWidget *widget, cairo_t *cr, gpointer data);
 
 void build_change_password_window(GtkWidget *widget, gpointer data);
 void build_change_login_window(GtkWidget *widget, gpointer data);
-void build_change_avatar_window(GtkWidget *widget, gpointer data);
 void build_change_chat_name_window(GtkWidget *widget, gpointer data);
 
 void leave_chat_btn_click(GtkWidget *widget, gpointer data);
@@ -386,7 +385,6 @@ void scroll_to_end(GtkWidget *widget, gpointer data);
 void send_button_click(GtkWidget *widget, gpointer new_message_field);
 
 void build_found_chats(t_chat *chat_list);
-void change_avatar_btn_click(GtkWidget *widget, gpointer data);
 void change_chat_name_btn_click(GtkWidget *widget, gpointer data);
 void change_login_btn_click(GtkWidget *widget, gpointer data);
 void change_password_btn_click(GtkWidget *widget, gpointer data);
