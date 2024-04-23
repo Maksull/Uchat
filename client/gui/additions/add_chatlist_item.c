@@ -101,7 +101,6 @@ static GtkWidget *create_info_block_widget(GtkWidget *chatlist_item)
 {
     GtkWidget *chatlist_item_info = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_widget_set_halign(GTK_WIDGET(chatlist_item_info), GTK_ALIGN_END);
-    // gtk_widget_set_valign(GTK_WIDGET(chatlist_item_info), GTK_ALIGN_END);
     gtk_box_pack_end(GTK_BOX(chatlist_item), chatlist_item_info, FALSE, FALSE, 0);
     add_class(chatlist_item_info, "chatlist_item_info");
 

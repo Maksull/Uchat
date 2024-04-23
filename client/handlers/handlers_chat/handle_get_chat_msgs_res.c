@@ -17,15 +17,16 @@ t_response_code handle_get_chat_msgs_res(const char *response_str)
     if (error_code != R_SUCCESS)
     {
         cJSON_Delete(json);
+
         return error_code;
     }
 
     // Get the messages array from JSON
     cJSON *msg_array = cJSON_GetObjectItemCaseSensitive(json, "messages");
+    cJSON_Delete(json);
     // Check if it's an array
     if (!cJSON_IsArray(msg_array))
     {
-        cJSON_Delete(json);
         return R_JSON_FAILURE;
     }
 
@@ -37,11 +38,9 @@ t_response_code handle_get_chat_msgs_res(const char *response_str)
         // Add message to message list
         if ((error_code = add_msg_to_msglist(chat)) != R_SUCCESS)
         {
-            cJSON_Delete(json);
             return error_code;
         }
     }
 
-    cJSON_Delete(json);
     return R_SUCCESS;
 }

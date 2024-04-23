@@ -11,7 +11,7 @@ void mx_msg_push_back(t_msg **list, t_msg *new_node)
     }
     // Traverse the list to find the last node
     t_msg *last = *list;
-    while (last->next != NULL)
+    while (last->next)
     {
         last = last->next;
     }

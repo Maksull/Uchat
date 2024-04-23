@@ -22,6 +22,7 @@ t_msg *handle_get_msg_res()
     {
         cJSON_Delete(json); // Delete JSON object to free memory
         logger(get_res_str(error_code), ERROR_LOG); // Log error message
+
         return NULL;
     }
 
@@ -36,6 +37,7 @@ t_msg *handle_get_msg_res()
     if (new_msg == NULL || new_msg->sender_id == utils->current_user->user_id)
     {
         logger(get_res_str(R_JSON_FAILURE), ERROR_LOG); // Log error message
+        
         return NULL;
     }
 

@@ -14,7 +14,7 @@ void mx_clear_msg_list(t_msg **list)
     t_msg *next = NULL; // Pointer to store the next node in the list
 
     // Traverse the list and clear memory associated with each message object
-    while (node != NULL)
+    while (node)
     {
         next = node->next; // Store the next node before clearing the current one
         mx_clear_msg(&node); // Clear the message object itself

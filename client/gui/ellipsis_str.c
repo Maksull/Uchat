@@ -12,6 +12,7 @@ char *ellipsis_str(const char *str, int overflow_len)
         char *result = mx_strjoin(substring, "...");
         // Free the memory allocated for the substring
         mx_strdel(&substring);
+        
         return result;
     }
     else

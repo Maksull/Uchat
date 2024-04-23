@@ -15,8 +15,10 @@ bool check_empty_message(const gchar *new_message, t_msg *message)
     {
         // If empty, delete the message and return
         delete_message(NULL, NULL, message);
+
         return true;
     }
+    
     return false;
 }
 

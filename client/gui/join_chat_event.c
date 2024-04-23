@@ -20,6 +20,7 @@ static void handle_double_click_event(char *chat_name) {
 // Function to handle join chat event
 void join_chat_event(GtkWidget *widget, GdkEventButton *event, gpointer data)
 {
+    (void)data;
     char *chat_name = (char *)gtk_widget_get_name(widget); // Extract the chat name from the widget's name
 
     // Handle single-click event (set chat item as active)
@@ -31,5 +32,4 @@ void join_chat_event(GtkWidget *widget, GdkEventButton *event, gpointer data)
     {
         handle_double_click_event(chat_name);
     }
-    (void)data;
 }

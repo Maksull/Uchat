@@ -8,6 +8,7 @@ void set_msgs_as_read_for(t_chat *chat)
 	{
 		return;
 	}
+	
 	// Iterate through the new_messages list
 	t_msg *new_msg = chat->new_messages;
 	while (new_msg)

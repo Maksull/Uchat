@@ -8,6 +8,7 @@ t_msg *mx_get_last_msg_node(t_msg *list)
     {
         return NULL;
     }
+    
     // Traverse the list until the last node
     while (list->next)
     {

@@ -28,7 +28,9 @@ GtkWidget *get_widget_by_name(GtkWidget *container, char *name)
 {
     GtkWidget *result = NULL;
     if (!GTK_IS_CONTAINER(container))
+    {
         return NULL;
+    }
 
     GList *children = gtk_container_get_children(GTK_CONTAINER(container));
     result = search_widget_by_name(children, name);

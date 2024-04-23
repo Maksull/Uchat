@@ -1,118 +1,118 @@
 .input-field {
-    outline: none;
-    color: #8ab68b;
-    font-size: 16px;
-    border: 1px solid #355c45;
-    border-radius: 3px;
-    box-shadow: none;
-    background-color: #355c45;
-    padding: 4px 20px 4px 44px;
-    transition: 0.2s all linear;
+  outline: none;
+  color: #8ab68b;
+  font-size: 16px;
+  border: 1px solid #355c45;
+  border-radius: 3px;
+  box-shadow: none;
+  background-color: #355c45;
+  padding: 4px 20px 4px 44px;
+  transition: 0.2s all linear;
 }
 
 .input-field:focus {
-    outline: none;
-    color: rgb(87, 173, 104);
-    box-shadow: none;
-    border: 1px solid rgb(87, 173, 104);
-    background-color: rgba(71, 110, 239, 0.1);
-    caret-color: rgb(87, 173, 104);
+  outline: none;
+  color: rgb(87, 173, 104);
+  box-shadow: none;
+  border: 1px solid rgb(87, 173, 104);
+  background-color: rgba(71, 110, 239, 0.1);
+  caret-color: rgb(87, 173, 104);
 }
 
 .input-field--search {
-    background-image: url("../img/search.png");
-    background-position: 12px 12px;
-    background-size: 20px 20px;
-    background-repeat: no-repeat;
+  background-image: url("../img/search.png");
+  background-position: 12px 12px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
 }
 
 .input-field--search:focus {
-    background-image: url("../img/search-focus.png");
+  background-image: url("../img/search-focus.png");
 }
 
 .input-field--name {
-    background-image: url("../img/user.png");
-    background-position: 14px 14px;
-    background-size: 16px 16px;
-    background-repeat: no-repeat;
+  background-image: url("../img/user.png");
+  background-position: 14px 14px;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
 }
 
 .input-field--name:focus {
-    background-image: url("../img/user-focus.png");
+  background-image: url("../img/user-focus.png");
 }
 
 .input-field--name.input-field--danger {
-    background-image: url("../img/user-danger.png");
+  background-image: url("../img/user-danger.png");
 }
 
 .input-field--name.input-field--success {
-    background-image: url("../img/user-success.png");
+  background-image: url("../img/user-success.png");
 }
 
 .input-field--password {
-    background-image: url("../img/lock.png");
-    background-position: 14px 14px;
-    background-size: 16px 16px;
-    background-repeat: no-repeat;
+  background-image: url("../img/lock.png");
+  background-position: 14px 14px;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
 }
 
 .input-field--password:focus {
-    background-image: url("../img/lock-focus.png");
+  background-image: url("../img/lock-focus.png");
 }
 
 .input-field--password.input-field--danger {
-    background-image: url("../img/lock-danger.png");
+  background-image: url("../img/lock-danger.png");
 }
 
 .input-field--password.input-field--success {
-    background-image: url("../img/lock-success.png");
+  background-image: url("../img/lock-success.png");
 }
 
 .input-field--danger {
-    color: rgb(255, 71, 87);
-    background-color: rgba(255,71,87, 0.1);
-    border-color: rgba(255,71,87, 0.1);
-    caret-color: rgb(255, 71, 87);
+  color: rgb(255, 71, 87);
+  background-color: rgba(255, 71, 87, 0.1);
+  border-color: rgba(255, 71, 87, 0.1);
+  caret-color: rgb(255, 71, 87);
 }
 
 .input-field--danger:focus {
-    color: rgb(255, 71, 87);
-    background-color: rgba(255,71,87, 0.1);
-    border: 1px solid rgb(255, 71, 87);
-    caret-color: rgb(255, 71, 87);
+  color: rgb(255, 71, 87);
+  background-color: rgba(255, 71, 87, 0.1);
+  border: 1px solid rgb(255, 71, 87);
+  caret-color: rgb(255, 71, 87);
 }
 
 .input-field--success {
-    color: rgb(70, 201, 58);
-    background-color: rgba(70,201,58, 0.1);
-    border-color: rgba(70,201,58, 0.1);
-    caret-color: rgb(70, 201, 58);
+  color: rgb(70, 201, 58);
+  background-color: rgba(70, 201, 58, 0.1);
+  border-color: rgba(70, 201, 58, 0.1);
+  caret-color: rgb(70, 201, 58);
 }
 
 .input-field--success:focus {
-    color: rgb(70, 201, 58);
-    background-color: rgba(70,201,58, 0.1);
-    border-bottom: 1px solid rgb(70, 201, 58);
-    caret-color: rgb(70, 201, 58);
+  color: rgb(70, 201, 58);
+  background-color: rgba(70, 201, 58, 0.1);
+  border-bottom: 1px solid rgb(70, 201, 58);
+  caret-color: rgb(70, 201, 58);
 }
 
 .input-field_title {
-    color: #8ab68b;
-    font-size: 16px;
-    font-weight: 500;
-    margin: 0 0 5px 10px;
+  color: #8ab68b;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 5px 10px;
 }
 
 .notify-label {
-    color: #8ab68b;
-    font-size: 12px;
-    margin: 5px 0 20px 10px;
+  color: #8ab68b;
+  font-size: 12px;
+  margin: 5px 0 20px 10px;
 }
 
 .notify-label--danger {
-    color: rgb(255, 71, 87);
+  color: rgb(255, 71, 87);
 }
 
 .notify-label--success {
-    color: rgb(70, 201, 58);
+  color: rgb(70, 201, 58);
 }
