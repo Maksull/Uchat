@@ -19,7 +19,7 @@ GTK_FLAGS = `pkg-config --cflags gtk+-3.0`
 GTK_LIBS_FLAGS = `pkg-config --cflags --libs gtk+-3.0`
 
 SSL_DIR = ../libraries/openssl
-SSL_FILES:= ../libraries/libcrypto
+SSL_FILES:= ../local_lib/lib
 SSL_INC_FILES:= $(SSL_DIR)
 
 LIB_FLAGS = -lmx -lcjson -lsqlite3 -lssl -lcrypto\

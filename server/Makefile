@@ -15,7 +15,7 @@ CJSON_DIR = ../libraries/cjson
 CJSON_NAME = $(CJSON_DIR)/libcjson.a
 
 SSL_DIR = ../libraries/openssl
-SSL_FILES:= ../libraries/libcrypto
+SSL_FILES:= ../local_lib/lib
 SSL_INC_FILES:= $(SSL_DIR)
 
 LIB_FLAGS = -lmx -lcjson -lsqlite3 -lssl -lcrypto \
