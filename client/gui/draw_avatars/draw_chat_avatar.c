@@ -3,7 +3,7 @@
 // Function to construct the path to the chat avatar image file based on the color
 static char *construct_avatar_path(int avatar_color)
 {
-    char *path = "client/data/img/chat_avatars/avatar";
+    char *path = "client/assets/images/chat_avatars/avatar";
     char *tmp = mx_strjoin(path, mx_itoa(avatar_color + 1));
     path = mx_strjoin(tmp, ".png");
     mx_strdel(&tmp);

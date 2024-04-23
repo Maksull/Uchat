@@ -46,7 +46,7 @@ gboolean draw_user_avatar(GtkWidget *widget, cairo_t *cr, gpointer data)
     { }
     int avatar_color = GPOINTER_TO_INT(data); // Extract the avatar color from the data
 
-    char *path = construct_avatar_path(avatar_color, "client/data/img/user_avatars/avatar"); // Construct the path to the avatar image file
+    char *path = construct_avatar_path(avatar_color, "client/assets/images/user_avatars/avatar"); // Construct the path to the avatar image file
     load_and_set_avatar_image(cr, path, 27, 27);                                             // Load the avatar image and set it as the source for Cairo
 
     draw_rounded_rectangle(cr); // Draw a rounded rectangle to clip the avatar

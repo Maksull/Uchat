@@ -20,52 +20,52 @@
 }
 
 .input-field--search {
-    background-image: url("../img/search.png");
+    background-image: url("../images/search.png");
     background-position: 12px 12px;
     background-size: 20px 20px;
     background-repeat: no-repeat;
 }
 
 .input-field--search:focus {
-    background-image: url("../img/search-focus.png");
+    background-image: url("../images/search-focus.png");
 }
 
 .input-field--name {
-    background-image: url("../img/user.png");
+    background-image: url("../images/user.png");
     background-position: 14px 14px;
     background-size: 16px 16px;
     background-repeat: no-repeat;
 }
 
 .input-field--name:focus {
-    background-image: url("../img/user-focus.png");
+    background-image: url("../images/user-focus.png");
 }
 
 .input-field--name.input-field--danger {
-    background-image: url("../img/user-danger.png");
+    background-image: url("../images/user-danger.png");
 }
 
 .input-field--name.input-field--success {
-    background-image: url("../img/user-success.png");
+    background-image: url("../images/user-success.png");
 }
 
 .input-field--password {
-    background-image: url("../img/lock.png");
+    background-image: url("../images/lock.png");
     background-position: 14px 14px;
     background-size: 16px 16px;
     background-repeat: no-repeat;
 }
 
 .input-field--password:focus {
-    background-image: url("../img/lock-focus.png");
+    background-image: url("../images/lock-focus.png");
 }
 
 .input-field--password.input-field--danger {
-    background-image: url("../img/lock-danger.png");
+    background-image: url("../images/lock-danger.png");
 }
 
 .input-field--password.input-field--success {
-    background-image: url("../img/lock-success.png");
+    background-image: url("../images/lock-success.png");
 }
 
 .input-field--danger {

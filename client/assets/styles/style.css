@@ -34,7 +34,7 @@ window {
 }
 
 .menubar:hover  .edit_profile_btn {
-    background-image: url("../img/settings-hover.png");
+    background-image: url("../images/settings-hover.png");
 }
 
 .menubar_menu {

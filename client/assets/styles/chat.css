@@ -37,25 +37,25 @@
 }
 
 .delete_msg_btn {
-    background-image: url("../img/close.png");
+    background-image: url("../images/close.png");
     background-size: 12px 12px;
     background-position: 4px 5px;
     background-repeat: no-repeat;
 }
 
 .delete_msg_btn:hover {
-    background-image: url("../img/close-hover.png");
+    background-image: url("../images/close-hover.png");
 }
 
 .edit_msg_btn {
-    background-image: url("../img/pencil.png");
+    background-image: url("../images/pencil.png");
     background-size: 13px 13px;
     background-position: 4px 4px;
     background-repeat: no-repeat;
 }
 
 .edit_msg_btn:hover {
-    background-image: url("../img/pencil-hover.png");
+    background-image: url("../images/pencil-hover.png");
 }
 
 .msg_name {
