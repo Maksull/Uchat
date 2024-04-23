@@ -67,7 +67,7 @@ void add_message(t_msg *message)
     gtk_box_pack_start(GTK_BOX(message_text), message_head, false, false, 0); // Pack message header into message text box
     add_class(message_head, "msg_head");                                      // Add CSS class to message header
 
-    if (cur_user)
+    if (cur_user || utils->current_chat->permissions == ADMIN_MEMBER)
     {
         GtkWidget *delete_btn = gtk_event_box_new();                                                 // Create event box for delete button
         gtk_widget_set_size_request(GTK_WIDGET(delete_btn), 20, 16);                                 // Set size of delete button
@@ -75,7 +75,14 @@ void add_message(t_msg *message)
         g_signal_connect(G_OBJECT(delete_btn), "enter-notify-event", G_CALLBACK(on_crossing), NULL); // Connect signals for delete button
         g_signal_connect(G_OBJECT(delete_btn), "leave-notify-event", G_CALLBACK(on_crossing), NULL);
         g_signal_connect(G_OBJECT(delete_btn), "button_press_event", G_CALLBACK(delete_message), message);
-        gtk_box_pack_start(GTK_BOX(message_head), delete_btn, FALSE, FALSE, 0); // Pack delete button into message header if current user
+        if (cur_user)
+        {
+            gtk_box_pack_start(GTK_BOX(message_head), delete_btn, FALSE, FALSE, 0); // Pack delete button into message header if current user
+        }
+        else
+        {
+            gtk_box_pack_end(GTK_BOX(message_head), delete_btn, FALSE, FALSE, 0); // Pack delete button into message header if current user
+        }
     }
 
     if (cur_user)
