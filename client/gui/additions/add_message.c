@@ -9,7 +9,6 @@ static GtkWidget *create_edit_button(t_msg *message)
     g_signal_connect(G_OBJECT(edit_btn), "enter-notify-event", G_CALLBACK(on_crossing), NULL);
     g_signal_connect(G_OBJECT(edit_btn), "leave-notify-event", G_CALLBACK(on_crossing), NULL);
     g_signal_connect(G_OBJECT(edit_btn), "button_press_event", G_CALLBACK(edit_message), message);
-
     return edit_btn;
 }
 
@@ -24,7 +23,6 @@ static GtkWidget *create_message_text_label(const char *text, int cur_user)
     gtk_label_set_line_wrap(GTK_LABEL(sent_message), TRUE);
     gtk_label_set_line_wrap_mode(GTK_LABEL(sent_message), PANGO_WRAP_WORD);
     add_class(sent_message, cur_user ? "right_message" : "left_message");
-
     return sent_message;
 }
 
@@ -34,7 +32,6 @@ static GtkWidget *create_message_time_label(const char *time, gboolean cur_user)
     GtkWidget *message_time = gtk_label_new(time);
     add_class(message_time, "msg_time");
     gtk_widget_set_halign(GTK_WIDGET(message_time), cur_user ? GTK_ALIGN_END : GTK_ALIGN_START);
-
     return message_time;
 }
 
@@ -89,6 +86,10 @@ void add_message(t_msg *message)
         {
             gtk_box_pack_end(GTK_BOX(message_head), delete_btn, FALSE, FALSE, 0); // Pack delete button into message header if current user
         }
+    }
+    else
+    {
+        gtk_box_pack_end(GTK_BOX(message_head), delete_btn, FALSE, FALSE, 0); // Pack delete button into message header if not current user
     }
 
     if (cur_user)
