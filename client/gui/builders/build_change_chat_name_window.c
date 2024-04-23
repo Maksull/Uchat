@@ -23,7 +23,7 @@ static void create_and_configure_chat_name_widgets(GtkWidget **chat_name_label, 
     gtk_widget_set_name(*chat_name_field, "chat_name_field");
     gtk_entry_set_placeholder_text(GTK_ENTRY(*chat_name_field), "Chat name");
     g_signal_connect(G_OBJECT(*chat_name_field), "focus-out-event", G_CALLBACK(focus_out_chat_name_field), NULL);
-    add_class(*chat_name_field, "input-field");
+    add_class(*chat_name_field, "input-field-2");
 }
 
 // Function definition to create and configure the notification label

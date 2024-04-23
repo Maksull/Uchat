@@ -19,6 +19,28 @@
     caret-color: rgb(87, 173, 104);
 }
 
+.input-field-2 {
+    outline: none;
+    color: #8ab68b;
+    font-size: 16px;
+    border: 1px solid #355c45;
+    border-radius: 3px;
+    box-shadow: none;
+    background-color: #355c45;
+    padding: 4px 20px 4px 8px;
+    transition: 0.2s all linear;
+}
+
+.input-field-2:focus {
+    outline: none;
+    color: rgb(87, 173, 104);
+    box-shadow: none;
+    border: 1px solid rgb(87, 173, 104);
+    background-color: rgba(71, 110, 239, 0.1);
+    caret-color: rgb(87, 173, 104);
+}
+
+
 .input-field--search {
     background-image: url("../images/search.png");
     background-position: 12px 12px;

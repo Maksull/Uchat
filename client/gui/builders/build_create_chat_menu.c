@@ -26,7 +26,7 @@ static GtkWidget *create_chat_name_field()
     GtkWidget *chat_name_field = gtk_entry_new();
     gtk_widget_set_name(chat_name_field, "chat_name_field");
     gtk_entry_set_placeholder_text(GTK_ENTRY(chat_name_field), "Chat name");
-    add_class(chat_name_field, "input-field");
+    add_class(chat_name_field, "input-field-2");
 
     return chat_name_field;
 }
