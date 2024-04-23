@@ -17,15 +17,14 @@ t_response_code handle_get_chats_res(t_chat **chat_list, const char *response_st
     if (error_code != R_SUCCESS)
     {
         cJSON_Delete(json);
-
         return error_code;
     }
 
     // Get the array of chats from the JSON response
     cJSON *chats_array = cJSON_GetObjectItemCaseSensitive(json, "chats");
-    cJSON_Delete(json);
     if (!cJSON_IsArray(chats_array))
     {
+        cJSON_Delete(json);
         return R_JSON_FAILURE;
     }
 
@@ -42,9 +41,11 @@ t_response_code handle_get_chats_res(t_chat **chat_list, const char *response_st
         // Add the chat to the chat list
         if ((error_code = add_chat_to_chatlist(chat, chat_list, is_search)) != R_SUCCESS)
         {
+            cJSON_Delete(json);
             return error_code;
         }
     }
+    cJSON_Delete(json);
 
     return R_SUCCESS;
 }

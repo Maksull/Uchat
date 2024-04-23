@@ -96,9 +96,7 @@ static GtkWidget *create_and_configure_cancel_button(GtkWidget *container)
 // Function to build the window for avatar change
 void build_change_avatar_window(GtkWidget *widget, gpointer data)
 {
-    if (widget)
-    {
-    };
+    if (widget) { };
     (void)data;
 
     GtkWidget *popup_window = create_popup_window(450, 0); // Create a popup window for changing the avatar

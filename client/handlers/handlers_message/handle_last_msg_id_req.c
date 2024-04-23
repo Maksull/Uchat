@@ -67,7 +67,6 @@ int handle_last_msg_id_req(int chat_id)
     {
         logger(get_res_str(error_code), ERROR_LOG); // Log error message
         free(response);                             // Free memory allocated for response string
-        
         return -1;                                  // Return -1 indicating failure
     }
 

@@ -11,7 +11,6 @@ bool contains_regex(const char *str, const char *pattern)
     {
         // If compilation fails, log an error message and return false
         logger("Could not compile regex", ERROR_LOG);
-        
         return false;
     }
 

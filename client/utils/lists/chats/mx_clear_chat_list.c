@@ -14,7 +14,7 @@ void mx_clear_chat_list(t_chat **list)
     t_chat *next = NULL; // Pointer to store the next node in the list
 
     // Traverse the list and clear memory associated with each chat object
-    while (node)
+    while (node != NULL)
     {
         next = node->next; // Store the next node before clearing the current one
         mx_clear_msg_list(&node->messages); // Clear the messages associated with the chat

@@ -8,9 +8,7 @@ t_chat *mx_get_chat_by_name(t_chat *list, const char *name)
     {
         // Check if the current chat object's name matches the specified chat name
         if (mx_strcmp(list->name, name) == 0)
-        {
             return list; // Return a pointer to the chat object if found
-        }
 
         list = list->next; // Move to the next chat object in the list
     }

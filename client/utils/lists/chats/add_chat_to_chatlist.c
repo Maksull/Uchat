@@ -10,13 +10,6 @@ static void extract_chat_info(cJSON *json, cJSON **chat_id, cJSON **chat_name, c
     *chat_perms = cJSON_GetObjectItem(json, "chat_permissions");
 }
 
-// Function to check if the required fields in the chat JSON are valid
-static bool are_chat_fields_valid(const cJSON *chat_id, const cJSON *chat_name, const cJSON *chat_perms, const cJSON *chat_color)
-{
-    return cJSON_IsNumber(chat_id) && cJSON_IsString(chat_name) &&
-           cJSON_IsNumber(chat_perms) && cJSON_IsNumber(chat_color);
-}
-
 // Function to add a chat to the chat list
 t_response_code add_chat_to_chatlist(cJSON *json, t_chat **chat_list, bool is_search)
 {
@@ -30,7 +23,8 @@ t_response_code add_chat_to_chatlist(cJSON *json, t_chat **chat_list, bool is_se
     extract_chat_info(json, &chat_id, &chat_name, &chat_color, &chat_perms);
 
     // Check if the required fields are present and have the correct types
-    if (!are_chat_fields_valid(chat_id, chat_name, chat_perms, chat_color))
+    if (!cJSON_IsNumber(chat_id) || !cJSON_IsString(chat_name) ||
+        !cJSON_IsNumber(chat_perms) || !cJSON_IsNumber(chat_color))
     {
         return R_JSON_FAILURE;
     }

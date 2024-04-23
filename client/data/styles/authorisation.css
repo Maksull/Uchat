@@ -1,22 +1,21 @@
-.login_menu,
-.signup_menu {
-  color: #8ab68b;
-  background-color: #2b4f38;
-  padding: 40px 80px;
+.login_menu, .signup_menu {
+    color: #8ab68b;
+    background-color: #2b4f38;
+    padding: 40px 80px;
 }
 
 .auth-menu_title-block {
-  margin-bottom: 24px;
+    margin-bottom: 24px;
 }
 
 .auth-menu_title {
-  color: #f1f2f3;
-  font-size: 32px;
-  font-weight: 600;
+    color: #f1f2f3;
+    font-size: 32px;
+    font-weight: 600;
 }
 
 .auth-menu_subtitle {
-  color: #8ab68b;
-  font-size: 16px;
-  margin: 12px 0 20px;
+    color: #8ab68b;
+    font-size: 16px;
+    margin: 12px 0 20px;
 }

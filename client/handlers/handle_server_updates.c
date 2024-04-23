@@ -4,7 +4,7 @@
 void *handle_server_updates(void *arg)
 {
     (void)arg; // Suppress unused parameter warning
-    while (true)
+    while (1)
     {
         if (!utils) // Check if utils is NULL
         {

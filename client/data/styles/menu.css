@@ -1,109 +1,109 @@
 .leftbar {
-  background-color: #2b4f38;
-  border-right: 4px solid #355c45;
+    background-color: #2b4f38;
+    border-right: 4px solid #355c45;
 }
 
 .leftbar_header_block {
-  padding: 0 30px;
-  margin: 50px 0 30px;
+    padding: 0 30px;
+    margin: 50px 0 30px;
 }
 
 .leftbar_header_label {
-  color: #f1f2f3;
-  font-size: 32px;
-  font-weight: 600;
+    color: #f1f2f3;
+    font-size: 32px;
+    font-weight: 600;
 }
 
 .search_block {
-  border: none;
-  padding: 0 30px;
-  margin-bottom: 10px;
+    border: none;
+    padding: 0 30px;
+    margin-bottom: 10px;
 }
 
 .chatlist {
-  padding: 0 30px;
+    padding: 0 30px;
 }
 
 .leftbar_footer {
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 15px 30px;
+    background-color: rgba(255, 255, 255, .2);
+    padding: 15px 30px;
 }
 
 .leftbar_footer_username {
-  color: #8ab68b;
-  font-size: 14px;
+    color: #8ab68b;
+    font-size: 14px;
 }
 
 .edit_profile_btn {
-  background-image: url("../img/settings.png");
-  background-size: 27px 27px;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
+    background-image: url("../img/settings.png");
+    background-size: 27px 27px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
 }
 
 /* chat list item */
 .chatlist_item {
-  color: #8ab68b;
-  background-color: #384d2f;
-  border-radius: 3px;
-  padding: 15px 18px;
+    color: #8ab68b;
+    background-color: #384d2f;
+    border-radius: 3px;
+    padding: 15px 18px;
 }
 
-.chatlist_item_wrap:hover .chatlist_item {
-  background-color: rgba(113, 239, 71, 0.3);
-  transition: 0.2s background linear;
+.chatlist_item_wrap:hover .chatlist_item{
+    background-color: rgba(113, 239, 71, 0.3);
+    transition: 0.2s background linear;
 }
 
-.chatlist_item_wrap.active .chatlist_item {
-  background-color: rgb(87, 173, 104);
-  transition: 0.2s background linear;
+.chatlist_item_wrap.active .chatlist_item{
+    background-color: rgb(87, 173, 104);
+    transition: 0.2s background linear;
 }
 
-.chatlist_item_wrap.active .chatlist_item_message {
-  color: #f1f2f3;
-  transition: 0.2s color linear;
+.chatlist_item_wrap.active .chatlist_item_message{
+    color: #f1f2f3;
+    transition: 0.2s color linear;
 }
 
-.chatlist_item_wrap.active .chatlist_item_time {
-  color: #f1f2f3;
-  transition: 0.2s color linear;
+.chatlist_item_wrap.active .chatlist_item_time{
+    color: #f1f2f3;
+    transition: 0.2s color linear;
 }
 
 .chatlist_item_avatar {
-  border-radius: 3px;
+    border-radius: 3px;
 }
 
 .chatlist_item_text {
-  margin-left: 16px;
+    margin-left: 16px;
 }
 
 .chatlist_item_title {
-  color: #f1f2f3;
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 8px;
+    color: #f1f2f3;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
 }
 
 .chatlist_item_message {
-  color: #8ab68b;
+    color: #8ab68b;
 }
 
 .chatlist_item_time {
-  color: #8ab68b;
-  font-style: italic;
-  margin-bottom: 15px;
+    color: #8ab68b;
+    font-style: italic;
+    margin-bottom: 15px;
 }
 
 .chatlist_item_notify {
-  color: #355c45;
-  font-weight: 500;
-  border-radius: 3px;
-  opacity: 0;
+    color: #355c45;
+    font-weight: 500;
+    border-radius: 3px;
+    opacity: 0;
 }
 
 .chatlist_item_notify--visible {
-  color: #f1f2f3;
-  background-color: #f84469;
-  opacity: 1;
-  transition: 0.2s all linear;
+    color: #f1f2f3;
+    background-color: #f84469;
+    opacity: 1;
+    transition: 0.2s all linear;
 }

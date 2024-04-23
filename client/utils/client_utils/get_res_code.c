@@ -13,7 +13,6 @@ t_response_code get_res_code(cJSON *json)
             sprintf(error, "Error before: %s\n", error_ptr);
             logger(error, ERROR_LOG);
         }
-        
         return R_JSON_FAILURE;
     }
 

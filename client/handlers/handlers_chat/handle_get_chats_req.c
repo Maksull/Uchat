@@ -36,7 +36,6 @@ t_response_code handle_get_chats_req()
     if ((error_code = handle_get_chats_res(&utils->chatlist, response, false)) != R_SUCCESS)
     {
         logger(get_res_str(error_code), ERROR_LOG);
-        
         return error_code;
     }
 

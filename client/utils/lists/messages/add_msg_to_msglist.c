@@ -13,15 +13,6 @@ static void extract_msg_info(cJSON *json, cJSON **msg_id, cJSON **sender_id, cJS
     *date = cJSON_GetObjectItemCaseSensitive(json, "date");
 }
 
-// Function to check if the required fields in the message JSON are valid
-static bool are_message_fields_valid(const cJSON *msg_id, const cJSON *sender_id, const cJSON *chat_id,
-                              const cJSON *sender_name, const cJSON *text, const cJSON *date,
-                              const cJSON *sender_color)
-{
-    return cJSON_IsNumber(msg_id) && cJSON_IsNumber(sender_id) && cJSON_IsNumber(chat_id) &&
-           cJSON_IsString(sender_name) && cJSON_IsString(text) && cJSON_IsNumber(date) && cJSON_IsNumber(sender_color);
-}
-
 // Function to add a message to the message list
 t_response_code add_msg_to_msglist(cJSON *json)
 {
@@ -35,7 +26,8 @@ t_response_code add_msg_to_msglist(cJSON *json)
     extract_msg_info(json, &msg_id, &sender_id, &sender_name, &sender_color, &text, &chat_id, &date);
 
     // Check if the required fields are present and have the correct types
-    if (!are_message_fields_valid(msg_id, sender_id, chat_id, sender_name, text, date, sender_color))
+    if (!cJSON_IsNumber(msg_id) || !cJSON_IsNumber(sender_id) || !cJSON_IsNumber(chat_id) ||
+        !cJSON_IsString(sender_name) || !cJSON_IsString(text) || !cJSON_IsNumber(date) || !cJSON_IsNumber(sender_color))
     {
         return R_JSON_FAILURE;
     }
