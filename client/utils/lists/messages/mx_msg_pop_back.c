@@ -13,12 +13,13 @@ void mx_msg_pop_back(t_msg **head)
     if ((*head)->next == NULL)
     {
         mx_clear_msg(head);
+        
         return;
     }
 
     // Traverse the list to find the second-to-last message
     t_msg *prelast = *head;
-    while (prelast->next->next != NULL)
+    while (prelast->next->next)
     {
 
         prelast = prelast->next;

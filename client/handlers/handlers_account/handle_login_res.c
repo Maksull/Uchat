@@ -17,6 +17,7 @@ t_response_code handle_login_res(const char *response_str)
     if (error_code != R_SUCCESS)
     {
         cJSON_Delete(json);
+        
         return error_code;
     }
 

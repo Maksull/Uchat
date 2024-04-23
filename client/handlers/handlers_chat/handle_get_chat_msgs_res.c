@@ -14,9 +14,9 @@ t_response_code handle_get_chat_msgs_res(const char *response_str)
 
     // Get response code
     int error_code = get_res_code(json);
+    cJSON_Delete(json);
     if (error_code != R_SUCCESS)
     {
-        cJSON_Delete(json);
         return error_code;
     }
 
@@ -25,7 +25,6 @@ t_response_code handle_get_chat_msgs_res(const char *response_str)
     // Check if it's an array
     if (!cJSON_IsArray(msg_array))
     {
-        cJSON_Delete(json);
         return R_JSON_FAILURE;
     }
 
@@ -37,11 +36,9 @@ t_response_code handle_get_chat_msgs_res(const char *response_str)
         // Add message to message list
         if ((error_code = add_msg_to_msglist(chat)) != R_SUCCESS)
         {
-            cJSON_Delete(json);
             return error_code;
         }
     }
 
-    cJSON_Delete(json);
     return R_SUCCESS;
 }
