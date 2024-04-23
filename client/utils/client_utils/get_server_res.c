@@ -24,6 +24,7 @@ char *get_server_res(SSL *ssl, int length)
             }
             // Log the error and return NULL
             logger(strerror(errno), ERROR_LOG);
+            
             return NULL;
         }
         else if (bytes < length)

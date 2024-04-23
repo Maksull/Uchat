@@ -7,12 +7,13 @@ t_response_code get_res_code(cJSON *json)
     if (json == NULL)
     {
         const char *error_ptr = cJSON_GetErrorPtr();
-        if (error_ptr != NULL)
+        if (error_ptr)
         {
             char error[200];
             sprintf(error, "Error before: %s\n", error_ptr);
             logger(error, ERROR_LOG);
         }
+
         return R_JSON_FAILURE;
     }
 

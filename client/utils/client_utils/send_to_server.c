@@ -11,6 +11,7 @@ int send_to_server(SSL *ssl, const char *request_str)
     SSL_write(ssl, len_str, mx_strlen(len_str));
     // Variable to store SSL error code
     unsigned long err = 0;
+    
     // Send the request string to the server
     while (SSL_write(ssl, request_str, req_len) == -1)
     {

@@ -23,6 +23,17 @@ static int check_user_json(const cJSON *id_json, const cJSON *name_json, const c
     return 1; // Condition met
 }
 
+// Function to assign values to user structure fields from JSON data
+static void assign_user_values(t_user *user, const cJSON *id_json, const cJSON *name_json, const cJSON *pass_json, const cJSON *color_json)
+{
+    // Assigning values to the user structure fields from JSON data
+    user->user_id = id_json->valueint;
+    user->name = mx_strdup(name_json->valuestring);
+    user->password = mx_strdup(pass_json->valuestring);
+    user->avatar_color = color_json->valueint;
+    user->avatar_path = NULL; // Assuming avatar_path is not provided in JSON, setting it to NULL
+}
+
 // Function to set current user details from a JSON object
 void set_current_user(t_user **user, const cJSON *user_json)
 {
@@ -51,9 +62,5 @@ void set_current_user(t_user **user, const cJSON *user_json)
     }
 
     // Assigning values to the user structure fields from JSON data
-    (*user)->user_id = id_json->valueint;
-    (*user)->name = mx_strdup(name_json->valuestring);
-    (*user)->password = mx_strdup(pass_json->valuestring);
-    (*user)->avatar_color = color_json->valueint;
-    (*user)->avatar_path = NULL; // Assuming avatar_path is not provided in JSON, setting it to NULL
+    assign_user_values(*user, id_json, name_json, pass_json, color_json);
 }
