@@ -1,0 +1,133 @@
+.btn {
+    outline: none;
+    color: #f1f2f3;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 0;
+    transition: 0.2s all linear;
+}
+
+.btn--blue {
+    background: rgb(87, 173, 104);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.btn--blue:hover {
+    background-color: rgb(138, 246, 92);
+    box-shadow: rgba(113, 239, 71, 0.2) 0px 8px 24px;
+}
+
+.btn--blue:active {
+    background-color: rgb(72, 221, 38);
+}
+
+.btn--blue:focus {
+    outline: none;
+    border: none;
+    background-color: rgb(143, 246, 92);
+}
+
+.btn--dark-blue {
+    background: #355c45;
+    box-shadow: rgba(61, 64, 67, 0.2) 0px 8px 24px;
+}
+
+.btn--dark-blue:hover {
+    background-color: #52784a;
+    box-shadow: rgba(75, 135, 55, 0.2) 0px 8px 24px;
+}
+
+.btn--dark-blue:active {
+    background-color: #2d4128;
+}
+
+.btn--dark-blue:focus {
+    outline: none;
+    border: none;
+    background-color: #55784a;
+}
+
+.clear_search_btn {
+    outline: none;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+    background-repeat: no-repeat;
+    background-image: url("../images/close.png");
+    background-size: 14px 14px;
+    background-position: 50% 50%;
+    box-shadow: none;
+    background-color: #355c45;
+    transition: 0.2s background linear;
+}
+
+.clear_search_btn:hover {
+    background-image: url("../images/close-hover.png");
+    background-color: rgba(113, 239, 71, 0.1);
+}
+
+.clear_search_btn:active {
+    outline: none;
+    border: none;
+}
+
+.clear_search_btn:focus {
+    outline: none;
+    border: none;
+    background-image: url("../images/close-hover.png");
+    background-color: rgba(113, 239, 71, 0.4);
+}
+
+.switch_auth_menu_label {
+    color: rgb(87, 173, 104);
+    padding: 3px 5px;
+    transition: all 0.2s linear;
+}
+
+.event_switch_auth_menu:hover .switch_auth_menu_label {
+    color: #fff;
+}
+
+.popup-btn {
+    color: rgb(87, 173, 104);
+    border-radius: 3px;
+    border: 1px solid rgb(87, 173, 104);
+    padding: 0 12px;
+    transition: all 0.2s linear;
+}
+
+.popup-btn:hover {
+    color: #fff;
+}
+
+.input-msg_send-btn {
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    background-image: url("../images/send.png");
+    background-size: 25px 25px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color: rgb(87, 173, 104);
+    transition: 0.2s all linear;
+}
+
+.input-msg_send-btn:hover {
+    background-color: rgb(131, 246, 92);
+    box-shadow: rgba(93, 239, 71, 0.2) 0px 8px 24px;
+}
+
+.input-msg_send-btn:active {
+    outline: none;
+    border: none;
+    background-color: rgb(90, 221, 38);
+}
+
+.input-msg_send-btn:focus {
+    outline: none;
+    border: none;
+    background-color: rgb(131, 246, 92);
+}
