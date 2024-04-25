@@ -30,6 +30,7 @@ static t_server_utils *initialize_server_utils(SSL *ssl, int client_socket)
     utils->client_socket = client_socket;
     utils->ssl = ssl;
     utils->user = NULL;
+    
     return utils;
 }
 

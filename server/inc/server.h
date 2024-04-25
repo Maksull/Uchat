@@ -129,7 +129,7 @@ typedef enum e_request_type
 // SERVER UTILS
 void init_daemon();
 void init_ssl(SSL_CTX **ctx);
-void load_ssl_sertificate(SSL_CTX *ctx, const char *cert, const char *key);
+void load_ssl_certificate(SSL_CTX *ctx, const char *cert, const char *key);
 void send_response_to(SSL *ssl, const char *response);
 void send_server_response(SSL *ssl, t_response_code code, t_request_type req_type);
 void client_cleanup(t_server_utils *utils, bool is_client_exit);
@@ -166,9 +166,9 @@ void handle_edit_password(const cJSON *pass_info, t_server_utils *utils);
 void handle_edit_username(const cJSON *user_info, t_server_utils *utils);
 
 // DB
-int init_database();
-sqlite3 *open_database();
-sqlite3_stmt *db_execute_stmt_for(const char *query, sqlite3 *db);
+int init_db();
+sqlite3 *open_db();
+sqlite3_stmt *db_execute_sql_stmt(const char *query, sqlite3 *db);
 int db_execute_query(const char *query);
 t_response_code db_add_user(const cJSON *user_info);
 bool db_user_exists(const char *username);
@@ -202,11 +202,11 @@ t_response_code db_modify_user_name(int user_id, const char *new_name);
 t_user *mx_create_user(int id, int client_fd, SSL *ssl);
 void mx_clear_user(t_user **p);
 
-cJSON *stmt_to_chat_json(sqlite3_stmt *stmt, bool is_for_search);
-cJSON *stmt_to_message_json(sqlite3_stmt *stmt);
+cJSON *sql_to_json_chat(sqlite3_stmt *stmt, bool is_for_search);
+cJSON *sql_to_json_message(sqlite3_stmt *stmt);
 
 // VALIDATION
-bool regex_for(const char *pattern, const char *str);
+bool contains_regex(const char *pattern, const char *str);
 bool is_strlen_valid(const char *str, int min_len, int max_len);
 bool is_user_name_format_valid(const char *user_name);
 

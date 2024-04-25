@@ -1,34 +1,38 @@
 #include "../inc/client.h"
 
-// Function to get widget by its name
-GtkWidget *get_widget_by_name(GtkWidget *container, char *name)
+// Function to compare widget names
+static gboolean widget_name_matches(GtkWidget *widget, char *name)
 {
-    GtkWidget *result = NULL; // Pointer to the found widget
-    GList *children = NULL;   // Pointer to a list of child widgets
+    return gtk_widget_get_name(widget) && strcmp(gtk_widget_get_name(widget), name) == 0;
+}
 
-    // Check if the provided container is a valid GTK container
-    if (GTK_IS_CONTAINER(container))
+// Function to search for a widget by name within a list of widgets
+static GtkWidget *search_widget_by_name(GList *widgets, char *name)
+{
+    GtkWidget *result = NULL;
+    for (GList *iter = widgets; iter != NULL; iter = g_list_next(iter))
     {
-        children = gtk_container_get_children(GTK_CONTAINER(container)); // Retrieve a list of children widgets from the container
-    }
-    else
-    {
-        return NULL; // Return NULL if the provided container is not a valid GTK container
-    }
-
-    // Iterate through the list of children widgets
-    while (children)
-    {
-        // Check if the name of the current child widget matches the specified name
-        if (!mx_strcmp(gtk_widget_get_name(GTK_WIDGET(children->data)), name))
+        GtkWidget *widget = GTK_WIDGET(iter->data);
+        if (widget_name_matches(widget, name))
         {
-            result = GTK_WIDGET(children->data); // If found, assign the found widget to 'result'
+            result = widget;
             break;
         }
-
-        children = children->next; // Move to the next child widget in the list
     }
-    g_list_free(g_steal_pointer(&children)); // Free the memory allocated for the list of children widgets
 
+    return result;
+}
+
+// Function to get a widget by name within a container
+GtkWidget *get_widget_by_name(GtkWidget *container, char *name)
+{
+    GtkWidget *result = NULL;
+    if (!GTK_IS_CONTAINER(container))
+        return NULL;
+
+    GList *children = gtk_container_get_children(GTK_CONTAINER(container));
+    result = search_widget_by_name(children, name);
+    g_list_free(children);
+    
     return result;
 }

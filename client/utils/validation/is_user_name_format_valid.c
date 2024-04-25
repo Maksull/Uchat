@@ -4,5 +4,5 @@
 bool is_user_name_format_valid(const char *user_name)
 {
     // Use regex to check if the username matches the specified pattern
-    return regex_for(user_name, "^[a-zA-Z0-9_-]*$");
+    return contains_regex(user_name, "^[a-zA-Z0-9_-]*$");
 }

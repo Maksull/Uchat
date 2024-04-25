@@ -33,5 +33,5 @@ void init_ssl(SSL_CTX **ctx)
     create_ssl_context(ctx);
 
     // Load SSL certificate and private key
-    load_ssl_sertificate(*ctx, cert, key);
+    load_ssl_certificate(*ctx, cert, key);
 }

@@ -1,0 +1,99 @@
+.chat_header {
+    color: #f1f2f3;
+    background-color: #2b4f38;
+    border-bottom: 4px solid #355c45;
+    padding: 25px 35px 25px 35px;
+}
+
+.chat_title {
+    color: #f1f2f3;
+    font-size: 26px;
+    font-weight: 600;
+    margin-left: 20px;
+}
+
+.messagelist {
+    background-color: #2b4f38;
+    padding: 40px 80px 0;
+}
+
+.right_message {
+    color: #f1f2f3;
+    border-radius: 3px 0 3px 3px;
+    background-color: rgb(87, 173, 104);
+    padding: 12px 16px;
+}
+
+.left_message {
+    color: #f1f2f3;
+    border-radius: 0 3px 3px 3px;
+    background-color: #355c45;
+    padding: 12px 16px;
+}
+
+.msg_box {
+    color: #8ab68b;
+    margin-bottom: 10px;
+}
+
+.delete_msg_btn {
+    background-image: url("../images/close.png");
+    background-size: 12px 12px;
+    background-position: 4px 5px;
+    background-repeat: no-repeat;
+}
+
+.delete_msg_btn:hover {
+    background-image: url("../images/close-hover.png");
+}
+
+.edit_msg_btn {
+    background-image: url("../images/pencil.png");
+    background-size: 13px 13px;
+    background-position: 4px 4px;
+    background-repeat: no-repeat;
+}
+
+.edit_msg_btn:hover {
+    background-image: url("../images/pencil-hover.png");
+}
+
+.msg_name {
+    font-size: 16px;
+}
+
+.msg_name--right {
+    margin-left: 20px;
+}
+
+.msg_name--left {
+    margin-right: 20px;
+}
+
+.msg_time {
+    font-size: 12px;
+}
+
+.msg_text {
+    font-size: 16px;
+}
+
+.input-msg_box {
+    border-top: 4px solid #355c45;
+    background-color: rgba(255, 255, 255, .1);
+    padding: 20px 35px;
+}
+
+.input-msg_entry {
+    outline: none;
+    border: none;
+    color: #f1f2f3;
+    font-size: 15px;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.input-msg_entry:focus {
+    outline: none;
+    box-shadow: none;
+}
