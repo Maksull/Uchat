@@ -1,7 +1,7 @@
 CC = clang
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic -pthread
 
-UTIL_DIRS = data/avatars
+UTIL_DIRS = assets/avatars
 OBJDIR = obj
 SRCDIR = handlers handlers/handlers_account handlers/handlers_chat handlers/handlers_message gui gui/additions gui/builders gui/change_infos gui/creators gui/delete_events gui/draw_avatars gui/focus_events gui/handlers gui/setters gui/update_events gui/validators utils utils/client_utils utils/lists utils/lists/chats utils/lists/messages utils/ssl utils/validation
 UCHAT = ../uchat

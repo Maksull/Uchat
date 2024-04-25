@@ -36,6 +36,6 @@ void signup_button_click(GtkWidget *widget, gpointer data)
     char *user_name = (char *)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(username_field)));
     char *user_password = (char *)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(password_field)));
 
-    int response_code = handle_signup_request(user_name, user_password); // Handle the signup request and get the response code
-    handle_signup_response_code(response_code, signup_notify_label);     // Handle the signup response code and update the signup notification label accordingly
+    int response_code = handle_signup_req(user_name, user_password); // Handle the signup request and get the response code
+    handle_signup_res_code(response_code, signup_notify_label);     // Handle the signup response code and update the signup notification label accordingly
 }

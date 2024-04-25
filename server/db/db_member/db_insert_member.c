@@ -1,34 +1,47 @@
 #include "../../inc/server.h"
 
-// Insert a new member into a chat in the database
-int db_insert_member(const char *chat_name, t_member_type member_type, t_server_utils *utils)
+// Function to retrieve chat ID by name from the database
+static int get_chat_id(const char *chat_name, sqlite3 *db)
 {
-    // Create SQL query to retrieve the chat ID by name
     char query[QUERY_LEN];
     sprintf(query, "SELECT `id` FROM `chats` WHERE `name` = '%s'", chat_name);
 
-    sqlite3 *db = open_database();
+    sqlite3_stmt *sql_stmt = db_execute_sql_stmt(query, db);
+    int chat_id = sqlite3_column_int64(sql_stmt, 0);
+    sqlite3_finalize(sql_stmt);
 
-    // Execute the SQL query and retrieve the result
-    sqlite3_stmt *stmt = db_execute_stmt_for(query, db); // Execute SQL query
-    int user_id = utils->user->user_id;                  // Get the user ID
-    int chat_id = sqlite3_column_int64(stmt, 0);         // Get the chat ID
-    sqlite3_finalize(stmt);                              // Finalize the statement
+    return chat_id;
+}
 
-    sqlite3_close(db);
-
-    bzero(query, QUERY_LEN); // Clear the query buffer
-
-    // Create SQL query to insert the new member into the chat
+// Function to insert a new member into the chat in the database
+static int insert_member(int user_id, int chat_id, t_member_type member_type)
+{
+    char query[QUERY_LEN];
     sprintf(query,
             "INSERT INTO `members` (`user_id`, `chat_id`, `permissions`) VALUES('%d', '%d', '%d')",
             user_id, chat_id, member_type);
 
-    // Execute the SQL query
     if (db_execute_query(query) != 0)
     {
-        return R_DB_FAILURE; // Return failure code if insertion fails
+        return R_DB_FAILURE;
     }
 
-    return R_SUCCESS; // Return success code if insertion is successful
+    return R_SUCCESS;
+}
+
+// Original function refactored
+int db_insert_member(const char *chat_name, t_member_type member_type, t_server_utils *utils)
+{
+    sqlite3 *db = open_db();
+    int chat_id = get_chat_id(chat_name, db);
+    sqlite3_close(db);
+
+    if (chat_id < 0)
+    {
+        return R_DB_FAILURE; // Return failure code if chat ID retrieval fails
+    }
+    
+    int user_id = utils->user->user_id;
+
+    return insert_member(user_id, chat_id, member_type);
 }

@@ -14,6 +14,7 @@ void mx_msg_pop_front(t_msg **head)
     {
         mx_clear_msg(head);
         *head = NULL;
+        
         return;
     }
 

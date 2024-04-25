@@ -12,7 +12,7 @@ void mx_chat_push_back(t_chat **list, int chat_id, const char *name, int permiss
     }
 
     t_chat *last = *list; // Traverse the list to find the last node
-    while (last->next != NULL)
+    while (last->next)
     {
         last = last->next;
     }

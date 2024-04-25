@@ -3,11 +3,11 @@
 // Function to remove a message object at the specified index from a linked list of message objects
 void mx_msg_pop_index(t_msg **list, int index)
 {
-    int size = 0; // Variable to store the size of the list
+    int size = 0;        // Variable to store the size of the list
     t_msg *head = *list; // Pointer to traverse the list to calculate its size
 
     // Traverse the list to calculate its size
-    while (head != NULL)
+    while (head)
     {
         head = head->next;
         ++size;
@@ -17,11 +17,13 @@ void mx_msg_pop_index(t_msg **list, int index)
     if (index <= 0)
     {
         mx_msg_pop_front(list);
+
         return;
     }
     else if (index >= size) // If the index is greater than or equal to the size of the list, remove the last message from the list
     {
         mx_msg_pop_back(list);
+
         return;
     }
 

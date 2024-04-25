@@ -8,7 +8,7 @@ void build_found_chats(t_chat *chat_list)
     // Check if there are any chats found
     if (!chat_list)
     {
-        build_chatlist_message(get_response_str(R_CHAT_NOENT)); // If no chats found, display a message indicating the absence of chats
+        build_chatlist_message(get_res_str(R_CHAT_NOENT)); // If no chats found, display a message indicating the absence of chats
     }
     else
     {

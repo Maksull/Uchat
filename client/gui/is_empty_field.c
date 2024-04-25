@@ -1,25 +1,35 @@
 #include "../inc/client.h"
 
-// Function to check if the field is empty
+// Function to get the text from a GtkEntry widget
+static char *get_entry_text(GtkWidget *entry)
+{
+    return (char *)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(entry)));
+}
+
+// Function to set an error style for a notification label
+static void set_label_text(GtkWidget *notify_label, const gchar *message)
+{
+    gtk_label_set_text(GTK_LABEL(notify_label), message);
+}
+
+// Function to check if a field is empty and handle error styling and notification
 bool is_empty_field(GtkWidget *field, GtkWidget *notify_label)
 {
-    char *text = (char *)gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(field))); // Get the text from the text entry field
+    char *text = get_entry_text(field); // Get the text from the text entry field
 
     // Check if the text is empty
-    if (!mx_strcmp(text, ""))
+    if (strlen(text) == 0)
     {
-        // Set error style for the field and notify label with a required message
-        set_field_error_style(field);
-        set_notify_error_style(notify_label, "This field is required!");
+        add_class(field, "input-field--danger");                         // Set error style for the field
+        set_label_text(notify_label, "This field is required!"); // Set notification label with a required message
 
         return true; // Field is empty
     }
     else
     {
-        // Remove any error styles applied to the field and clear the notification label
-        remove_class(field, "input-field--danger");
-        set_notify_error_style(notify_label, "");
-        
+        remove_class(field, "input-field--danger"); // Remove any error styles applied to the field
+        set_label_text(notify_label, "");   // Clear the notification label
+
         return false; // Field is not empty
     }
 }

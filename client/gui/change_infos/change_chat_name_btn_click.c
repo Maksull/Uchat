@@ -18,6 +18,6 @@ void change_chat_name_btn_click(GtkWidget *widget, gpointer data)
 
     char *new_chat_name = (char *)gtk_entry_get_text(GTK_ENTRY(chat_name_field)); // Get the new chat name entered by the user
 
-    int response_code = handle_edit_chat_request(utils->current_chat->id, new_chat_name);   // Send a request to edit the chat name and get the response code
+    int response_code = handle_edit_chat_req(utils->current_chat->id, new_chat_name);   // Send a request to edit the chat name and get the response code
     handle_edit_chat_response_code(response_code, chat_name_field, chat_name_notify_label); // Handle the response code and update the UI accordingly
 }

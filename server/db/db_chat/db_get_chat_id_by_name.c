@@ -1,27 +1,42 @@
 #include "../../inc/server.h"
 
-// Get the chat ID by its name from the database
-int db_get_chat_id_by_name(const char *chat_name)
+// Function to get the chat ID by its name from the database
+static int get_chat_id_by_name_from_db(const char *chat_name, sqlite3 *db)
 {
-    sqlite3 *db = open_database(); // Open the database connection
+    // Declare a SQLite3 statement object.
+    sqlite3_stmt *sql_stmt;
+    // Prepare the SQL statement to select the ID of the chat with the specified name.
+    sqlite3_prepare_v2(db, "SELECT `id` FROM `chats` WHERE `name` = ?", -1, &sql_stmt, NULL);
+    // Bind the chat name parameter to the SQL statement.
+    sqlite3_bind_text(sql_stmt, 1, chat_name, -1, NULL);
 
-    // Prepare SQL statement to select the chat ID by name
-    sqlite3_stmt *stmt;
-    sqlite3_prepare_v2(db, "SELECT `id` FROM `chats` WHERE `name` = ?", -1, &stmt, NULL);
-    sqlite3_bind_text(stmt, 1, chat_name, -1, NULL);
+    // Initialize the chat ID to -1 (indicating not found).
+    int chat_id = -1;
 
-    int chat_id = -1; // Initialize chat ID variable
-
-    // Execute the SQL statement and retrieve the result
-    if (sqlite3_step(stmt) == SQLITE_ROW)
+    // Execute the SQL statement and check if a row is returned.
+    if (sqlite3_step(sql_stmt) == SQLITE_ROW)
     {
-        // If the query returns a row, extract the chat ID
-        chat_id = sqlite3_column_int64(stmt, 0); // Get the chat ID from the result set
+        // If a row is returned, extract the chat ID from the result.
+        chat_id = sqlite3_column_int64(sql_stmt, 0);
     }
 
-    sqlite3_finalize(stmt);
+    // Finalize the SQL statement to release resources.
+    sqlite3_finalize(sql_stmt);
+
+    // Return the chat ID (found or -1 if not found).
+    return chat_id;
+}
+
+// Original function refactored
+int db_get_chat_id_by_name(const char *chat_name)
+{
+    // Open the database connection.
+    sqlite3 *db = open_db();
+    // Retrieve the chat ID from the database.
+    int chat_id = get_chat_id_by_name_from_db(chat_name, db);
+    // Close the database connection.
     sqlite3_close(db);
 
-    // Return the chat ID (or -1 if not found)
+    // Return the chat ID.
     return chat_id;
 }

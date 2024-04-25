@@ -1,5 +1,14 @@
 #include "../../inc/client.h"
 
+// Function to create and configure main_area
+static GtkWidget* create_main_area()
+{
+    GtkWidget *main_area = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0); // Create a vertical box for main area
+    gtk_widget_set_name(main_area, "main_area"); // Set name for styling
+
+    return main_area;
+}
+
 // Function to build the authorization window
 void build_authorization_window()
 {
@@ -10,8 +19,7 @@ void build_authorization_window()
 
     main_window = create_new_window("Authorization", 500, 0, false); // Create a new main_window
 
-    GtkWidget *main_area = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0); // Create a vertical box for main area
-    gtk_widget_set_name(main_area, "main_area"); // Set name for styling
+     GtkWidget *main_area = create_main_area(); // Create and configure main_area
     gtk_container_add(GTK_CONTAINER(main_window), main_area); // Add main_area to main_window
 
     build_login_menu(); // Build the login menu components

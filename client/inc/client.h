@@ -199,45 +199,45 @@ void set_notify_error_style(GtkWidget *notify_label, char *message);
 void set_notify_success_style(GtkWidget *notify_label, char *message);
 void add_class(GtkWidget *widget, char *class_name);
 void remove_class(GtkWidget *widget, char *class_name);
-char *get_server_response(SSL *ssl, int length);
-char *get_response_str(t_response_code error_code);
-t_response_code get_response_code(cJSON *json);
+char *get_server_res(SSL *ssl, int length);
+char *get_res_str(t_response_code error_code);
+t_response_code get_res_code(cJSON *json);
 char *ellipsis_str(const char *str, int overflow_len);
 void logger(const char *info, t_log_type info_type);
 
-char* send_and_recv_from_server(SSL *ssl, const char* json_str);
+char* send_and_receive_from_server(SSL *ssl, const char* json_str);
 int send_to_server(SSL *ssl, const char *request_str);
-char *recv_from_server(SSL *ssl);
-void set_messages_as_read_for(t_chat *chat);
+char *receive_from_server(SSL *ssl);
+void set_msgs_as_read_for(t_chat *chat);
 
-t_response_code handle_server_response(const char *response_str);
+t_response_code handle_server_res(const char *response_str);
 void *handle_server_updates(void *arg);
-int handle_last_msg_id_request(int chat_id);
-int handle_new_message(t_chat *curr_chat, int message_id, bool is_current);
-void handle_get_msg_request(int chat_id, int message_id);
-t_msg *handle_get_msg_response();
-t_response_code handle_create_chat_request(const char *chat_name);
-t_response_code handle_delete_account_request();
-int handle_delete_chat_request(const char *chat_name);
-void handle_delete_msg_request(int message_id);
-t_response_code handle_edit_chat_request(int chat_id, const char *new_name);
-void handle_edit_msg_request(int message_id, const char *new_msg_text);
-t_response_code handle_edit_password_request(const char *new_pass, const char *old_pass);
-t_response_code handle_edit_username_request(const char *new_name);
-t_response_code handle_get_chat_msgs_request(int chat_id);
-t_response_code handle_get_chat_msgs_response(const char *response_str);
-t_response_code handle_get_chats_request();
-t_response_code handle_get_chats_response(t_chat **chat_list, const char *response_str, bool is_search);
-t_response_code handle_join_chat_request(const char *chat_name);
-t_response_code handle_leave_chat_request(const char *chat_name);
-t_response_code handle_login_request(const char *user_name, const char *user_password);
-t_response_code handle_login_response(const char *response_str);
-void handle_logout_request(bool is_client_exit);
-t_chat *handle_search_chats_request(const char *search_str);
-t_response_code handle_send_msg_response(const char *response_str, t_msg *sent_msg);
-t_response_code handle_signup_request(const char *user_name, const char *user_password);
-t_response_code handle_signup_response(const char *response_str);
-t_response_code handle_send_msg_request(const char *message_str);
+int handle_last_msg_id_req(int chat_id);
+int handle_new_msg(t_chat *curr_chat, int message_id, bool is_current);
+void handle_get_msg_req(int chat_id, int message_id);
+t_msg *handle_get_msg_res();
+t_response_code handle_create_chat_req(const char *chat_name);
+t_response_code handle_delete_account_req();
+int handle_delete_chat_req(const char *chat_name);
+void handle_delete_msg_req(int message_id);
+t_response_code handle_edit_chat_req(int chat_id, const char *new_name);
+void handle_edit_msg_req(int message_id, const char *new_msg_text);
+t_response_code handle_edit_password_req(const char *new_pass, const char *old_pass);
+t_response_code handle_edit_username_req(const char *new_name);
+t_response_code handle_get_chat_msgs_req(int chat_id);
+t_response_code handle_get_chat_msgs_res(const char *response_str);
+t_response_code handle_get_chats_req();
+t_response_code handle_get_chats_res(t_chat **chat_list, const char *response_str, bool is_search);
+t_response_code handle_join_chat_req(const char *chat_name);
+t_response_code handle_leave_chat_req(const char *chat_name);
+t_response_code handle_login_req(const char *user_name, const char *user_password);
+t_response_code handle_login_res(const char *response_str);
+void handle_logout_req(bool is_client_exit);
+t_chat *handle_search_chats_req(const char *search_str);
+t_response_code handle_send_msg_res(const char *response_str, t_msg *sent_msg);
+t_response_code handle_signup_req(const char *user_name, const char *user_password);
+t_response_code handle_signup_res(const char *response_str);
+t_response_code handle_send_msg_req(const char *message_str);
 
 
 void add_message(t_msg *message);
@@ -249,7 +249,7 @@ t_response_code add_msg_to_msglist(cJSON *json);
 t_response_code add_to_global_msglist(t_msg *new_msg);
 t_msg *get_msg_from_json(cJSON *json);
 void modify_global_user(const char *new_name, const char *new_pass);
-void recv_image_from_server(int *socket, unsigned char **buffer, size_t length);
+void recieve_image_from_server(int *socket, unsigned char **buffer, size_t length);
 void send_image_to_server(int *socket, void *buffer, size_t length);
 void set_current_user(t_user **user, const cJSON *user_json);
 void client_cleanup(bool is_client_exit);
@@ -279,12 +279,12 @@ t_msg *mx_create_msg(int msg_id, int user_id, const char *user_name, int chat_id
 void mx_msg_dfl_push_back(t_msg **list, int msg_id, int user_id, const char *user_name, int chat_id, const char *text, const char *date_str, t_avatar_color color);
 
 
-bool regex_for(const char *str, const char *pattern);
+bool contains_regex(const char *str, const char *pattern);
 bool is_user_name_format_valid(const char *user_name);
 
 //HANDLE RESPONSE CODE
-void handle_login_response_code(int error_code, GtkWidget *login_notify_label);
-void handle_signup_response_code(int error_code, GtkWidget *signup_notify_label);
+void handle_login_res_code(int response_code, GtkWidget *login_notify_label);
+void handle_signup_res_code(int response_code, GtkWidget *signup_notify_label);
 void handle_create_chat_response_code(int error_code, GtkWidget* entry_field, GtkWidget *create_chat_notify_label);
 void handle_join_chat_response_code(int error_code, char *chat_name);
 void handle_edit_password_response_code(int response_code, GtkWidget* entry_field, GtkWidget *change_password_notify_label);
@@ -358,7 +358,6 @@ gboolean draw_chat_avatar(GtkWidget *widget, cairo_t *cr, gpointer data);
 
 void build_change_password_window(GtkWidget *widget, gpointer data);
 void build_change_login_window(GtkWidget *widget, gpointer data);
-void build_change_avatar_window(GtkWidget *widget, gpointer data);
 void build_change_chat_name_window(GtkWidget *widget, gpointer data);
 
 void leave_chat_btn_click(GtkWidget *widget, gpointer data);
@@ -386,7 +385,6 @@ void scroll_to_end(GtkWidget *widget, gpointer data);
 void send_button_click(GtkWidget *widget, gpointer new_message_field);
 
 void build_found_chats(t_chat *chat_list);
-void change_avatar_btn_click(GtkWidget *widget, gpointer data);
 void change_chat_name_btn_click(GtkWidget *widget, gpointer data);
 void change_login_btn_click(GtkWidget *widget, gpointer data);
 void change_password_btn_click(GtkWidget *widget, gpointer data);

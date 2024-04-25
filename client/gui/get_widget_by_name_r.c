@@ -1,41 +1,47 @@
 #include "../inc/client.h"
 
-// Recursive function to get a widget by name within a container
-GtkWidget *get_widget_by_name_r(GtkWidget *container, char *name)
+// Function to check if a widget's name matches the desired name
+static gboolean widget_name_matches(GtkWidget *widget, const gchar *name)
 {
-    GtkWidget *result = NULL; // Result widget
-    GList *children = NULL;   // List of children widgets
+    return gtk_widget_get_name(widget) && strcmp(gtk_widget_get_name(widget), name) == 0;
+}
 
-    if (GTK_IS_CONTAINER(container)) // Check if container is a GTK container
+// Recursive function to search for a widget by name within a container
+static GtkWidget *recursive_search_widget(GtkWidget *widget, const gchar *name)
+{
+    if (!GTK_IS_CONTAINER(widget))
     {
-        children = gtk_container_get_children(GTK_CONTAINER(container)); // Get children of the container
-    }
-    else
-    {
-        return NULL; // Return NULL if container is not a GTK container
+        return NULL;
     }
 
-    // Iterate through the children widgets
-    while (children)
+    GList *children = gtk_container_get_children(GTK_CONTAINER(widget));
+    GtkWidget *result = NULL;
+
+    for (GList *iter = children; iter != NULL; iter = g_list_next(iter))
     {
-        // Check if the name of the current widget matches the desired name
-        if (!strcmp(gtk_widget_get_name(GTK_WIDGET(children->data)), name))
+        GtkWidget *child = GTK_WIDGET(iter->data);
+        if (widget_name_matches(child, name))
         {
-            result = GTK_WIDGET(children->data); // Set result to the current widget
-            break;                               // Exit the loop
+            result = child;
+            break;
         }
-        // Check if the current widget is a container and search recursively within it
-        else if (GTK_IS_CONTAINER(children->data))
+        else if (GTK_IS_CONTAINER(child))
         {
-            result = get_widget_by_name_r(children->data, name); // Recursively search for the widget
+            result = recursive_search_widget(child, name);
             if (result != NULL)
-                break; // Exit the loop if the widget is found
+            {
+                break;
+            }
         }
-
-        children = children->next; // Move to the next child widget
     }
 
-    g_list_free(g_steal_pointer(&children)); // Free the memory allocated for the list of children
+    g_list_free(children);
+    
+    return result;
+}
 
-    return result; // Return the result widget
+// Function to get a widget by name within a container
+GtkWidget *get_widget_by_name_r(GtkWidget *container, gchar *name)
+{
+    return recursive_search_widget(container, name);
 }
